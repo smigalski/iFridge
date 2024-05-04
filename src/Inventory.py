@@ -2,7 +2,9 @@
 #API course
 #(c) Daniel Smigala, Yasmine Hildebrand, Constantin Denden, Julius Schieck, David Nagel
 
-inventory = [] #contains all items which are stored in fridge
+_inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
+
+
 
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
 
