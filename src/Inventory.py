@@ -8,20 +8,25 @@ def getInventory():
     return _inventory
 
 def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable. quantity must be 1 for stackable items.
-    if type == "stackable" or type == "continous":
-        if type == "stackable":
-            if quantity == 1 or quantity == "":
-                list = [expiry]
-                _inventory.append(StackableItem(name, list))
-            else:
-                print("Error: You can ony add one stackable item at one time! quantity must be 1.")
-        if type == "continous":
-            _inventory.append(ContinuousItem(name, expiry, quantity, unit))
+    if getItemIndex(name) == -1
+        if type == "stackable" or type == "continous":
+            if type == "stackable":
+                if quantity == 1 or quantity == "":
+                    list = [expiry]
+                    _inventory.append(StackableItem(name, list))
+                else:
+                    print("Error: You can ony add one stackable item at one time! quantity must be 1.")
+            if type == "continous":
+                _inventory.append(ContinuousItem(name, expiry, quantity, unit))
+        else:
+            print("Error: type {type} is unknown.")
     else:
-        print("Error: type {type} is unknown.")
+        print("Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
 
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
     index = getItemIndex(name)
+    if index == -1:
+        print("Error: Es konnte kein Produkt mit dem Namen {name} gefunden werden.")
     if type == "stackable" or type == "continous":
         if type == "stackable":
             if addend == 1 or addend == "":
@@ -38,8 +43,6 @@ def getItemIndex(name):
     for i in range(len(_inventory) - 1):
         if name == _inventory[i].name:
             index = i
-    if index == -1:
-        print("Error: Es konnte kein Produkt mit dem Namen {name} gefunden werden.")
     return index
 
 #classes for items
