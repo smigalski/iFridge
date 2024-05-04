@@ -40,7 +40,7 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
 
 def getItemIndex(name):
     index = -1
-    for i in range(len(_inventory) - 1):
+    for i in range (len(_inventory)):
         if name == _inventory[i].name:
             index = i
     return index
@@ -64,7 +64,7 @@ class StackableItem:
 
     def remove(self, index):
         list = []
-        for i in range (self.quantity - 1):
+        for i in range (self.quantity):
             if i != index:
                 list.append(self.expiries(i))
         self.expiries = list
