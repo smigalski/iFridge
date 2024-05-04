@@ -6,3 +6,6 @@
 #Please try to implement as much as possible as modules.
 #This file should only contain the superior procedures.
 
+import Inventory
+
+
