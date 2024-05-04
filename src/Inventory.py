@@ -8,7 +8,7 @@ def getInventory():
     return _inventory
 
 def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable. quantity must be 1 for stackable items.
-    if getItemIndex(name) == -1
+    if getItemIndex(name) == -1:
         if type == "stackable" or type == "continous":
             if type == "stackable":
                 if quantity == 1 or quantity == "":
