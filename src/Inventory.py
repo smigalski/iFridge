@@ -15,7 +15,7 @@ class Inventory:
                     list = [expiry]
                     _inventory.append(StackableItem(name, list))
                 else:
-                    print("Error: You can ony add one stackable item at one time! quantity must be 1."
+                    print("Error: You can ony add one stackable item at one time! quantity must be 1.")
             if type == "continous":
                 list = [expiry]
                 _inventory.append(ContinuousItem(name, expiry, quantity, unit))
