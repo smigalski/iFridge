@@ -4,6 +4,8 @@
 
 inventory = [] #contains all items which are stored in fridge
 
+#There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
+
 class StackableItem:
     def __init__(self, name, expiries):
         self.name = name
@@ -25,3 +27,11 @@ class StackableItem:
                 list.append(self.expiries(i))
         self.expiries = list
         self.quantity -= 1
+
+
+class ContinuousItem:
+    def __init__(self, name, quantity, unit):
+        self.name = name
+        self.quantity = quantity
+        self.unit = unit
+
