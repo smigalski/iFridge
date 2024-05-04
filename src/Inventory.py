@@ -11,8 +11,11 @@ class Inventory:
     def newItem(self, type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable. quantity must be 1 for stackable items.
         if type == "stackable" or type == "continous":
             if type == "stackable":
-                list = [expiry]
-                _inventory.append(StackableItem(name, list))
+                if quantity == 1 or quantity == "":
+                    list = [expiry]
+                    _inventory.append(StackableItem(name, list))
+                else:
+                    print("Error: You can ony add one stackable item at one time! quantity must be 1."
             if type == "continous":
                 list = [expiry]
                 _inventory.append(ContinuousItem(name, expiry, quantity, unit))
