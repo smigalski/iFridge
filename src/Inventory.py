@@ -26,7 +26,7 @@ def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "co
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
     index = getItemIndex(name)
     if index == -1:
-        print("Error: Es konnte kein Produkt mit dem Namen {name} gefunden werden.")
+        print(f"Error: There is no item named {name} found. You may made an typo or need to add a new item.")
     if type == "stackable" or type == "continous":
         if type == "stackable":
             if addend == 1 or addend == "":
