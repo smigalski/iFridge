@@ -4,15 +4,24 @@
 
 inventory = [] #contains all items which are stored in fridge
 
-class StackableItem(self, name, expirys):
+class StackableItem:
     def __init__(self, name, expiries):
         self.name = name
         self.expiries = expiries #List of expiry dates of stacked item
-        self.quantity = None #Quantity of stacked items of same type
+        self.quantity = 0 #Quantity of stacked items of same type
 
-    def count(self):
-        self.quantity = len(self.expiry)
+    def getQuantity(self):
         return self.quantity
 
+
     def Add(self, expiry):
+        self.quantity += 1
         self.expiries.append(expiry)
+
+    def Remove(self, index):
+        list = []
+        for i in range self.quantity:
+            if i != index:
+                list.append(self.expiries(i))
+        self.expiries = list
+        self.quantity -= 1
