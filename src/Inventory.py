@@ -15,7 +15,7 @@ class Inventory:
                 _inventory.append(StackableItem(name, list))
             if type == "continous":
                 list = [expiry]
-                _inventory.append(ContinuousItem(name, quantity, unit))
+                _inventory.append(ContinuousItem(name, expiry, quantity, unit))
         else:
             print("Error: type {type} is unknown.")
 
@@ -60,8 +60,9 @@ class StackableItem:
 
 
 class ContinuousItem:
-    def __init__(self, name, quantity, unit):
+    def __init__(self, name, expiry, quantity, unit):
         self.name = name
+        self.expiry = expiry
         self.quantity = quantity
         self.unit = unit
 
