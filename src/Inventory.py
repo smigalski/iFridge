@@ -5,7 +5,7 @@
 _inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
 
 def getInventory():
-        return _inventory
+    return _inventory
 
 def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable. quantity must be 1 for stackable items.
     if type == "stackable" or type == "continous":
@@ -21,23 +21,26 @@ def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "co
         print("Error: type {type} is unknown.")
 
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
-    check = 0
-    for i in range (len(_inventory) - 1):
-        if name == _inventory[i].name:
-            check = 1
-            if type == "stackable" or type == "continous":
-                if type == "stackable":
-                    if addend == 1 or addend == "":
-                        _inventory[i].add(expiry)
-                    else:
-                        print("Error: You can ony add one stackable item at one time! addend must be 1.")
-                if type == "continous":
-                    _inventory[i].refill(addend, expiry)
+    index = getItemIndex(name)
+    if type == "stackable" or type == "continous":
+        if type == "stackable":
+            if addend == 1 or addend == "":
+                _inventory[index].add(expiry)
             else:
-                print("Error: type {type} is unknown.")
-    if check = 0:
-        print("Error: Es konnte kein Produkt mit dem Namen {name} gefunden werden.")
+                print("Error: You can ony add one stackable item at one time! addend must be 1.")
+        if type == "continous":
+            _inventory[index].refill(addend, expiry)
+    else:
+        print("Error: type {type} is unknown.")
 
+def getItemIndex(name):
+    index = -1
+    for i in range(len(_inventory) - 1):
+        if name == _inventory[i].name:
+            index = i
+    if index == -1:
+        print("Error: Es konnte kein Produkt mit dem Namen {name} gefunden werden.")
+    return index
 
 #classes for items
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
@@ -76,7 +79,7 @@ class ContinuousItem:
         return self.quantity
 
     def refill(self, addend, expiry):
-        if self.quantity = 0:
+        if self.quantity == 0:
             self.expiry = expiry
         self.quantity += addend
 
