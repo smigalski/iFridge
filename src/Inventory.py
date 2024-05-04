@@ -16,7 +16,6 @@ def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "co
             else:
                 print("Error: You can ony add one stackable item at one time! quantity must be 1.")
         if type == "continous":
-            list = [expiry]
             _inventory.append(ContinuousItem(name, expiry, quantity, unit))
     else:
         print("Error: type {type} is unknown.")
@@ -31,7 +30,7 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
                     else:
                         print("Error: You can ony add one stackable item at one time! addend must be 1.")
                 if type == "continous":
-                    _inventory[i].refill(addend)
+                    _inventory[i].refill(addend, expiry)
             else:
                 print("Error: type {type} is unknown.")
 
@@ -72,7 +71,9 @@ class ContinuousItem:
     def getQuantity(self):
         return self.quantity
 
-    def refill(self, addend):
+    def refill(self, addend, expiry):
+        if self.quantity = 0:
+            self.expiry = expiry
         self.quantity += addend
 
     def take(self, subtrahend):
