@@ -47,7 +47,7 @@
     <string>Aktive User</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label_Nutzeranzahl">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -65,7 +65,7 @@
     <string>XX registrierte Nutzer</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pushButton_AddUser">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -78,7 +78,7 @@
     <string>Add User</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="pushButton_RemoveUser">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -140,6 +140,9 @@
      <width>151</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

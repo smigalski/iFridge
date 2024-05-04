@@ -19,7 +19,8 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
     QLabel, QLineEdit, QListView, QPushButton,
     QSizePolicy, QWidget)
 
-class Ui_Usermanagement(object):
+
+class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
     def setupUi(self, Usermanagement):
         if not Usermanagement.objectName():
             Usermanagement.setObjectName(u"Usermanagement")
@@ -36,7 +37,7 @@ class Ui_Usermanagement(object):
         font = QFont()
         font.setPointSize(20)
         self.label.setFont(font)
-        self.label_2 = QLabel(Usermanagement)
+        self.label_2 = QLabel(Usermanagement)                   #Label2 ist das Label für die Anzahl der aktiven Nutzer
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(20, 450, 161, 16))
         font1 = QFont()
@@ -80,3 +81,12 @@ class Ui_Usermanagement(object):
         pass
     # retranslateUi
 
+if __name__ == "__main__":
+    import sys
+
+    app = QApplication(sys.argv)
+    dialog = QDialog()
+    ui = Ui_Usermanagement()
+    ui.setupUi(dialog)
+    dialog.show()
+    sys.exit(app.exec())
