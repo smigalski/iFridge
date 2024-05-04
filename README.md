@@ -1,3 +1,5 @@
-# GRUPPENNAME
+# iFridge
 
-Dies ist eine Repository-Vorlage inkl. Wiki für Gruppen, die das Modul Anwendungsorientierte Programmierung für Ingenieure (API) am Institut für Flugführung (IFF) der TU Braunschweig belegen.
+iFridge ist ein smarter Kühlschrank, der mit seinen Bedienern interagieren kann und sie damit unterstützt.
+
+Das Hauptprogramm ist [iFridge/src/iFridge.py](https://apilab.iff.ing.tu-bs.de/ss2024/repos/iFridge/-/blob/main/src/iFridge.py?ref_type=heads). Dieses enthält den übergeordneten Ablauf. Alles Weitere ist in den Modulen zu finden, die ins Hauptprogramm importiert werden.
