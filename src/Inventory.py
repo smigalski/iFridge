@@ -4,6 +4,12 @@
 
 _inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
 
+class Inventory:
+    def newItem(self, name, expiry):
+        list = [expiry]
+        _inventory.append(StackableItem(name,list))
+
+    def addItem(self, type, name, expiry):
 
 
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
@@ -18,11 +24,11 @@ class StackableItem:
         return self.quantity
 
 
-    def Add(self, expiry):
+    def add(self, expiry):
         self.quantity += 1
         self.expiries.append(expiry)
 
-    def Remove(self, index):
+    def remove(self, index):
         list = []
         for i in range self.quantity:
             if i != index:
@@ -40,3 +46,8 @@ class ContinuousItem:
     def getQuantity(self):
         return self.quantity
 
+    def refill(self, addend):
+        self.quantity += addend
+
+    def take(self, subtrahend):
+        self.quantity -= subtrahend
