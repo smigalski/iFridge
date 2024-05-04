@@ -5,11 +5,19 @@
 _inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
 
 class Inventory:
-    def newItem(self, name, expiry):
-        list = [expiry]
-        _inventory.append(StackableItem(name,list))
+    def newItem(self,type, name, expiry,unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable
+        if type == "stackable" or type == "continous":
+            if type == "stackable":
+                list = [expiry]
+                _inventory.append(StackableItem(name, list))
 
-    def addItem(self, type, name, expiry):
+            if type == "continous":
+                list = [expiry]
+                _inventory.append(ContinuousItem(name,quantity,unit))
+
+
+        else:
+            print("Error: type {type} is unknown.")
 
 
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
