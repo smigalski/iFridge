@@ -35,3 +35,6 @@ class ContinuousItem:
         self.quantity = quantity
         self.unit = unit
 
+    def getQuantity(self):
+        return self.quantity
+
