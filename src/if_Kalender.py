@@ -4,7 +4,7 @@
 
 #Dieses Unterprogramm ermöglicht das Einlesen und Abspeichern von Kalenderdateien sowie das Hinzufügen von Terminen.
 
-#Die Terminklasse beinhaltet Datum (YYYY_MM_DD), Uhrzeit (HH_MM) und Namen des Termins.
+#Die Terminklasse beinhaltet Datum (YYYY_MM_DD), Uhrzeit (HH_MM), Titel des Termins und eine Beschreibung.
 #Eine Kalenderobjekt beinhaltet den Namen des Users sowie eine Liste aus Terminen, Sortiert nach Datum und Uhrzeit.
 
 
@@ -19,7 +19,7 @@ class termin:
 
 class kalender:
     def __init__(self, user, terminliste):
-        self.user = user
-        self.terminliste = [terminliste]
+        self.user = user                        #Name des zum Kalender gehörigen Users
+        self.terminliste = [terminliste]        #Liste aus Terminen, Sortiert nach Datum und Uhrzeit in aufsteigender Reihenfolge
     
 
