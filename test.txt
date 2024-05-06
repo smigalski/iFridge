@@ -1,5 +1,5 @@
 Das ein Test
 um GittyUP
-auzuprobieren
+auzuprobieren, aber ich ändere im ausgecheckten develop die 3. Zeile
 jetzt ergänze ich eine 4. Zeile und speichere sie ab
 Eine 5. Zeile mit dem Branch develop wird erzeugt
