@@ -1,4 +1,5 @@
 Änderung der ersten Zeile im master oder main
+Das ist jetzt die zweite Änderung der ersten Zeil mit einem ausgecheckten develop
 um GittyUP
 auzuprobieren, aber ich ändere im ausgecheckten develop die 3. Zeile
 jetzt ergänze ich eine 4. Zeile und speichere sie ab
