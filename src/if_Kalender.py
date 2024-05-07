@@ -74,7 +74,7 @@ class kalender:
         writer.close()
     
     #Unterfunktion zum hinzufügen eines Termins, benötigt Datum, Zeit, Titel und Beschreibung
-    def add(adddate, addtime, addtitle, addevent):
+    def hinzufg(adddate, addtime, addtitle, addevent):
         termin_neu = termin(adddate, addtime, addtitle, addevent)
         kalender.terminliste.append(termin_neu)
         termine_sortiert = sorted(kalender.terminliste(), key=itemgetter(0))
