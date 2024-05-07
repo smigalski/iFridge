@@ -7,6 +7,8 @@ Dieses Unterprogramm ermöglicht das Einlesen und Abspeichern von Kalenderdateie
 
 Die Terminklasse beinhaltet Datum (YYYY_MM_DD), Uhrzeit (HH_MM), Titel des Termins und eine Beschreibung.
 Eine Kalenderobjekt beinhaltet den Namen des Users sowie eine Liste aus Terminen, Sortiert nach Datum und Uhrzeit.
+
+ACHTUNG: FUNKTIONEN NOCH NICHT GETESTET, TESTPROGRAMM WIRD NOCH ERSTELLT
 """
 
 #Importierte Module
