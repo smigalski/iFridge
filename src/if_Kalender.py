@@ -69,7 +69,7 @@ class kalender:
                          "    <time>" + kalender.terminliste(x.zeit) + "</time>\n" +
                          "    <title>" + kalender.terminliste(x.titel) + "</title>\n" + 
                          "    <event>" + kalender.terminliste(x.event) + "</event>\n" +
-                         "</termin>")
+                         "</termin>\n")
         writer.write("</kalender>")
         writer.close()
     
