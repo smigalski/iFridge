@@ -67,16 +67,18 @@ class kalender:
 
     #Unterfunktion zum Abspeichern des Kalenderobjektes
     def ausgeben(user):
-        writer = open("Kalender/" + user + ".xml", "w")
+        writer = open("Kalender/" + user + ".xml", "w")             #Öffnet die jeweilige Datei aus dem Kalenderordner
         writer.write("<kalender>\n<user>" + user + "</user>\n")
-        for x in kalender.terminliste:
+        
+        for x in kalender.terminliste:                              #Schleife zum schreiben jedes Termins in der aktuell geladenen Terminliste des Kalenders in die Datei
             writer.write("    <date>" + kalender.terminliste(x.datum) + "</date>\n" +
                          "    <time>" + kalender.terminliste(x.zeit) + "</time>\n" +
                          "    <title>" + kalender.terminliste(x.titel) + "</title>\n" + 
                          "    <event>" + kalender.terminliste(x.event) + "</event>\n" +
                          "</termin>\n")
         writer.write("</kalender>")
-        writer.close()
+        
+        writer.close()                                              #Schließt die Datei
     
     #Unterfunktion zum hinzufügen eines Termins, benötigt Datum, Zeit, Titel und Beschreibung
     def hinzufg(adddate, addtime, addtitle, addevent):
