@@ -23,3 +23,48 @@ class kalender:
         self.terminliste = [terminliste]        #Liste aus Terminen, Sortiert nach Datum und Uhrzeit in aufsteigender Reihenfolge
     
 
+    #Unterfunktion zum Einlesen des Kalenderobjektes
+    def einlesen(user):
+        reader = open("Kalender/" + user + ".xml", "r")
+        readstop = 0                            #Hilfsvariable zum Beenden des Loops bei Erreichen des Dateiendes
+        active_line = "default" 	            #Hilfsvariable zum einlesen einer Zeile der Kalenderdatei
+        readdate = "default"                    #Hilfsvariable zum einlesen des Datums
+        readtime = "default"                    #Hilfsvariable zum einlesen der Uhrzeit
+        readtitle = "default"                   #Hilfsvariable zum einlesen des Titels
+        readevent = "default"                   #Hilfsvariable zum einlesen des Events
+
+        #Loop zum Verarbeiten der Kalenderdatei, läuft durch bis zum Ende der Kalenderdatei
+        while readstop == 0:
+            active_line = reader.readline()
+            if active_line[:6] == "<user>":                 #Ändert den Usernamen des Kalenderobjekts zum jeweiligen im Kalender angegebenen User
+                kalender.user = active_line[6:-7]
+            if active_line == "<termin>":                   #Liest bei Erkennen des Anfangs eines Terminblocks in der Datei die Daten des Termins ein 
+                                                            #und fügt diesen als neuen Termin zur Terminliste des Kalenderobjekts hinzu
+                readdate = reader.readline().strip()[6:-7]
+                readtime = reader.readline().strip()[6:-7]
+                readtitle = reader.readline().strip()[7:-8]
+                readevent = reader.readline().strip()[7:-8]
+
+                termin_neu = termin(readdate, readtime, readtitle, readevent)
+                kalender.terminliste.append = termin_neu
+            if active_line == "</kalender>":
+                readstop = 1
+        
+        reader.close()                                      #Schließt nach Beendigung des Einlesevorgangs die Datei wieder
+
+    #Unterfunktion zum Abspeichern des Kalenderobjektes
+    def ausgeben(user):
+        writer = open("Kalender/" + user + ".xml", "w")
+        writer.write("<kalender>\n<user>" + user + "</user>\n")
+        for x in kalender.terminliste:
+            writer.write("    <date>" + kalender.terminliste(x.datum) + "</date>\n" +
+                         "    <time>" + kalender.terminliste(x.zeit) + "</time>\n" +
+                         "    <title>" + kalender.terminliste(x.titel) + "</title>\n" + 
+                         "    <event>" + kalender.terminliste(x.event) + "</event>\n" +
+                         "</termin>")
+        writer.write("</kalender>")
+        writer.close()
+
+        
+
+
