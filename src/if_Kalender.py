@@ -70,7 +70,8 @@ class kalender:
         writer = open("Kalender/" + user + ".xml", "w")             #Öffnet die jeweilige Datei aus dem Kalenderordner
         writer.write("<kalender>\n<user>" + user + "</user>\n")
         
-        for x in kalender.terminliste:                              #Schleife zum schreiben jedes Termins in der aktuell geladenen Terminliste des Kalenders in die Datei
+        #Schleife zum schreiben jedes Termins in der aktuell geladenen Terminliste des Kalenders in die Datei
+        for x in kalender.terminliste:
             writer.write("    <date>" + kalender.terminliste(x.datum) + "</date>\n" +
                          "    <time>" + kalender.terminliste(x.zeit) + "</time>\n" +
                          "    <title>" + kalender.terminliste(x.titel) + "</title>\n" + 
