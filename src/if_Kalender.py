@@ -22,6 +22,7 @@ class termin:
         self.titel = titel                      #Titel als String eingeben
         self.event = event                      #Event als String eingeben
 
+#Kalenderobjekt erstellen mitsamt Unterfunktionen "einlesen" zum einlesen einer Kalenderdatei, "ausgeben" zum abspeichern einer Kalenderdatei, "hinzufg" zum Hinzufügen eines Termins
 class kalender:
     def __init__(self, user, terminliste):
         self.user = user                        #Name des zum Kalender gehörigen Users
