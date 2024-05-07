@@ -28,6 +28,7 @@ class kalender:
     def einlesen(user):
         reader = open("Kalender/" + user + ".xml", "r")
         readstop = 0                            #Hilfsvariable zum Beenden des Loops bei Erreichen des Dateiendes
+        entrynr = 0                             #Hilfsvariable zum Starten der Terminliste
         active_line = "default" 	            #Hilfsvariable zum einlesen einer Zeile der Kalenderdatei
         readdate = "default"                    #Hilfsvariable zum einlesen des Datums
         readtime = "default"                    #Hilfsvariable zum einlesen der Uhrzeit
@@ -37,7 +38,8 @@ class kalender:
         #Loop zum Verarbeiten der Kalenderdatei, läuft durch bis zum Ende der Kalenderdatei
         while readstop == 0:
             active_line = reader.readline()
-            if active_line[:6] == "<user>":                 #Ändert den Usernamen des Kalenderobjekts zum jeweiligen im Kalender angegebenen User
+            kalender.terminliste = ["default"]              #Setzt die aktuell vorhandene Terminliste des Kalenders zurück
+            if active_line[:6] == "<user>":                 #Ändert den Usernamen des Kalenderobjekts zum jeweiligen in der Kalenderdatei angegebenen User
                 kalender.user = active_line[6:-7]
             if active_line == "<termin>":                   #Liest bei Erkennen des Anfangs eines Terminblocks in der Datei die Daten des Termins ein 
                                                             #und fügt diesen als neuen Termin zur Terminliste des Kalenderobjekts hinzu
@@ -47,7 +49,12 @@ class kalender:
                 readevent = reader.readline().strip()[7:-8]
 
                 termin_neu = termin(readdate, readtime, readtitle, readevent)
-                kalender.terminliste.append = termin_neu
+                if entrynr == 0:
+                    kalender.terminliste[0] = termin_neu
+                else:
+                    kalender.terminliste.append = termin_neu
+                entrynr +=1
+
             if active_line == "</kalender>":
                 readstop = 1
         
