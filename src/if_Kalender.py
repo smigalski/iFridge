@@ -7,7 +7,8 @@
 #Die Terminklasse beinhaltet Datum (YYYY_MM_DD), Uhrzeit (HH_MM), Titel des Termins und eine Beschreibung.
 #Eine Kalenderobjekt beinhaltet den Namen des Users sowie eine Liste aus Terminen, Sortiert nach Datum und Uhrzeit.
 
-
+#Importierte Module
+from operator import itemgetter
 
 #Terminklasse erstellen
 class termin:
@@ -64,7 +65,15 @@ class kalender:
                          "</termin>")
         writer.write("</kalender>")
         writer.close()
-
+    
+    #Unterfunktion zum hinzufügen eines Termins, benötigt Datum, Zeit, Titel und Beschreibung
+    def add(adddate, addtime, addtitle, addevent):
+        termin_neu = termin(adddate, addtime, addtitle, addevent)
+        kalender.terminliste.append(termin_neu)
+        termine_sortiert = sorted(kalender.terminliste(), key=itemgetter(0))
+        kalender.terminliste(termine_sortiert)
+    
+        
         
 
 
