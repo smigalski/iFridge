@@ -32,36 +32,36 @@ class kalender:
     #Unterfunktion zum Einlesen des Kalenderobjektes
     def einlesen(user):
         reader = open("Kalender/" + user + ".xml", "r")
-        readstop = 0                            #Hilfsvariable zum Beenden des Loops bei Erreichen des Dateiendes
+        readStop = 0                            #Hilfsvariable zum Beenden des Loops bei Erreichen des Dateiendes
         entrynr = 0                             #Hilfsvariable zum Starten der Terminliste
-        active_line = "default" 	            #Hilfsvariable zum einlesen einer Zeile der Kalenderdatei
-        readdate = "default"                    #Hilfsvariable zum einlesen des Datums
-        readtime = "default"                    #Hilfsvariable zum einlesen der Uhrzeit
-        readtitle = "default"                   #Hilfsvariable zum einlesen des Titels
-        readevent = "default"                   #Hilfsvariable zum einlesen des Events
+        activeLine = "default" 	            #Hilfsvariable zum einlesen einer Zeile der Kalenderdatei
+        readDate = "default"                    #Hilfsvariable zum einlesen des Datums
+        readTime = "default"                    #Hilfsvariable zum einlesen der Uhrzeit
+        readTitle = "default"                   #Hilfsvariable zum einlesen des Titels
+        readEvent = "default"                   #Hilfsvariable zum einlesen des Events
 
         #Loop zum Verarbeiten der Kalenderdatei, läuft durch bis zum Ende der Kalenderdatei
-        while readstop == 0:
-            active_line = reader.readline()
+        while readStop == 0:
+            activeLine = reader.readline()
             kalender.terminliste = ["default"]              #Setzt die aktuell vorhandene Terminliste des Kalenders zurück
-            if active_line[:6] == "<user>":                 #Ändert den Usernamen des Kalenderobjekts zum jeweiligen in der Kalenderdatei angegebenen User
-                kalender.user = active_line[6:-7]
-            if active_line == "<termin>":                   #Liest bei Erkennen des Anfangs eines Terminblocks in der Datei die Daten des Termins ein 
+            if activeLine[:6] == "<user>":                 #Ändert den Usernamen des Kalenderobjekts zum jeweiligen in der Kalenderdatei angegebenen User
+                kalender.user = activeLine[6:-7]
+            if activeLine == "<termin>":                   #Liest bei Erkennen des Anfangs eines Terminblocks in der Datei die Daten des Termins ein 
                                                             #und fügt diesen als neuen Termin zur Terminliste des Kalenderobjekts hinzu
-                readdate = reader.readline().strip()[6:-7]
-                readtime = reader.readline().strip()[6:-7]
-                readtitle = reader.readline().strip()[7:-8]
-                readevent = reader.readline().strip()[7:-8]
+                readDate = reader.readline().strip()[6:-7]
+                readTime = reader.readline().strip()[6:-7]
+                readTitle = reader.readline().strip()[7:-8]
+                readEvent = reader.readline().strip()[7:-8]
 
-                termin_neu = termin(readdate, readtime, readtitle, readevent)
+                terminNeu = termin(readDate, readTime, readTitle, readEvent)
                 if entrynr == 0:
-                    kalender.terminliste[0] = termin_neu
+                    kalender.terminliste[0] = terminNeu
                 else:
-                    kalender.terminliste.append = termin_neu
+                    kalender.terminliste.append = terminNeu
                 entrynr +=1
 
-            if active_line == "</kalender>":
-                readstop = 1
+            if activeLine == "</kalender>":
+                readStop = 1
         
         reader.close()                                      #Schließt nach Beendigung des Einlesevorgangs die Datei wieder
 
@@ -83,8 +83,8 @@ class kalender:
     
     #Unterfunktion zum hinzufügen eines Termins, benötigt Datum, Zeit, Titel und Beschreibung
     def hinzufg(self, adddate, addtime, addtitle, addevent):
-        termin_neu = termin(adddate, addtime, addtitle, addevent)
-        kalender.terminliste.append(termin_neu)
+        terminNeu = termin(adddate, addtime, addtitle, addevent)
+        kalender.terminliste.append(terminNeu)
         termine_sortiert = sorted(kalender.terminliste(), key=itemgetter(0))
         kalender.terminliste(termine_sortiert)
     
