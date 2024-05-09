@@ -30,7 +30,7 @@ class kalender:
     
 
     #Unterfunktion zum Einlesen des Kalenderobjektes
-    def einlesen(user):
+    def einlesen(self, user):
         reader = open("Kalender/" + user + ".xml", "r")
         readStop = 0                            #Hilfsvariable zum Beenden des Loops bei Erreichen des Dateiendes
         entrynr = 0                             #Hilfsvariable zum Starten der Terminliste
@@ -66,7 +66,7 @@ class kalender:
         reader.close()                                      #Schließt nach Beendigung des Einlesevorgangs die Datei wieder
 
     #Unterfunktion zum Abspeichern des Kalenderobjektes
-    def ausgeben(user):
+    def ausgeben(self, user):
         writer = open("Kalender/" + user + ".xml", "w")             #Öffnet die jeweilige Datei aus dem Kalenderordner
         writer.write("<kalender>\n<user>" + user + "</user>\n")
         
