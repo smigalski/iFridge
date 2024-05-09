@@ -22,13 +22,13 @@ addDateQuery = input("Soll ein neuer Termin hinzugefügt werden? [y/n]: ")
 
 if addDateQuery == "y":
     newDate = input("Neues Datum eingeben [dd.mm.yyyy]: ")              #Eingabe der Daten des neuen Termins
-    newtime = input("Uhrzeit des Termins eingeben [hh:mm]: ")
-    newtitle = input("Titel des Termins eingeben: ")
-    newevent = input("Kurze Beschreibung des Event eingeben: ")
+    newTime = input("Uhrzeit des Termins eingeben [hh:mm]: ")
+    newTitle = input("Titel des Termins eingeben: ")
+    newEvent = input("Kurze Beschreibung des Event eingeben: ")
 
     newDate = newDate[6:10] + "_" + newDate[3:5] + "_" + newDate[0:2]   #Umformatieren des Datums von "dd.mm.yyyy" nach "yyyy_mm_dd" zum besseren Sortieren im Kalender
-    newtime = newtime.replace(".", "_")                                 #Umformatieren der Zeit von "hh.mm" nach "hh_mm"
-    aktivKalender.hinzufg(newDate, newtime, newtitle, newevent)
+    newTime = newTime.replace(".", "_")                                 #Umformatieren der Zeit von "hh.mm" nach "hh_mm"
+    aktivKalender.hinzufg(newDate, newTime, newTitle, newEvent)
     print(aktivKalender)
 
 #Abspeichern des Kalenders
