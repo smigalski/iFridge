@@ -30,7 +30,7 @@
      <string>Eiskaffee ausgeben</string>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider">
+   <widget class="QSlider" name="EiswuerfelSlider">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -43,7 +43,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_2">
+   <widget class="QSlider" name="KaffeeSlider">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -56,7 +56,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_3">
+   <widget class="QSlider" name="MilchSlider">
     <property name="geometry">
      <rect>
       <x>190</x>
