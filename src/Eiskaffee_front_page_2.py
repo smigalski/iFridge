@@ -18,10 +18,14 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+#Konfigurieren des Ausgabe Buttons
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)
         self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 270, 141, 61))
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")
+
+#Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)
         self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
@@ -29,6 +33,8 @@ class Ui_MainWindow(object):
         self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.EiswuerfelSlider.setMinimum(0)
         self.EiswuerfelSlider.setMaximum(6)
+
+# Konfigurieren des Kaffeesliders
         self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
         self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))
         self.KaffeeSlider.setOrientation(QtCore.Qt.Horizontal)
@@ -36,6 +42,8 @@ class Ui_MainWindow(object):
         self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.KaffeeSlider.setMinimum(0)
         self.KaffeeSlider.setMaximum(400)
+
+# Konfigurieren des Milchsliders
         self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
         self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))
         self.MilchSlider.setOrientation(QtCore.Qt.Horizontal)
@@ -43,23 +51,33 @@ class Ui_MainWindow(object):
         self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.MilchSlider.setMinimum(0)
         self.MilchSlider.setMaximum(100)
+
+#Zwischenüberschrift erstellen
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Zwischenuberschrift.setGeometry(QtCore.QRect(80, 100, 461, 31))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setBold(True)
-        font.setWeight(75)
+        font.setFamily("Segoe UI Black")                                        #Schriftart wählen
+        font.setBold(True)                                                      #fett drucken
+        font.setWeight(75)                                                      #Größe
         self.Zwischenuberschrift.setFont(font)
         self.Zwischenuberschrift.setObjectName("Zwischenuberschrift")
+
+#Milchlabel erstellen und neben den MilchSlider stellen
         self.MilchLabel = QtWidgets.QLabel(self.centralwidget)
         self.MilchLabel.setGeometry(QtCore.QRect(80, 140, 41, 31))
         self.MilchLabel.setObjectName("MilchLabel")
+
+#Kaffeelabel erstellen und neben den KaffeeSlider stellen
         self.KaffeeLabel = QtWidgets.QLabel(self.centralwidget)
         self.KaffeeLabel.setGeometry(QtCore.QRect(80, 180, 41, 31))
         self.KaffeeLabel.setObjectName("KaffeeLabel")
+
+# Eiswürfellabel erstellen und neben den EiswürfelSlider stellen
         self.EiswuerfelLabel = QtWidgets.QLabel(self.centralwidget)
         self.EiswuerfelLabel.setGeometry(QtCore.QRect(80, 220, 51, 31))
         self.EiswuerfelLabel.setObjectName("EiswuerfelLabel")
+
+#die Minimumangabe neben die Slider schreiben: min = 0
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(160, 140, 21, 31))
         self.label_5.setObjectName("label_5")
@@ -69,6 +87,8 @@ class Ui_MainWindow(object):
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(160, 220, 21, 31))
         self.label_7.setObjectName("label_7")
+
+#Maxmimum der Slider neben diese schreiben
         self.sixpieces = QtWidgets.QLabel(self.centralwidget)
         self.sixpieces.setGeometry(QtCore.QRect(360, 220, 51, 31))
         self.sixpieces.setObjectName("sixpieces")
@@ -78,6 +98,8 @@ class Ui_MainWindow(object):
         self.fourhundred = QtWidgets.QLabel(self.centralwidget)
         self.fourhundred.setGeometry(QtCore.QRect(360, 180, 51, 31))
         self.fourhundred.setObjectName("fourhundred")
+
+
         self.Uberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Uberschrift.setGeometry(QtCore.QRect(80, 30, 491, 61))
         font = QtGui.QFont()
@@ -99,6 +121,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+#Inhalte der Textfelder, Buttons und Slider definieren
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
