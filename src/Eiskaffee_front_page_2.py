@@ -9,8 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Eiskaffee
-
 
 #Die Eiskaffee-Frontpage wird als Klasse erstellt.
 class Ui_MainWindow(object):
@@ -21,8 +19,6 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        # Erstellen der Eiskaffee-Instanz
-        self.eiskaffee = Eiskaffee(0, 0, 0)
 
 #Konfigurieren des Ausgabe Buttons
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)
@@ -133,7 +129,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.Ausgabe_Button.setText(_translate("MainWindow", "Eiskaffee ausgeben"))
         self.Zwischenuberschrift.setText(_translate("MainWindow", "Wähle Deine Zusammensetzung indem Du die Slider nach Deinen Wünschen \n"
-"verschiebst:"))
+                "verschiebst:"))
         self.MilchLabel.setText(_translate("MainWindow", "Milch"))
         self.KaffeeLabel.setText(_translate("MainWindow", "Kaffee"))
         self.EiswuerfelLabel.setText(_translate("MainWindow", "Eiswürfel"))
