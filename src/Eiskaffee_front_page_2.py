@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import Eiskaffee
+
 
 #Die Eiskaffee-Frontpage wird als Klasse erstellt.
 class Ui_MainWindow(object):
@@ -18,6 +20,9 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        # Erstellen der Eiskaffee-Instanz
+        self.eiskaffee = Eiskaffee(0, 0, 0)
 
 #Konfigurieren des Ausgabe Buttons
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)
@@ -51,6 +56,7 @@ class Ui_MainWindow(object):
         self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.MilchSlider.setMinimum(0)
         self.MilchSlider.setMaximum(100)
+
 
 #Zwischenüberschrift erstellen
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
