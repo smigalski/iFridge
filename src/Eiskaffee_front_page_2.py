@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
+#Die Eiskaffee-Frontpage wird als Klasse erstellt.
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -27,16 +27,22 @@ class Ui_MainWindow(object):
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
         self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")
         self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.EiswuerfelSlider.setMinimum(0)
+        self.EiswuerfelSlider.setMaximum(6)
         self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
         self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))
         self.KaffeeSlider.setOrientation(QtCore.Qt.Horizontal)
         self.KaffeeSlider.setObjectName("KaffeeSlider")
         self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.KaffeeSlider.setMinimum(0)
+        self.KaffeeSlider.setMaximum(400)
         self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
         self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))
         self.MilchSlider.setOrientation(QtCore.Qt.Horizontal)
         self.MilchSlider.setObjectName("MilchSlider")
         self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.MilchSlider.setMinimum(0)
+        self.MilchSlider.setMaximum(100)
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Zwischenuberschrift.setGeometry(QtCore.QRect(80, 100, 461, 31))
         font = QtGui.QFont()
