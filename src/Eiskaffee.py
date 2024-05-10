@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
 import sys
 import Eiskaffee_front_page
 
-# Dateipfad zum konvertieren QT zu PY: C:\Users\Yasmine\AppData\Local\Programs\Python\Python311\pyuic5 -x *NameDate.ui* - o *NeuerNameDerDatei.py*
+# Dateipfad zum konvertieren QT zu PY: C:\Users\Yasmine\AppData\Local\Programs\Python\Python311\Scripts\pyuic5 -x *NameDate.ui* - o *NeuerNameDerDatei.py*
 
 app = QApplication(sys.argv)
 w = loadUi("Eiskaffee_front_page.ui")         #Name der Frontpage zu w geändert
