@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-#Die Eiskaffee-Frontpage wird als Klasse erstellt.
+#Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
         self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.EiswuerfelSlider.setMinimum(0)
         self.EiswuerfelSlider.setMaximum(6)
+        self.EiswuerfelSlider.valueChanged.connect(self.getEiskaffeeValues)             #Werte des Sliders in die Methode getEiskaffeeValues geben
 
 # Konfigurieren des Kaffeesliders
         self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
@@ -43,6 +44,7 @@ class Ui_MainWindow(object):
         self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.KaffeeSlider.setMinimum(0)
         self.KaffeeSlider.setMaximum(400)
+        self.KaffeeSlider.valueChanged.connect(self.getEiskaffeeValues)
 
 # Konfigurieren des Milchsliders
         self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
@@ -52,7 +54,7 @@ class Ui_MainWindow(object):
         self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.MilchSlider.setMinimum(0)
         self.MilchSlider.setMaximum(100)
-
+        self.MilchSlider.valueChanged.connect(self.getEiskaffeeValues)
 
 #Zwischenüberschrift erstellen
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
@@ -123,7 +125,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-#Inhalte der Textfelder, Buttons und Slider definieren
+
+
+
+
+
+#Im Folgenden werden alle Teile benannt. Die Slider, Textfelder und Überschriften
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -141,6 +148,21 @@ class Ui_MainWindow(object):
         self.fourhundred.setText(_translate("MainWindow", "400ml"))
         self.Uberschrift.setText(_translate("MainWindow", "Hi!\n"
             "Du bist noch einen Klick von Deiner Erfrischung entfernt!"))
+
+
+
+
+
+#Start des Hauptprogramms
+
+    # Hier werden die Werte aus den Slidern abgegriffen und in den Variablen gespeichert
+    def getEiskaffeeValues(self):
+        eiswuerfel_value = self.EiswuerfelSlider.value()
+        kaffee_value = self.KaffeeSlider.value()
+        milch_value = self.MilchSlider.value()
+        print("Eiswürfel:", eiswuerfel_value)
+        print("Kaffee:", kaffee_value)
+        print("Milch:", milch_value)
 
 
 if __name__ == "__main__":
