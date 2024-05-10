@@ -21,18 +21,22 @@ class Ui_MainWindow(object):
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)
         self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 270, 141, 61))
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")
+        self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)
         self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
         self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")
+        self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
         self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))
         self.KaffeeSlider.setOrientation(QtCore.Qt.Horizontal)
         self.KaffeeSlider.setObjectName("KaffeeSlider")
+        self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
         self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))
         self.MilchSlider.setOrientation(QtCore.Qt.Horizontal)
         self.MilchSlider.setObjectName("MilchSlider")
+        self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Zwischenuberschrift.setGeometry(QtCore.QRect(80, 100, 461, 31))
         font = QtGui.QFont()
@@ -105,7 +109,7 @@ class Ui_MainWindow(object):
         self.hundred.setText(_translate("MainWindow", "100ml"))
         self.fourhundred.setText(_translate("MainWindow", "400ml"))
         self.Uberschrift.setText(_translate("MainWindow", "Hi!\n"
-"Du bist noch einen Klick von Deiner Erfrischung entfernt!"))
+            "Du bist noch einen Klick von Deiner Erfrischung entfernt!"))
 
 
 if __name__ == "__main__":
@@ -116,3 +120,6 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
+
