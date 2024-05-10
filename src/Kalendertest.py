@@ -13,9 +13,25 @@ import if_Kalender
 #Usereingabe und hereinladen des Kalenders
 user = input("Bitte Usernamen Eingeben: ")
 user = user.replace(" ", "_")
-aktivKalender = if_Kalender.kalender(user, [["default"], ["default"], ["default"], ["default"]])
+print(user)
+termine = if_Kalender.termin("default", "default", "default", "default")
+aktivKalender = if_Kalender.kalender(user, [termine])
+print("User: " + aktivKalender.user)
+print(aktivKalender.terminliste[0])
 aktivKalender.einlesen(user)
-print(aktivKalender)
+
+#Ausgabe des aktiven Terminkalenders in der Konsole
+print("\n\nUser: " + aktivKalender.user.replace("_", " "))
+printCounter = 0
+for x in aktivKalender.terminliste:
+    printAusgabe = "Termin " + str(printCounter) + ":\n"
+    aktivTermin = aktivKalender.terminliste[printCounter]
+    printAusgabe += "Datum: " + aktivTermin.datum
+    printAusgabe += " Zeit: " + aktivTermin.zeit
+    printAusgabe += " Titel: " + aktivTermin.titel
+    printAusgabe += " Event: " + aktivTermin.event
+    print(printAusgabe)
+    printCounter +=1
 
 #Abfrage ob Termin hinzugefügt werden soll oder nicht
 addDateQuery = input("Soll ein neuer Termin hinzugefügt werden? [y/n]: ")
@@ -29,7 +45,19 @@ if addDateQuery == "y":
     newDate = newDate[6:10] + "_" + newDate[3:5] + "_" + newDate[0:2]   #Umformatieren des Datums von "dd.mm.yyyy" nach "yyyy_mm_dd" zum besseren Sortieren im Kalender
     newTime = newTime.replace(".", "_")                                 #Umformatieren der Zeit von "hh.mm" nach "hh_mm"
     aktivKalender.hinzufg(newDate, newTime, newTitle, newEvent)
-    print(aktivKalender)
+    
+    #Ausgabe des Kalenders mit neuem Termin über die Konsole
+    print("\n\nNeuer Termin hinzugefügt: ")
+    printCounter = 0
+    for x in aktivKalender.terminliste:
+        printAusgabe = "Termin " + str(printCounter) + ":\n"
+        aktivTermin = aktivKalender.terminliste[printCounter]
+        printAusgabe += "Datum: " + aktivTermin.datum
+        printAusgabe += " Zeit: " + aktivTermin.zeit
+        printAusgabe += " Titel: " + aktivTermin.titel
+        printAusgabe += " Event: " + aktivTermin.event
+        print(printAusgabe)
+        printCounter +=1
 
 #Abspeichern des Kalenders
 saveQuery = input("Soll der Kalender gespeichert werden? [y/n]: ")
