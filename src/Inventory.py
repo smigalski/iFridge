@@ -7,7 +7,7 @@ _inventory = [] #Contains all items which are stored in fridge. Do NOT directly 
 def getInventory():
     return _inventory
 
-def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "[]" or nothing if item is stackable. quantity must be 1 for stackable items.
+def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "1" or "" if item is stackable. quantity must be 1 for stackable items.
     if getItemIndex(name) == -1:
         if type == "stackable" or type == "continous":
             if type == "stackable":
@@ -38,6 +38,13 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
     else:
         print("Error: type {type} is unknown.")
 
+def ItemInfo(index):
+    information = [index,_inventory[index].type,_inventory[index].name,_inventory[index].quantity,_inventory[index].unit,_inventory[index].expiries]
+    return information
+
+def getNumberOfItems:
+    return len(_inventory)
+
 def getItemIndex(name):
     index = -1
     for i in range (len(_inventory)):
@@ -50,9 +57,11 @@ def getItemIndex(name):
 
 class StackableItem:
     def __init__(self, name, expiries):
+        self.type = "StackableItem"
         self.name = name
         self.expiries = expiries #List of expiry dates of stacked item
         self.quantity = 0 #Quantity of stacked items of same type
+        self.unit = ""
 
     def getQuantity(self):
         return self.quantity
@@ -73,6 +82,7 @@ class StackableItem:
 
 class ContinuousItem:
     def __init__(self, name, expiry, quantity, unit):
+        self.type = "ContinuousItem"
         self.name = name
         self.expiry = expiry
         self.quantity = quantity
