@@ -24,10 +24,10 @@ aktivKalender.einlesen(user)
 print("\n\nUser: " + aktivKalender.user.replace("_", " "))
 printCounter = 0
 for x in aktivKalender.terminliste:
-    printAusgabe = "Termin " + str(printCounter) + ":\n"
+    printAusgabe = "Termin " + str(printCounter+1) + ":\n"
     aktivTermin = aktivKalender.terminliste[printCounter]
-    printAusgabe += "Datum: " + aktivTermin.datum
-    printAusgabe += " Zeit: " + aktivTermin.zeit
+    printAusgabe += " Datum: " + aktivTermin.datum
+    printAusgabe += " Zeit:  " + aktivTermin.zeit
     printAusgabe += " Titel: " + aktivTermin.titel
     printAusgabe += " Event: " + aktivTermin.event
     print(printAusgabe)
@@ -50,7 +50,7 @@ if addDateQuery == "y":
     print("\n\nNeuer Termin hinzugefügt: ")
     printCounter = 0
     for x in aktivKalender.terminliste:
-        printAusgabe = "Termin " + str(printCounter) + ":\n"
+        printAusgabe = "Termin " + str(printCounter+1) + ":\n"
         aktivTermin = aktivKalender.terminliste[printCounter]
         printAusgabe += "Datum: " + aktivTermin.datum
         printAusgabe += " Zeit: " + aktivTermin.zeit
@@ -62,7 +62,7 @@ if addDateQuery == "y":
 #Abspeichern des Kalenders
 saveQuery = input("Soll der Kalender gespeichert werden? [y/n]: ")
 if saveQuery == "y":
-    aktivKalender.ausgeben
+    aktivKalender.ausgeben(aktivKalender.user)
     print("Kalender gespeichert!")
 
 input("Programmende...")
