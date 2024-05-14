@@ -13,6 +13,7 @@ ACHTUNG: FUNKTIONEN NOCH NICHT GETESTET, TESTPROGRAMM WIRD NOCH ERSTELLT
 
 #Importierte Module
 from operator import itemgetter
+import time
 
 #Terminklasse erstellen
 class termin:
@@ -104,8 +105,61 @@ class kalender:
         terminNeu = termin(adddate, addtime, addtitle, addevent)
         self.terminliste.append(terminNeu)
         self.terminliste.sort(key=lambda termin: termin.datum)
+
+#Objekt "Jahr" zum Laden eines ganzen Jahres in eine Liste, welche die jeweiligen Wochen beinhaltet, welche wiederum Tage beinhalten
+class Jahr:
     
-        
+    def __init__(self, jahreszahl):
+        #Setzt das Jahr des Objekts auf das eingegebene Jahr
+        self.jahreszahl = jahreszahl
+        #Setzt die anzahl der Tage des Jahres auf 365 oder 366, je nachdem ob es ein Schaltjahr ist oder nicht
+        if checkSchalt(self.jahreszahl) == True:
+            self.tage = 366
+        else:
+            self.tage = 365
+        #Bestimmt den Starttag des Jahres
+        schaltCount = 0
+        if self.jahreszahl == 2024:
+            jahrDelta = 0
+            tagDelta = 0
+        elif self.jahreszahl > 0:
+            jahrCounter = self.jahreszahl
+            while jahrCounter > 2024:
+                if checkSchalt(jahrCounter) == True:
+                    schaltCount += 1
+                jahrCounter -= 1
+            tagDelta = jahrDelta*365 + schaltCount
+        elif self.jahreszahl < 0:
+            jahrCounter = self.jahreszahl
+            while jahrCounter < 2024:
+                if checkSchalt(jahrCounter) == True:
+                    schaltCount += 1
+                jahrCounter += 1
+            tagDelta = jahrDelta*365 + schaltCount
+        self.starttag = tagDelta%7
         
 
+#Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
+def checkSchalt(self, jahreszahl):
+    istSchalt = False
+    if jahreszahl%4 == 0:                                       #Prüft, ob die Jahreszahl durch 4 Teilbar ist, falls ja -> Schaltjahr
+        istSchalt = True
+    if jahreszahl%100 == 0 and jahreszahl%400 != 0:             #Prüft, ob die Jahreszahl durch 100 Teilbar ist und NICHT durch 400, falls ja -> kein Schaltjahr
+        istSchalt = False
+    return(istSchalt)
 
+
+'''
+#Klasse 'Kalenderwoche' zum besseren Darstellen von Wochen im Kalender
+class kalenderwoche:
+    def __init__(self):
+        self.mo = 0
+        self.di = 0
+
+        
+#Klasse 'Kalendertag' zum füllen der Woche und markieren von Terminen
+class kalendertag:
+    def __init__(self, jahr):
+        self.istImJahr = 0
+        self.hatTermin = 0
+'''
