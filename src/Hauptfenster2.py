@@ -1,14 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'Hauptfenster.ui'
-##
-## Created by: Qt User Interface Compiler version 6.7.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-import sys
-from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt,)
@@ -32,11 +21,11 @@ class Ui_QMainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(0, 0, 801, 801))
-        self.label_2.setPixmap(QPixmap(u"../img/K\u00fchlschrank_Bild.jpg"))
+        self.label_2.setGeometry(0, 0, 801, 801)
+        self.label_2.setPixmap(QPixmap(u"../img/Kühlschrank_Bild.jpg"))
         self.commandLinkButton = QCommandLinkButton(self.centralwidget)
         self.commandLinkButton.setObjectName(u"commandLinkButton")
-        self.commandLinkButton.setGeometry(QRect(350, 160, 131, 81))
+        self.commandLinkButton.setGeometry(350, 160, 131, 81)
         self.commandLinkButton.setText(u"iFridge")
         icon = QIcon()
         icon.addFile(u"../img/iFridge_klein.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -60,21 +49,38 @@ class Ui_QMainWindow(object):
         self.label_2.setText("")
     # retranslateUi
 
+class NutzerFenster(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Nutzerfenster")
+        self.resize(400, 300)
+        self.label = QLabel("Dies ist das Nutzerfenster", self)
+        self.label.setGeometry(50, 50, 300, 30)
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
+    # Lade die Hauptfenster UI
     ui_file_name = "Hauptfenster.ui"
     ui_file = QFile(ui_file_name)
     if not ui_file.open(QIODevice.ReadOnly):
         print(f"Cannot open {ui_file_name}: {ui_file.errorString()}")
         sys.exit(-1)
     loader = QUiLoader()
-    window = loader.load(ui_file)
+    main_window = loader.load(ui_file)
     ui_file.close()
-    if not window:
+    if not main_window:
         print(loader.errorString())
         sys.exit(-1)
-    window.show()
 
+    # Verbinde den commandLinkButton mit dem Öffnen des Nutzerfensters
+    def open_nutzerfenster():
+        nutzer_window = NutzerFenster()
+        nutzer_window.show()
+
+    button = main_window.findChild(QCommandLinkButton, "commandLinkButton")
+    if button:
+        button.clicked.connect(open_nutzerfenster)
+
+    main_window.show()
     sys.exit(app.exec())
-
