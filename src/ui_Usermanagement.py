@@ -123,10 +123,21 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
     def remove_user(self, username):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
         if username in self.users:
             del self.users[username]
-            print(f"Benutzer '{username}' wurde entfernt.")
             ui.update_ui()
         else:
-            print(f"Benutzer '{username}' existiert nicht.")
+            print("Der angegebene Nutzer existiert nicht")
+
+    def deposit(self, username, amount):
+        if username in self.users:
+            self.users[username]['balance'] += amount
+        else:
+            print("Der angegebene Nutzer existiert nicht")
+
+    def change_balance(self, username, new_balance):
+        if username in self.users:
+            self.users[username]['balance'] = new_balance
+        else:
+            print(f"Der angegebene Nutzer existiert nicht")
 
 
     def get_all_users(self):                                #Methode, die die Nutzernamen und Kontostände zurückgibt
