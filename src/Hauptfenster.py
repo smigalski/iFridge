@@ -7,8 +7,7 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-import sys
-from PySide6.QtUiTools import QUiLoader
+from subprocess import call
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt,)
@@ -18,10 +17,10 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QFile, QIODevice
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
+    QImage, QKeySequence,  QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCommandLinkButton, QLabel, QMainWindow,
-    QSizePolicy, QStatusBar, QWidget)
+    QSizePolicy, QStatusBar, QWidget, QFileDialog)
 
 class Ui_QMainWindow(object):
     def setupUi(self, QMainWindow):
@@ -49,16 +48,25 @@ class Ui_QMainWindow(object):
         self.statusbar.setObjectName(u"statusbar")
         QMainWindow.setStatusBar(self.statusbar)
 
+        self.commandLinkButton.clicked.connect(self.openNutzerfenster)
+
         self.retranslateUi(QMainWindow)
 
         QMetaObject.connectSlotsByName(QMainWindow)
 
     # setupUi
 
+
     def retranslateUi(self, QMainWindow):
         QMainWindow.setWindowTitle(QCoreApplication.translate("QMainWindow", u"iFridge", None))
         self.label_2.setText("")
     # retranslateUi
+
+    def openNutzerfenster(self):
+        call(["python", "Nutzerfenster.py"])
+
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -77,4 +85,9 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec())
+
+
+
+
+
 
