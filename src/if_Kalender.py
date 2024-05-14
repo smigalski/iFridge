@@ -137,6 +137,7 @@ class Jahr:
                 jahrCounter += 1
             tagDelta = jahrDelta*365 + schaltCount
         self.starttag = tagDelta%7
+        self.endtag = (tagDelta + self.tage)%7
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
