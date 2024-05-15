@@ -141,7 +141,7 @@ class jahr:
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
-def checkSchalt(self, jahreszahl):
+def checkSchalt(jahreszahl):
     istSchalt = False
     if jahreszahl%4 == 0:                                       #Prüft, ob die Jahreszahl durch 4 Teilbar ist, falls ja -> Schaltjahr
         istSchalt = True
