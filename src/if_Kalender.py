@@ -133,9 +133,6 @@ class jahr:
                 jahrCounter -= 1
                 jahrDelta+=1
             tagDelta = jahrDelta*365 + schaltCount
-            print("tagDelta = " + str(tagDelta))
-#            if checkSchalt(self.jahreszahl) == True:
-#                currentIsSchalt = 1
             self.starttag = (tagDelta - 1)%7
             self.endtag = (self.starttag + self.tage - 1)%7
             
