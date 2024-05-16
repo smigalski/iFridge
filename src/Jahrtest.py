@@ -17,4 +17,14 @@ woche = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "
 print("Starttag:    " + woche[testJahr.starttag])
 print("Endtag:      " + woche[testJahr.endtag])
 
-input("Programmende...")
+'''
+for kalenderwoche in testJahr.kw:
+    printOutput = ""
+    for tag in testJahr(kalenderwoche):
+        printOutput += woche(tag)
+        if tag != 6:
+            printOutput += "; "
+    print("KW " + str(kalenderwoche) + ": " + printOutput)
+
+#input("Programmende...")
+'''
