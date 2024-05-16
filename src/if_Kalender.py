@@ -149,10 +149,7 @@ class jahr:
             tagDelta = jahrDelta*365 + schaltCount
             self.starttag = (-tagDelta)%7
             self.endtag = (self.starttag + self.tage - 1)%7
-#            self.endtag = (tagDelta + self.tage - 3 - currentIsSchalt)%7
-#            self.endtag = (tagDelta + self.tage)%7
-#            self.starttag = tagDelta%7                          #Ermittelt den Starttag als modulo vom Abstand der Tage zum 01.01.2024
-#        self.endtag = (tagDelta + self.tage)%7              #Ermittelt den Endtag als modulo vom Abstand der Tage zum Starttag
+
         print(str( tagDelta) + " Tage bis 01.01.2024")
         
 
