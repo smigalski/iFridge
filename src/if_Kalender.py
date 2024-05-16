@@ -119,41 +119,41 @@ class jahr:
             self.tage = 365
         #Bestimmung von Starttag und Endtag des Jahres
         schaltCount = 0                                     #Hilfsvar. zum Zählen der Schaltjahre zwischen dem eingegebenen Jahr und 2024
-        jahrDelta = self.jahreszahl-2024                    #Gibt die Differenz in Jahren zwischen dem eingegebenen Jahr und 2024 an
+        jahrDelta = 0 #self.jahreszahl-2024                    #Gibt die Differenz in Jahren zwischen dem eingegebenen Jahr und 2024 an
         tagDelta = 0
         self.starttag = 0
         self.endtag = 1
+        
         if self.jahreszahl > 2024:                          #Loop zum Zählen, falls das angegebene Jahr GRÖSSER als 2024 ist
-            jahrCounter = self.jahreszahl
+            jahrCounter = self.jahreszahl-1
             schaltCount = 1
-            currentIsSchalt = 0                             #Hilfsvariable addiert
             while jahrCounter >= 2024:
                 if checkSchalt(jahrCounter) == True:
                     schaltCount += 1
                 jahrCounter -= 1
+                jahrDelta+=1
             tagDelta = jahrDelta*365 + schaltCount
+            print("tagDelta = " + str(tagDelta))
 #            if checkSchalt(self.jahreszahl) == True:
 #                currentIsSchalt = 1
-            self.starttag = (tagDelta - currentIsSchalt)%7
-            self.endtag = (tagDelta + self.tage - currentIsSchalt)%7
+            self.starttag = (tagDelta - 1)%7
+            self.endtag = (self.starttag + self.tage - 1)%7
             
         elif self.jahreszahl < 2024:                        #Loop zum Zählen, falls das angegebene Jahr KLEINER als 2024 ist
             jahrCounter = self.jahreszahl
-            currentIsSchalt = 0
             while jahrCounter < 2024:
                 if checkSchalt(jahrCounter) == True:
                     schaltCount += 1
                 jahrCounter += 1
-            tagDelta = jahrDelta*365 + (schaltCount - 1)
-            if checkSchalt(self.jahreszahl) == True:
-                currentIsSchalt = 1
-            self.starttag = (tagDelta  - 2 - currentIsSchalt)%7
-            self.endtag = (self.starttag + self.tage -1)%7
+                jahrDelta += 1
+            tagDelta = jahrDelta*365 + schaltCount
+            self.starttag = (-tagDelta)%7
+            self.endtag = (self.starttag + self.tage - 1)%7
 #            self.endtag = (tagDelta + self.tage - 3 - currentIsSchalt)%7
 #            self.endtag = (tagDelta + self.tage)%7
 #            self.starttag = tagDelta%7                          #Ermittelt den Starttag als modulo vom Abstand der Tage zum 01.01.2024
 #        self.endtag = (tagDelta + self.tage)%7              #Ermittelt den Endtag als modulo vom Abstand der Tage zum Starttag
-        print(str( tagDelta) + "Tage bis 01.01.2024")
+        print(str( tagDelta) + " Tage bis 01.01.2024")
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
@@ -173,10 +173,9 @@ class kalenderwoche:
         self.mo = 0
         self.di = 0
 
-        
+'''       
 #Klasse 'Kalendertag' zum füllen der Woche und markieren von Terminen
 class kalendertag:
     def __init__(self, jahr):
         self.istImJahr = 0
         self.hatTermin = 0
-'''
