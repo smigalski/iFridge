@@ -13,7 +13,8 @@ inputJahr = int(input("Bitte Jahreszahl eingeben: "))
 testJahr = if_Kalender.jahr(inputJahr)
 print("Jahr:        " + str(testJahr.jahreszahl))
 print("Anzahl Tage: " + str(testJahr.tage))
-print("Starttag:    " + str(testJahr.starttag))
-print("Endtag:      " + str(testJahr.endtag))
+woche = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
+print("Starttag:    " + woche[testJahr.starttag])
+print("Endtag:      " + woche[testJahr.endtag])
 
 input("Programmende...")
