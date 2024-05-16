@@ -124,7 +124,8 @@ class jahr:
         self.starttag = 0
         self.endtag = 1
         
-        if self.jahreszahl > 2024:                          #Loop zum Zählen, falls das angegebene Jahr GRÖSSER als 2024 ist
+        #Loop zum Zählen, falls das angegebene Jahr GRÖSSER als 2024 ist
+        if self.jahreszahl > 2024:
             jahrCounter = self.jahreszahl-1
             schaltCount = 1
             while jahrCounter >= 2024:
@@ -135,8 +136,9 @@ class jahr:
             tagDelta = jahrDelta*365 + schaltCount
             self.starttag = (tagDelta - 1)%7
             self.endtag = (self.starttag + self.tage - 1)%7
-            
-        elif self.jahreszahl < 2024:                        #Loop zum Zählen, falls das angegebene Jahr KLEINER als 2024 ist
+           
+        #Loop zum Zählen, falls das angegebene Jahr KLEINER als 2024 ist
+        elif self.jahreszahl < 2024:
             jahrCounter = self.jahreszahl
             while jahrCounter < 2024:
                 if checkSchalt(jahrCounter) == True:
@@ -148,6 +150,16 @@ class jahr:
             self.endtag = (self.starttag + self.tage - 1)%7
 
         print(str( tagDelta) + " Tage bis 01.01.2024")
+
+        #Initialisieren der Kalenderwochen
+        self.kalenderwochen[0] = []
+        neueKW = [kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag()]
+        tagCount = self.tage
+        wochentagCount = self.starttag
+        kwCount = 1
+        #while tagCount < 0:
+            
+            
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
@@ -170,6 +182,6 @@ class kalenderwoche:
 '''       
 #Klasse 'Kalendertag' zum füllen der Woche und markieren von Terminen
 class kalendertag:
-    def __init__(self, jahr):
-        self.istImJahr = 0
-        self.hatTermin = 0
+    def __init__(self):
+        self.istImJahr = False
+        self.anzahlTermine = 0
