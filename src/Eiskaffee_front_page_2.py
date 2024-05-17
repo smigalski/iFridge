@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Definition, welcher Slider es sein soll.
         self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")
+        self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")                         #Name des Sliders erstellen
         self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.EiswuerfelSlider.setMinimum(0)
         self.EiswuerfelSlider.setMaximum(6)
