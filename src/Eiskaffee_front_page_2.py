@@ -153,12 +153,9 @@ class Ui_MainWindow(object):
             "Du bist noch einen Klick von Deiner Erfrischung entfernt!"))
 
 
-
-
-
 #Start des Hauptprogramms
 
-#Die eingestellten Werte aus den Slidern werden hier in Variablen gespeichert, damit diese verwendet werden können.
+#Die Funktion getEiswürfelValues speichert die eingestellten Werte aus den Slidern in Variablen.
     def getEiskaffeeValues(self):
         eiswuerfel_value = self.EiswuerfelSlider.value()
         kaffee_value = self.KaffeeSlider.value()
@@ -168,6 +165,7 @@ class Ui_MainWindow(object):
         print("Milch:", milch_value)
 
 
+#Dieser Code initialisiert die GUI-Anwendung, startet die Hauptanwendungsschleife und zeigt das Anwendungsfenster an.
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
