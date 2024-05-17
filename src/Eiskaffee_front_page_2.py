@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 #Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
+#Klasse des Fensters erstellen, in dem dann alle weiteren Inhalte enthalten sind.
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -27,7 +28,7 @@ class Ui_MainWindow(object):
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")
 
 #Konfigurieren des Eiswürfelsliders
-        self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)
+        self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Definition, welcher Slider es sein soll.
         self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
         self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")
