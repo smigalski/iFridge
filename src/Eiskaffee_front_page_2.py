@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
         self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")                         #Name des Sliders erstellen
-        self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")    #Hintergrundfarbe des Sliders ändern
         self.EiswuerfelSlider.setMinimum(0)
         self.EiswuerfelSlider.setMaximum(6)
         self.EiswuerfelSlider.valueChanged.connect(self.getEiskaffeeValues)             #Werte des Sliders in die Methode getEiskaffeeValues geben
@@ -41,8 +41,8 @@ class Ui_MainWindow(object):
         self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
         self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))
         self.KaffeeSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.KaffeeSlider.setObjectName("KaffeeSlider")
-        self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.KaffeeSlider.setObjectName("KaffeeSlider")                                 #Name des Sliders erstellen
+        self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")        #Hintergrundfarbe des Sliders ändern
         self.KaffeeSlider.setMinimum(0)
         self.KaffeeSlider.setMaximum(400)
         self.KaffeeSlider.valueChanged.connect(self.getEiskaffeeValues)
@@ -51,8 +51,8 @@ class Ui_MainWindow(object):
         self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
         self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))
         self.MilchSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.MilchSlider.setObjectName("MilchSlider")
-        self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.MilchSlider.setObjectName("MilchSlider")                                   #Name des Sliders erstellen
+        self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")        #Hintergrundfarbe des Sliders ändern
         self.MilchSlider.setMinimum(0)
         self.MilchSlider.setMaximum(100)
         self.MilchSlider.valueChanged.connect(self.getEiskaffeeValues)
@@ -67,17 +67,20 @@ class Ui_MainWindow(object):
         self.Zwischenuberschrift.setFont(font)
         self.Zwischenuberschrift.setObjectName("Zwischenuberschrift")
 
-#Milchlabel erstellen und neben den MilchSlider stellen
+#Milchlabel/Text erstellen und neben den MilchSlider stellen.Inhalt des Textfeldes ist noch nicht definiert.
+#hier geht es nur um die reine Erstellung und die Lage
         self.MilchLabel = QtWidgets.QLabel(self.centralwidget)
         self.MilchLabel.setGeometry(QtCore.QRect(80, 140, 41, 31))
         self.MilchLabel.setObjectName("MilchLabel")
 
-#Kaffeelabel erstellen und neben den KaffeeSlider stellen
+#Kaffeelabel erstellen und neben den KaffeeSlider stellen. Inhalt des Textfeldes ist noch nicht definiert.
+#hier geht es nur um die reine Erstellung und die Lage
         self.KaffeeLabel = QtWidgets.QLabel(self.centralwidget)
         self.KaffeeLabel.setGeometry(QtCore.QRect(80, 180, 41, 31))
         self.KaffeeLabel.setObjectName("KaffeeLabel")
 
-# Eiswürfellabel erstellen und neben den EiswürfelSlider stellen
+#Eiswürfellabel erstellen und neben den EiswürfelSlider stellen. Inhalt des Textfeldes ist noch nicht definiert.
+#hier geht es nur um die reine Erstellung und die Lage
         self.EiswuerfelLabel = QtWidgets.QLabel(self.centralwidget)
         self.EiswuerfelLabel.setGeometry(QtCore.QRect(80, 220, 51, 31))
         self.EiswuerfelLabel.setObjectName("EiswuerfelLabel")
