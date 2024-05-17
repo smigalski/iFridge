@@ -158,7 +158,7 @@ class Ui_MainWindow(object):
 
 #Start des Hauptprogramms
 
-    # Hier werden die Werte aus den Slidern abgegriffen und in den Variablen gespeichert
+#Die eingestellten Werte aus den Slidern werden hier in Variablen gespeichert, damit diese verwendet werden können.
     def getEiskaffeeValues(self):
         eiswuerfel_value = self.EiswuerfelSlider.value()
         kaffee_value = self.KaffeeSlider.value()
