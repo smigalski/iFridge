@@ -11,14 +11,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 #Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
-#Klasse des Fensters erstellen, in dem dann alle weiteren Inhalte enthalten sind.
-class Ui_MainWindow(object):
+class Ui_MainWindow(object):                        #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(618, 437)
-        MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
+        MainWindow.resize(618, 437)                                                     #Größe des Fensters festlegen
+        MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")      #Hintergrundfarbe festlegen
+        self.centralwidget = QtWidgets.QWidget(MainWindow)                              #Erstellung des Zentralen Widget im MainWindow
+        self.centralwidget.setObjectName("centralwidget")                               #Name des Widget
 
 
 #Konfigurieren des Ausgabe Buttons
