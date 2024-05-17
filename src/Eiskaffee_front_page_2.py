@@ -86,6 +86,7 @@ class Ui_MainWindow(object):
         self.EiswuerfelLabel.setObjectName("EiswuerfelLabel")
 
 #die Minimumangabe neben die Slider schreiben: min = 0
+#Definition von weiteren drei Textfeldern, die links neben den Slidern stehen. Erst mal ohne Inhalt.
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(160, 140, 21, 31))
         self.label_5.setObjectName("label_5")
@@ -96,7 +97,7 @@ class Ui_MainWindow(object):
         self.label_7.setGeometry(QtCore.QRect(160, 220, 21, 31))
         self.label_7.setObjectName("label_7")
 
-#Maxmimum der Slider neben diese schreiben
+#Erstellen von drei weiteren Textfeldern (rechts der Slider), die noch keinen Inhalt haben.
         self.sixpieces = QtWidgets.QLabel(self.centralwidget)
         self.sixpieces.setGeometry(QtCore.QRect(360, 220, 51, 31))
         self.sixpieces.setObjectName("sixpieces")
@@ -108,15 +109,17 @@ class Ui_MainWindow(object):
         self.fourhundred.setObjectName("fourhundred")
 
 
+#Erstellen von Zwischen- und Überschriften für das Eiskaffeehauptmenü
         self.Uberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Uberschrift.setGeometry(QtCore.QRect(80, 30, 491, 61))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
+        font.setFamily("Segoe UI Black")                                #Schriftart auswählen
+        font.setPointSize(12)                                           #Größe auswählen
+        font.setBold(True)                                              #Fett schreiben
         font.setWeight(75)
         self.Uberschrift.setFont(font)
-        self.Uberschrift.setObjectName("Uberschrift")
+        self.Uberschrift.setObjectName("Uberschrift")                   #Name der Überschrift definiert
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 618, 21))
@@ -130,11 +133,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
-
-
-
-
-#Im Folgenden werden alle Teile benannt. Die Slider, Textfelder und Überschriften
+#Slider, Textfelder und Zwischenüberschriften bekommen ihren anzuzeigenden Inhalt.
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
