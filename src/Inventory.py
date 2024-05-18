@@ -51,12 +51,16 @@ def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(
         if (quantity == 1) or (quantity == ""):
             _inventory.remove(index)
             information[3] = information[3][len(information[3]) - 1]
+            information.append(1)
         else:
             print("Error: You can only take on StackableItem at a time. Subtrahend must be 1 for StackableItem(s).")
-            information = ""
+            information = "Error"
     if (information[1] == "ContinuousItem"):
-        _inventory.take(subtrahend)
+        information.append(_inventory.take(subtrahend))
+    if (information[6] == "Error"):
+        information = "Error"
     return information
+
 
 def getItemIndex(name):
     index = -1
@@ -85,12 +89,18 @@ class StackableItem:
         self.expiries.append(expiry)
 
     def remove(self, index):
-        list = []
-        for i in range (self.quantity):
-            if i != index:
-                list.append(self.expiries(i))
-        self.expiries = list
-        self.quantity -= 1
+        answer = 1
+        if self.quantity > 0:
+            list = []
+            for i in range (self.quantity):
+                if i != index:
+                    list.append(self.expiries(i))
+            self.expiries = list
+            self.quantity -= 1
+        else:
+            print("Error: You try to remove an Item from a quantity of zero.")
+            answer = "Error"
+        return answer
 
 
 class ContinuousItem:
@@ -110,4 +120,10 @@ class ContinuousItem:
         self.quantity += addend
 
     def take(self, subtrahend):
+        answer = subtrahend
         self.quantity -= subtrahend
+        if (self.quantity < 0):
+            answer = subtrahend + self.quantity
+            print("Error: You try to take more quantity of an Item than its actual existing quantity.")
+            self.quantity = 0
+        return answer
