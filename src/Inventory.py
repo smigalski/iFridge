@@ -42,13 +42,13 @@ def ItemInfo(index):
     information = [index,_inventory[index].type,_inventory[index].name,_inventory[index].quantity,_inventory[index].unit,_inventory[index].expiries]
     return information
 
-def getNumberOfItems:
+def getNumberOfItems():
     return len(_inventory)
 
 def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(s)
     information = ItemInfo(index)
     if (information[1] == "StackableItem"):
-        if (quantity == 1) or (quantity == ""):
+        if (subtrahend == 1) or (subtrahend == ""):
             _inventory.remove(index)
             information[3] = information[3][len(information[3]) - 1]
             information.append(1)
