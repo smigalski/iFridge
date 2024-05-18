@@ -45,6 +45,19 @@ def ItemInfo(index):
 def getNumberOfItems:
     return len(_inventory)
 
+def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(s)
+    information = ItemInfo(index)
+    if (information[1] == "StackableItem"):
+        if (quantity == 1) or (quantity == ""):
+            _inventory.remove(index)
+            information[3] = information[3][len(information[3]) - 1]
+        else:
+            print("Error: You can only take on StackableItem at a time. Subtrahend must be 1 for StackableItem(s).")
+            information = ""
+    if (information[1] == "ContinuousItem"):
+        _inventory.take(subtrahend)
+    return information
+
 def getItemIndex(name):
     index = -1
     for i in range (len(_inventory)):
