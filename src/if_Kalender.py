@@ -152,13 +152,19 @@ class jahr:
         print(str( tagDelta) + " Tage bis 01.01.2024")
 
         #Initialisieren der Kalenderwochen
-        self.kalenderwochen[0] = []
-        neueKW = [kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag(), kalendertag()]
+        neueKW = [kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0)]
+        self.kw = [neueKW]
         tagCount = self.tage
         wochentagCount = self.starttag
-        kwCount = 1
-        #while tagCount < 0:
-            
+        kwCount = 0
+        while tagCount > 0:
+            self.kw[kwCount][wochentagCount] = kalendertag(True, 0)
+            wochentagCount = (wochentagCount + 1)%7
+            if wochentagCount == 0:
+                kwCount += 1
+                self.kw.append(neueKW)
+            tagCount -= 1
+        
             
         
 
@@ -182,6 +188,6 @@ class kalenderwoche:
 '''       
 #Klasse 'Kalendertag' zum füllen der Woche und markieren von Terminen
 class kalendertag:
-    def __init__(self):
-        self.istImJahr = False
-        self.anzahlTermine = 0
+    def __init__(self, istImJahr, anzahlTermine):
+        self.istImJahr = istImJahr
+        self.anzahlTermine = anzahlTermine
