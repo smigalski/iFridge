@@ -164,6 +164,7 @@ class jahr:
                 kwCount += 1
                 self.kw.append(neueKW)
             tagCount -= 1
+            print("wochentagCount= " + str(wochentagCount) + "; kwCount: " + str(kwCount))
         
             
         
