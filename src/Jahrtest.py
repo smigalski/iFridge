@@ -37,7 +37,7 @@ for kalenderwoche in testJahr.kw:
         istImJahr = testJahr.kw[kwCount][tagCount].istImJahr
         printOutput += woche[tagCount] + " |" + str(istImJahr) + "; " + str(terminzahl) + "|"
         if tagCount < 6:
-            printOutput += "|| "
+            printOutput += " "
         tagCount += 1
     print("KW " + str(kwCount) + ": " + printOutput)
     kwCount += 1
