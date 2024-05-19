@@ -17,14 +17,25 @@ woche = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "
 print("Starttag:    " + woche[testJahr.starttag])
 print("Endtag:      " + woche[testJahr.endtag])
 
-'''
-for kalenderwoche in testJahr.kw:
+#Test der Kalendertag Klasse
+print("\nKalendertag Test:")
+testTag = if_Kalender.kalendertag(False, 0)
+print("Testtag erforlgreich initialisiert")
+print(str(testTag.istImJahr) + ", " + str(testTag.anzahlTermine))
+print("Aendern der Parameter...")
+testTag.istImJahr = True
+testTag.anzahlTermine = 2
+print(str(testTag.istImJahr) + ", " + str(testTag.anzahlTermine))
+
+#'''
+for kalenderwoche in woche:
     printOutput = ""
-    for tag in testJahr(kalenderwoche):
-        printOutput += woche(tag)
-        if tag != 6:
+    for tag in testJahr.kw:
+        printOutput += woche(tag) + " [" + str(testJahr.kw[kalenderwoche][tag].istImJahr) + "; " + str(testJahr.kw[kalenderwoche][tag].anzahlTermine) + "]"
+        if tag < 6:
             printOutput += "; "
+        tag += 1
     print("KW " + str(kalenderwoche) + ": " + printOutput)
 
 #input("Programmende...")
-'''
+#'''
