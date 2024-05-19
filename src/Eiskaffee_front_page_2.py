@@ -25,6 +25,7 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 270, 141, 61))                #Größe und Geometrie des Buttons
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
+        self.Ausgabe_Button.clicked.connect(self.getEiskaffeeValues)
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
