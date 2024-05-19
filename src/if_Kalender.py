@@ -119,7 +119,7 @@ class jahr:
             self.tage = 365
         #Bestimmung von Starttag und Endtag des Jahres
         schaltCount = 0                                     #Hilfsvar. zum Zählen der Schaltjahre zwischen dem eingegebenen Jahr und 2024
-        jahrDelta = 0 #self.jahreszahl-2024                    #Gibt die Differenz in Jahren zwischen dem eingegebenen Jahr und 2024 an
+        jahrDelta = 0                                       #Gibt die Differenz in Jahren zwischen dem eingegebenen Jahr und 2024 an
         tagDelta = 0
         self.starttag = 0
         self.endtag = 1
