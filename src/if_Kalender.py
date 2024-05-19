@@ -158,13 +158,14 @@ class jahr:
         wochentagCount = self.starttag
         kwCount = 0
         while tagCount > 0:
-            self.kw[kwCount][wochentagCount] = kalendertag(True, 0)
+            self.kw[kwCount][wochentagCount].istImJahr = True
+            self.kw[kwCount][wochentagCount].anzahlTermine = 1
+            print("wochentagCount= " + str(wochentagCount) + "; kwCount: " + str(kwCount))
             wochentagCount = (wochentagCount + 1)%7
             if wochentagCount == 0:
                 kwCount += 1
                 self.kw.append(neueKW)
             tagCount -= 1
-            print("wochentagCount= " + str(wochentagCount) + "; kwCount: " + str(kwCount))
         
             
         
