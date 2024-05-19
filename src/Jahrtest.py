@@ -28,14 +28,19 @@ testTag.anzahlTermine = 2
 print(str(testTag.istImJahr) + ", " + str(testTag.anzahlTermine))
 
 #'''
-for kalenderwoche in woche:
+kwCount = 0
+for kalenderwoche in testJahr.kw:
     printOutput = ""
-    for tag in testJahr.kw:
-        printOutput += woche(tag) + " [" + str(testJahr.kw[kalenderwoche][tag].istImJahr) + "; " + str(testJahr.kw[kalenderwoche][tag].anzahlTermine) + "]"
-        if tag < 6:
-            printOutput += "; "
-        tag += 1
-    print("KW " + str(kalenderwoche) + ": " + printOutput)
+    tagCount = 0
+    for day in woche:
+        terminzahl = testJahr.kw[kwCount][tagCount].anzahlTermine
+        istImJahr = testJahr.kw[kwCount][tagCount].istImJahr
+        printOutput += woche[tagCount] + " |" + str(istImJahr) + "; " + str(terminzahl) + "|"
+        if tagCount < 6:
+            printOutput += "|| "
+        tagCount += 1
+    print("KW " + str(kwCount) + ": " + printOutput)
+    kwCount += 1
 
 #input("Programmende...")
 #'''
