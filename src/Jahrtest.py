@@ -35,12 +35,14 @@ for kalenderwoche in testJahr.kw:
     for day in woche:
         terminzahl = testJahr.kw[kwCount][tagCount].anzahlTermine
         istImJahr = testJahr.kw[kwCount][tagCount].istImJahr
-        printOutput += woche[tagCount] + " |" + str(istImJahr) + "; " + str(terminzahl) + "|"
+        printOutput += woche[tagCount] + " [" + str(istImJahr) + "; " + str(terminzahl) + "]"
         if tagCount < 6:
-            printOutput += " "
+            printOutput += "; "
         tagCount += 1
     print("KW " + str(kwCount) + ": " + printOutput)
     kwCount += 1
 
-#input("Programmende...")
+print("\nKW 52/D 6: " + str(testJahr.kw[52][6].istImJahr))
+
+input("Programmende...")
 #'''
