@@ -44,7 +44,6 @@ for kalenderwoche in testJahr.kw:
     print("KW " + str(kwCount) + ": " + printOutput)
     kwCount += 1
 
-print("\nKW 52/D 6: " + str(testJahr.kw[52][6].istImJahr))
 
 input("Programmende...")
 #'''
