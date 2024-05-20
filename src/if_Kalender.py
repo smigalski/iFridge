@@ -112,18 +112,22 @@ class jahr:
     def __init__(self, jahreszahl):
         #Setzt das Jahr des Objekts auf das eingegebene Jahr
         self.jahreszahl = jahreszahl
+
         #Setzt die anzahl der Tage des Jahres auf 365 oder 366, je nachdem ob es ein Schaltjahr ist oder nicht
         if checkSchalt(self.jahreszahl) == True:
             self.tage = 366
         else:
             self.tage = 365
+
         #Bestimmung von Starttag und Endtag des Jahres
         schaltCount = 0                                     #Hilfsvar. zum Zählen der Schaltjahre zwischen dem eingegebenen Jahr und 2024
         jahrDelta = 0                                       #Gibt die Differenz in Jahren zwischen dem eingegebenen Jahr und 2024 an
-        tagDelta = 0
-        self.starttag = 0
-        self.endtag = 1
-        
+        tagDelta = 0                                        #Die Anzahl aller Tage zwischen dem 01.01. des angegebenen Jahres und dem 01.01.2024
+        self.starttag = 0                                   #Initialisieren der Eigenschaft .starttag
+        self.endtag = 1                                     #Initialisieren der Eigenschaft .endtag
+
+                                                            #2024 wird als Berechnungsgrundlage gewählt, weil das Jahr praktischerweise mit einem Montag beginnt
+
         #Loop zum Zählen, falls das angegebene Jahr GRÖSSER als 2024 ist
         if self.jahreszahl > 2024:
             jahrCounter = self.jahreszahl-1
@@ -149,25 +153,24 @@ class jahr:
             self.starttag = (-tagDelta)%7
             self.endtag = (self.starttag + self.tage - 1)%7
 
-        print(str( tagDelta) + " Tage bis 01.01.2024")
+        print(str( tagDelta) + " Tage bis 01.01.2024")          #Konsolenausgabe der Anzahl der variable "tagDelta"
 
         #Initialisieren der Kalenderwochen
-        neueKW = [kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0)]
-        self.kw = [neueKW]
-        tagCount = self.tage
-        wochentagCount = self.starttag
-        kwCount = 0
-        while tagCount > 0:
-            self.kw[kwCount][wochentagCount].istImJahr = True
-            self.kw[kwCount][wochentagCount].anzahlTermine = 1
-            print("wochentagCount: " + str(wochentagCount) + "; kwCount: " + str(kwCount))
-            wochentagCount = (wochentagCount + 1)%7
-            if wochentagCount == 0:
-                kwCount += 1
-                self.kw.append(neueKW)
-            tagCount -= 1
+        self.kw = [[kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0)]]
+        tagCount = self.tage                                    #Setzt die Anzahl der Durchläufe der nachfolgenden Schleife auf die Anzahl der Tage des Jahres
+        wochentagCount = self.starttag                          #Setzt den ersten Wochentag der Schleife mit dem ersten Tag des eingebenen Jahres gleich
+        kwCount = 0                                             #Hilfsvariable zum Zählen der einzelnen Kalenderwochen
         
-            
+        while tagCount > 0:                                     #Schleife um die Eigenschaft .istImJahr eines jeden Tages innerhalb des angeg. Jahres auf True zu setzen 
+            self.kw[kwCount][wochentagCount].istImJahr = True
+            self.kw[kwCount][wochentagCount].anzahlTermine = 1  #Zu Testzwecken wird auch die Anzahl der Termine auf 1 gesetzt
+            print("wochentagCount: " + str(wochentagCount) + "; kwCount: " + str(kwCount))      #Konsolenausgabe für jeden einzelnen Tag
+            wochentagCount = (wochentagCount + 1)%7             #Iteration der Wochentage (0 bis 6 entspricht Montag bis Sonntag)
+            if wochentagCount == 0:                             #Hinzufügen einer neuen Kalenderwoche jedes Mal, wenn der neue Wochentag ein Montag ist
+                kwCount += 1
+                self.kw.append([kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0), kalendertag(False, 0)])
+            tagCount -= 1
+         
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
@@ -193,3 +196,6 @@ class kalendertag:
     def __init__(self, istImJahr, anzahlTermine):
         self.istImJahr = istImJahr
         self.anzahlTermine = anzahlTermine
+    
+    def __str__(self):
+        return("Kalendertag: istImJahr= " + str(self.istImJahr) + " | anzahlTermine= " + str(self.anzahlTermine))
