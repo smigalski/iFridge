@@ -162,7 +162,8 @@ class jahr:
         wochentagCount = self.starttag                          #Setzt den ersten Wochentag der Schleife mit dem ersten Tag des eingebenen Jahres gleich
         kwCount = 0                                             #Hilfsvariable zum Zählen der einzelnen Kalenderwochen
         
-        while tagCount > 0:                                     #Schleife um die Eigenschaft .istImJahr eines jeden Tages innerhalb des angeg. Jahres auf True zu setzen 
+        #Schleife um die Eigenschaft .istImJahr eines jeden Tages innerhalb des angeg. Jahres auf True zu setzen
+        while tagCount > 0: 
             self.kw[kwCount][wochentagCount].istImJahr = True
             self.kw[kwCount][wochentagCount].anzahlTermine = 1  #Zu Testzwecken wird auch die Anzahl der Termine auf 1 gesetzt
             print("wochentagCount: " + str(wochentagCount) + "; kwCount: " + str(kwCount))      #Konsolenausgabe für jeden einzelnen Tag
@@ -172,14 +173,17 @@ class jahr:
                 self.kw.append([kalendertag(False, 0, 0, 69), kalendertag(False, 0, 0, 69), kalendertag(False, 0, 0, 69), kalendertag(False, 0, 0, 69), kalendertag(False, 0, 0, 60), kalendertag(False, 0, 0, 69), kalendertag(False, 0, 0, 69)])
             tagCount -= 1
 
-        monatsTage = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        if checkSchalt(self.jahreszahl) == True:
+        #Schleife, um die Eigenschaften .imMonat und .tagNr korrekt zu nummerieren
+        monatsTage = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]       #Array mit der Anzahl Tagen für jeden Monat
+        if checkSchalt(self.jahreszahl) == True:                            #Setzt die Anzahl der Tage im Frebruar auf 29, falls das Jahr ein Schaltjahr ist
             monatsTage[1] = 29
-        monatCount = 0
-        wochentagCount = self.starttag
-        kwCount = 0
+        monatCount = 0                                                      #Iterationsvariable für die Monate
+        wochentagCount = self.starttag                                      #Iterationsvariable für die Wochentage, fängt am Starttag des Jahres an
+        kwCount = 0                                                         #Iterationsvariable für die Kalenderwochen
         for anzahlTage in monatsTage:
-            tagCount = 0
+            tagCount = 0                                                    #Iterationsvariable für die Tage in einem jeden Monat
+            
+            #Schleife für das zuweisen eines Monats und des Tages im Monat für jeden Tag jeder Kalenderwoche
             while tagCount < anzahlTage:
                 self.kw[kwCount][wochentagCount].imMonat = monatCount
                 self.kw[kwCount][wochentagCount].tagNr = tagCount
