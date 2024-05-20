@@ -19,7 +19,7 @@ print("Endtag:      " + woche[testJahr.endtag])
 
 #Test der Kalendertag Klasse
 print("\nKalendertag Test:")
-testTag = if_Kalender.kalendertag(False, 0)
+testTag = if_Kalender.kalendertag(False, 0, 0)
 print("Testtag erforlgreich initialisiert")
 print(str(testTag.istImJahr) + ", " + str(testTag.anzahlTermine))
 print("Aendern der Parameter...")
@@ -35,7 +35,8 @@ for kalenderwoche in testJahr.kw:
     for day in woche:
         terminzahl = testJahr.kw[kwCount][tagCount].anzahlTermine
         istImJahr = testJahr.kw[kwCount][tagCount].istImJahr
-        printOutput += woche[tagCount] + " [" + str(istImJahr) + "; " + str(terminzahl) + "]"
+        imMonat = testJahr.kw[kwCount][tagCount].imMonat
+        printOutput += woche[tagCount] + " [" + str(istImJahr) + "; " + str(terminzahl) + "; " + str(imMonat) + "]"
         if tagCount < 6:
             printOutput += "; "
         tagCount += 1
