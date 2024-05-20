@@ -157,7 +157,7 @@ class jahr:
         print(str( tagDelta) + " Tage bis 01.01.2024")          #Konsolenausgabe der Anzahl der variable "tagDelta"
 
         #Initialisieren der Kalenderwochen
-        self.kw = [[kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0)]]
+        self.kw = [[kalendertag(False, 0, 11), kalendertag(False, 0, 11), kalendertag(False, 0, 11), kalendertag(False, 0, 11), kalendertag(False, 0, 11), kalendertag(False, 0, 11), kalendertag(False, 0, 11)]]
         tagCount = self.tage                                    #Setzt die Anzahl der Durchläufe der nachfolgenden Schleife auf die Anzahl der Tage des Jahres
         wochentagCount = self.starttag                          #Setzt den ersten Wochentag der Schleife mit dem ersten Tag des eingebenen Jahres gleich
         kwCount = 0                                             #Hilfsvariable zum Zählen der einzelnen Kalenderwochen
@@ -171,6 +171,23 @@ class jahr:
                 kwCount += 1
                 self.kw.append([kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0), kalendertag(False, 0, 0)])
             tagCount -= 1
+
+        monatsTage = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if checkSchalt(self.jahreszahl) == True:
+            monatsTage[1] = 29
+        monatCount = 0
+        wochentagCount = self.starttag
+        kwCount = 0
+        for anzahlTage in monatsTage:
+            tagCount = 0
+            while tagCount < anzahlTage:
+                self.kw[kwCount][wochentagCount].imMonat = monatCount
+                wochentagCount = (wochentagCount + 1)%7
+                if wochentagCount == 0:
+                    kwCount += 1
+                tagCount += 1
+            monatCount += 1
+
          
         
 
