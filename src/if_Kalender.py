@@ -211,4 +211,4 @@ class kalendertag:
         self.tagNr = tagNr
     
     def __str__(self):
-        return("Kalendertag: istImJahr= " + str(self.istImJahr) + " | anzahlTermine= " + str(self.anzahlTermine) + " | imMonat= " + str(self.imMonat))
+        return("Kalendertag: istImJahr= " + str(self.istImJahr) + " | anzahlTermine= " + str(self.anzahlTermine) + " | imMonat= " + str(self.imMonat) + " | tagNr= " + str(self.tagNr))
