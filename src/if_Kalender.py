@@ -183,14 +183,6 @@ def checkSchalt(jahreszahl):
     return(istSchalt)
 
 
-'''
-#Klasse 'Kalenderwoche' zum besseren Darstellen von Wochen im Kalender
-class kalenderwoche:
-    def __init__(self):
-        self.mo = 0
-        self.di = 0
-
-'''       
 #Klasse 'Kalendertag' zum füllen der Woche und markieren von Terminen
 class kalendertag:
     def __init__(self, istImJahr, anzahlTermine):
