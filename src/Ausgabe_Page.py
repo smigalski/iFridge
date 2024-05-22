@@ -26,14 +26,18 @@ class Ui_Ausgabe_Window(object):
         font.setWeight(75)
         self.geniesse_title.setFont(font)
         self.geniesse_title.setObjectName("geniesse_title")
+        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.progressBar.setGeometry(QtCore.QRect(140, 200, 300, 30))
+        self.progressBar.setProperty("value", 0)                                    # Anfangswert der Fortschrittsleiste
+        self.progressBar.setObjectName("progressBar")
         self.Eiswuerfel_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(140, 180, 131, 31))
+        self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(140, 240, 131, 31))
         self.Eiswuerfel_Ausgabe.setObjectName("Eiswuerfel_Ausgabe")
         self.Kaffee_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Kaffee_Ausgabe.setGeometry(QtCore.QRect(140, 220, 131, 31))
+        self.Kaffee_Ausgabe.setGeometry(QtCore.QRect(140, 260, 131, 31))
         self.Kaffee_Ausgabe.setObjectName("Kaffee_Ausgabe")
         self.Milch_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Milch_Ausgabe.setGeometry(QtCore.QRect(140, 260, 131, 31))
+        self.Milch_Ausgabe.setGeometry(QtCore.QRect(140, 300, 131, 31))
         self.Milch_Ausgabe.setObjectName("Milch_Ausgabe")
         Ausgabe_Window.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Ausgabe_Window)
@@ -52,8 +56,6 @@ class Ui_Ausgabe_Window(object):
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
 
-#       def showAusgabePage(self):
-#           self.stack.setCurrentWidget(self.Ausgabe_Page)
 
 if __name__ == "__main__":
     import sys
