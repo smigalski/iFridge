@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Ausgabe_Page
+from Ausgabe_Page import Ui_Ausgabe_Window
 
 #Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
 class Ui_MainWindow(object):                        #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
@@ -166,7 +166,10 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         print("Milch:", milch_value)
 
     def showAusgabePage(self):
-        self.stack.setCurrentWidget(self.Ausgabe_Page)
+        self.Ausgabe_Window = QtWidgets.QMainWindow()
+        ui = Ui_Ausgabe_Window()
+        ui.setupUi(self.Ausgabe_Window)
+        self.Ausgabe_Window.show()
 
 #Dieser Code initialisiert die GUI-Anwendung, startet die Hauptanwendungsschleife und zeigt das Anwendungsfenster an.
 if __name__ == "__main__":
