@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import Ausgabe_Page
 
 #Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
 class Ui_MainWindow(object):                        #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
@@ -25,7 +26,7 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 270, 141, 61))                #Größe und Geometrie des Buttons
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
-        self.Ausgabe_Button.clicked.connect(self.getEiskaffeeValues)
+        self.Ausgabe_Button.clicked.connect(self.showAusgabePage)
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
@@ -164,6 +165,8 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         print("Kaffee:", kaffee_value)
         print("Milch:", milch_value)
 
+    def showAusgabePage(self):
+        self.stack.setCurrentWidget(self.Ausgabe_Page)
 
 #Dieser Code initialisiert die GUI-Anwendung, startet die Hauptanwendungsschleife und zeigt das Anwendungsfenster an.
 if __name__ == "__main__":

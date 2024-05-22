@@ -52,6 +52,8 @@ class Ui_Ausgabe_Window(object):
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
 
+#       def showAusgabePage(self):
+#           self.stack.setCurrentWidget(self.Ausgabe_Page)
 
 if __name__ == "__main__":
     import sys

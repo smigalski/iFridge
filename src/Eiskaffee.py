@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
 import sys
 from Eiskaffee_front_page_2 import *
 
-# Dateipfad zum konvertieren QT zu PY: C:\Users\Yasmine\AppData\Local\Programs\Python\Python311\Scripts\pyuic5 -x *NameDate.ui* - o *NeuerNameDerDatei.py*
+# Dateipfad zum konvertieren QT zu PY: C:\Users\Yasmine\AppData\Local\Programs\Python\Python311\Scripts\pyuic5 -x *NameDate.ui* -o *NeuerNameDerDatei.py*
 
 
 
