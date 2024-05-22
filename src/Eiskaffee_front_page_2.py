@@ -165,6 +165,7 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         print("Kaffee:", kaffee_value)
         print("Milch:", milch_value)
 
+    #Die Funktion showAusgabePage ruft die AusgabePage auf und zeigt sie an.
     def showAusgabePage(self):
         self.Ausgabe_Window = QtWidgets.QMainWindow()
         ui = Ui_Ausgabe_Window()
