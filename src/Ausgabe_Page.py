@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import time
+
 
 
 class Ui_Ausgabe_Window(object):
@@ -17,6 +19,7 @@ class Ui_Ausgabe_Window(object):
         Ausgabe_Window.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(Ausgabe_Window)
         self.centralwidget.setObjectName("centralwidget")
+
         self.geniesse_title = QtWidgets.QLabel(self.centralwidget)
         self.geniesse_title.setGeometry(QtCore.QRect(130, 120, 431, 41))
         font = QtGui.QFont()
@@ -26,19 +29,28 @@ class Ui_Ausgabe_Window(object):
         font.setWeight(75)
         self.geniesse_title.setFont(font)
         self.geniesse_title.setObjectName("geniesse_title")
-        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(140, 200, 300, 30))
-        self.progressBar.setProperty("value", 0)                                    # Anfangswert der Fortschrittsleiste
-        self.progressBar.setObjectName("progressBar")
+
+        self.ausgabe = QtWidgets.QLabel(self.centralwidget)
+        self.ausgabe.setGeometry(QtCore.QRect(130, 180, 431, 41))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(10)
+        font.setWeight(75)
+        self.ausgabe.setFont(font)
+        self.ausgabe.setObjectName("ausgabe_title")
+
         self.Eiswuerfel_Ausgabe = QtWidgets.QLabel(self.centralwidget)
         self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(140, 240, 131, 31))
         self.Eiswuerfel_Ausgabe.setObjectName("Eiswuerfel_Ausgabe")
+
         self.Kaffee_Ausgabe = QtWidgets.QLabel(self.centralwidget)
         self.Kaffee_Ausgabe.setGeometry(QtCore.QRect(140, 260, 131, 31))
         self.Kaffee_Ausgabe.setObjectName("Kaffee_Ausgabe")
+
         self.Milch_Ausgabe = QtWidgets.QLabel(self.centralwidget)
         self.Milch_Ausgabe.setGeometry(QtCore.QRect(140, 300, 131, 31))
         self.Milch_Ausgabe.setObjectName("Milch_Ausgabe")
+
         Ausgabe_Window.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Ausgabe_Window)
         self.statusbar.setObjectName("statusbar")
@@ -46,6 +58,7 @@ class Ui_Ausgabe_Window(object):
 
         self.retranslateUi(Ausgabe_Window)
         QtCore.QMetaObject.connectSlotsByName(Ausgabe_Window)
+
 
     def retranslateUi(self, Ausgabe_Window):
         _translate = QtCore.QCoreApplication.translate
@@ -55,6 +68,9 @@ class Ui_Ausgabe_Window(object):
         self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel:"))
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
+        self.ausgabe.setText(_translate("Ausgabe_Window", "Dein Kaffee wird gerade ausgegeben\n"
+                                                          "Bitte warte einen kleinen Augenblick"))
+
 
 
 if __name__ == "__main__":
