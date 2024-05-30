@@ -26,6 +26,7 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
         self.Ausgabe_Button.clicked.connect(self.showAusgabePage)                       #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
+        self.Ausgabe_Button.clicked.connect(MainWindow.close)
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
