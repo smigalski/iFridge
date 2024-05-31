@@ -127,3 +127,12 @@ class ContinuousItem:
             print("Error: You try to take more quantity of an Item than its actual existing quantity.")
             self.quantity = 0
         return answer
+
+def InventoryToString():
+    InventoryString = ""
+    index = 0
+    while (index < getNumberOfItems()):
+        if (index != 0):
+            InventoryString += "\n"
+        InventoryString += ItemInfo(index)[1] + "," + ItemInfo(index)[2] + "," + ItemInfo(index)[3] + "," + ItemInfo(index)[4] + "," + str(ItemInfo(index)[5])
+    return InventoryString
