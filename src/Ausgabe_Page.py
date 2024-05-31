@@ -9,8 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import time
-
 
 
 class Ui_Ausgabe_Window(object):
@@ -29,15 +27,6 @@ class Ui_Ausgabe_Window(object):
         font.setWeight(75)
         self.geniesse_title.setFont(font)
         self.geniesse_title.setObjectName("geniesse_title")
-
-        self.ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.ausgabe.setGeometry(QtCore.QRect(130, 180, 431, 41))
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setPointSize(10)
-        font.setWeight(75)
-        self.ausgabe.setFont(font)
-        self.ausgabe.setObjectName("ausgabe_title")
 
         self.Eiswuerfel_Ausgabe = QtWidgets.QLabel(self.centralwidget)
         self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(140, 240, 131, 31))
@@ -63,9 +52,10 @@ class Ui_Ausgabe_Window(object):
     def retranslateUi(self, Ausgabe_Window):
         _translate = QtCore.QCoreApplication.translate
         Ausgabe_Window.setWindowTitle(_translate("Ausgabe_Window", "Ausgabe_Window"))
-        self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genießen!\n"
+        self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genieÃŸen!\n"
 "Er besteht aus:"))
-        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel:"))
+                                                                    "Er besteht aus:"))
+        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "EiswÃ¼rfel:"))
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
         self.ausgabe.setText(_translate("Ausgabe_Window", "Dein Kaffee wird gerade ausgegeben\n"
