@@ -54,9 +54,9 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>40</y>
+      <y>50</y>
       <width>801</width>
-      <height>801</height>
+      <height>791</height>
      </rect>
     </property>
     <property name="text">
@@ -82,10 +82,27 @@ background-color: rgb(255, 255, 255);</string>
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>160</y>
+      <width>321</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>RGB-Leiste</string>
+    </property>
+   </widget>
    <zorder>label_2</zorder>
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
    <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
