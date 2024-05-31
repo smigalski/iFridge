@@ -10,8 +10,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 #from Ausgabe_Page import Ui_Ausgabe_Window
 
+eiswuerfel_value = 0
+kaffee_value = 0
+milch_value = 0
+
 #Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
-class Ui_MainWindow(object):                        #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
+class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(618, 437)                                                     #Größe des Fensters festlegen
@@ -158,6 +162,9 @@ class Ui_MainWindow(object):                        #Klasse des Fensters erstell
 
 #Die Funktion getEiswürfelValues speichert die eingestellten Werte aus den Slidern in Variablen.
     def getEiskaffeeValues(self):
+        global eiswuerfel_value
+        global kaffee_value
+        global milch_value
         eiswuerfel_value = self.EiswuerfelSlider.value()
         kaffee_value = self.KaffeeSlider.value()
         milch_value = self.MilchSlider.value()
@@ -218,9 +225,9 @@ class Ui_Ausgabe_Window(object):
         Ausgabe_Window.setWindowTitle(_translate("Ausgabe_Window", "Ausgabe_Window"))
         self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genießen!\n"
                                                                     "Er besteht aus:"))
-        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel:"))
-        self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
-        self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
+        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel: " + str(eiswuerfel_value) + " Stück"))
+        self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee: " + str(kaffee_value) + "ml"))
+        self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch: " + str(milch_value) + "ml"))
 
 
 
