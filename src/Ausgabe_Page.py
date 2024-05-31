@@ -52,15 +52,11 @@ class Ui_Ausgabe_Window(object):
     def retranslateUi(self, Ausgabe_Window):
         _translate = QtCore.QCoreApplication.translate
         Ausgabe_Window.setWindowTitle(_translate("Ausgabe_Window", "Ausgabe_Window"))
-        self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genieÃŸen!\n"
-"Er besteht aus:"))
+        self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genießen!\n"
                                                                     "Er besteht aus:"))
-        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "EiswÃ¼rfel:"))
+        self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel:"))
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee:"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch:"))
-        self.ausgabe.setText(_translate("Ausgabe_Window", "Dein Kaffee wird gerade ausgegeben\n"
-                                                          "Bitte warte einen kleinen Augenblick"))
-
 
 
 if __name__ == "__main__":
