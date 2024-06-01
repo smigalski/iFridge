@@ -141,7 +141,4 @@ def InventoryToString():
             i += 1
     return InventoryString
 
-def ExportInventory:
-    file = open('Inventory.txt', 'w')
-    file.write(InventoryToString())
 
