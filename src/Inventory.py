@@ -134,5 +134,14 @@ def InventoryToString():
     while (index < getNumberOfItems()):
         if (index != 0):
             InventoryString += "\n"
-        InventoryString += ItemInfo(index)[1] + "," + ItemInfo(index)[2] + "," + ItemInfo(index)[3] + "," + ItemInfo(index)[4] + "," + str(ItemInfo(index)[5])
+        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[3] + ";" + ItemInfo(index)[4] + ";"
+        i = 0
+        while (i < len(ItemInfo(index)[5])):
+            InventoryString += str(ItemInfo(index)[5][i]) + ";"
+            i += 1
     return InventoryString
+
+def ExportInventory:
+    file = open('Inventory.txt', 'w')
+    file.write(InventoryToString())
+
