@@ -4,8 +4,10 @@
 
 _inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
 
+
 def getInventory():
     return _inventory
+
 
 def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "1" or "" if item is stackable. quantity must be 1 for stackable items.
     if getItemIndex(name) == -1:
@@ -23,6 +25,7 @@ def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "co
     else:
         print("Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
 
+
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
     index = getItemIndex(name)
     if index == -1:
@@ -38,12 +41,15 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
     else:
         print("Error: type {type} is unknown.")
 
+
 def ItemInfo(index):
     information = [index,_inventory[index].type,_inventory[index].name,_inventory[index].quantity,_inventory[index].unit,_inventory[index].expiries]
     return information
 
+
 def getNumberOfItems():
     return len(_inventory)
+
 
 def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(s)
     information = ItemInfo(index)
@@ -69,8 +75,10 @@ def getItemIndex(name):
             index = i
     return index
 
+
 #classes for items
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
+
 
 class StackableItem:
     def __init__(self, name, expiries):
@@ -128,6 +136,7 @@ class ContinuousItem:
             self.quantity = 0
         return answer
 
+
 def InventoryToString():
     InventoryString = ""
     index = 0
@@ -141,7 +150,17 @@ def InventoryToString():
             i += 1
     return InventoryString
 
-def ExportInventory():
-    file = open('Inventory.txt', 'w')
+
+def ExportInventory(filename = "Inventory.txt"):
+    file = open(filename, "w")
     file.write(InventoryToString())
+    file.close()
+
+
+def ImportInventory(filename = "Inventory.txt"):
+    InventoryToString = ""
+    file = open(filename, "r")
+    for line in file:
+        InventoryToString += file.readline()
+
 
