@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>iFridge</string>
+   <string>Nutzerfenster</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/icon_Nutzer.png</normaloff>../img/icon_Nutzer.png</iconset>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -45,18 +49,85 @@
     <pixmap>../img/iFridge_klein.png</pixmap>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>600</y>
-     <width>111</width>
-     <height>71</height>
+     <x>100</x>
+     <y>40</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Nutzer_1</string>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Terminal&quot;;</string>
    </property>
+   <property name="text">
+    <string>Nutzer</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>741</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>50</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QPushButton" name="pushButton_1">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>Nutzer_1</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>Nutzer_2</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
