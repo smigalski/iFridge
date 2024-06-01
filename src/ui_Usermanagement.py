@@ -141,6 +141,8 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         # Buttons mit den entsprechenden Methoden verbinden
         self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user(self.lineEdit.text()))
         self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText()))
+        self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
+        self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
 
     def retranslateUi(self, Usermanagement):
         self.label.setText(QCoreApplication.translate("Usermanagement", u"Nutzerliste", None))
@@ -204,12 +206,14 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
     def deposit(self, username, amount):
         if username in self.users:
             self.users[username]['balance'] += amount
+            ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
     def change_balance(self, username, new_balance):
         if username in self.users:
             self.users[username]['balance'] = new_balance
+            ui.update_ui()
         else:
             print(f"Der angegebene Nutzer existiert nicht")
 
