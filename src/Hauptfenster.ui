@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>iFridge</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/iFridge_klein.png</normaloff>../img/iFridge_klein.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -82,7 +86,7 @@ background-color: rgb(255, 255, 255);</string>
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="labelRGBLeiste">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -102,7 +106,7 @@ background-color: rgb(255, 255, 255);</string>
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
    <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
+   <zorder>labelRGBLeiste</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -17,7 +17,7 @@
    <iconset>
     <normaloff>../img/icon_Einstellungen.png</normaloff>../img/icon_Einstellungen.png</iconset>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_Hintergrund">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -39,14 +39,26 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QScrollBar" name="horizontalScrollBar">
+  <widget class="QScrollBar" name="TempScrollBar">
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>110</y>
+     <y>100</y>
      <width>191</width>
      <height>631</height>
     </rect>
+   </property>
+   <property name="minimum">
+    <number>2</number>
+   </property>
+   <property name="maximum">
+    <number>8</number>
+   </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
+   <property name="pageStep">
+    <number>1</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
@@ -77,7 +89,7 @@
     <rect>
      <x>10</x>
      <y>760</y>
-     <width>221</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -107,7 +119,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QDial" name="dial">
+  <widget class="QDial" name="HelligkeitDial">
    <property name="geometry">
     <rect>
      <x>350</x>
@@ -125,7 +137,7 @@
     <rect>
      <x>350</x>
      <y>620</y>
-     <width>221</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -163,6 +175,40 @@ background-color: rgb(255, 255, 255);
      <width>48</width>
      <height>48</height>
     </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_TempAusgabe">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>760</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font: 12pt &quot;Terminal&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_HellAusgabe">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>620</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font: 12pt &quot;Terminal&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

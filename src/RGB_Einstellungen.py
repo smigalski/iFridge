@@ -2,10 +2,13 @@ import sys
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QColor
+from PyQt5.QtCore import pyqtSignal
 
 
 
 class RGBSlider(QtWidgets.QWidget):
+    colorChanged = pyqtSignal(str) #Definiert ein Signal, das die Farbe sendet
+
     def __init__(self):
         super(RGBSlider, self).__init__()
         uic.loadUi('RGB_Einstellungen.ui', self)
@@ -19,8 +22,8 @@ class RGBSlider(QtWidgets.QWidget):
         self.Slider_gruen2.valueChanged.connect(self.updateColor)
         self.Slider_blau2.valueChanged.connect(self.updateColor)
 
-        # Initiale Farbanzeige
         self.updateColor()
+
 
     def updateColor(self):
         red1 = self.Slider_rot1.value()
@@ -39,6 +42,8 @@ class RGBSlider(QtWidgets.QWidget):
 
         self.labelColor1.setStyleSheet(f"background-color: {colorString1};  color: white;  padding: 10px;  border-radius: 15px;")
         self.labelColor2.setStyleSheet(f"background-color: {colorString2};  color: white;  padding: 10px;  border-radius: 15px;")
+
+        self.colorChanged.emit(colorString2)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
