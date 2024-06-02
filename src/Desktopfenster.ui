@@ -14,8 +14,8 @@
    <string>iFridge - Desktopfenster</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="accessories-dictionary">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset>
+    <normaloff>../img/iFridge_klein.png</normaloff>../img/iFridge_klein.png</iconset>
   </property>
   <widget class="QPushButton" name="pushButtonAllgemeineEinstellungen">
    <property name="geometry">
