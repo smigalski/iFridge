@@ -63,6 +63,13 @@ while kwGefunden == False:
         kwGefunden = True
 print(kwCount)
 
+ausgewKW = [[], [], [], [], [], []] 
+counter = 0
+while counter < 6:
+    ausgewKW[counter] = testJahr.kw[kwCount]
+    ausgewKW[counter].append(kwCount+1)
+    kwCount += 1
+    counter += 1
 
 
 input("Programmende...")
