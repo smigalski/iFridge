@@ -71,6 +71,23 @@ while counter < 6:
     kwCount += 1
     counter += 1
 
+#Ausgabe
+kwCount = 0
+for kalenderwoche in ausgewKW:
+    printOutput = ""
+    tagCount = 0
+    for day in woche:
+        terminzahl = ausgewKW[kwCount][tagCount].anzahlTermine
+        istImJahr = ausgewKW[kwCount][tagCount].istImJahr
+        imMonat = ausgewKW[kwCount][tagCount].imMonat
+        tagNr = ausgewKW[kwCount][tagCount].tagNr
+        printOutput += woche[tagCount] + " [" + str(istImJahr) + "; " + str(terminzahl) + "; " + str(imMonat) + "; " + str(tagNr) + "]"
+        if tagCount < 6:
+            printOutput += "; "
+        tagCount += 1
+    print("KW " + str(ausgewKW[kwCount][7]) + ": " + printOutput)
+    kwCount += 1
+
 
 input("Programmende...")
 #'''
