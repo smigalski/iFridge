@@ -45,7 +45,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="comboBox_AufAuswahl">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -68,7 +68,7 @@
      <string>Produkt auswählen:</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_AufAnzahl">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -91,7 +91,7 @@
      <string>Anzahl:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_AufHinzu">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -148,7 +148,7 @@
      <string>Produktname angeben:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="lineEdit_HinzuProduktname">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -158,7 +158,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushButton_HinzuAnlegen">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -171,7 +171,7 @@
      <string>Anlegen</string>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QListView" name="listView_Inventaranzeige">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -251,7 +251,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="radioButton_countable">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -267,7 +267,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="radioButton_countinous">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -280,7 +280,7 @@
      <string>Continous</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit">
+   <widget class="QDateEdit" name="dateEdit_HinzuAblaufdatum">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -326,7 +326,7 @@
      <string>Ablaufdatum angeben:</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit_2">
+   <widget class="QDateEdit" name="dateEdit_AufAblaufdatum">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -401,6 +401,122 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_EinkaufslisteAusgabe">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>60</y>
+      <width>311</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Als .txt ausgeben</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_10">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>150</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>140</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ist/ Soll</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_11">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>150</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_IstSoll_Produktauswahl">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>200</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>180</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Produkt auswählen:</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_IstSoll_SollFestlegen">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>200</y>
+      <width>131</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>180</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Soll festlegen:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_IstSoll_AufSollSetzen">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>240</y>
+      <width>311</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ausgewähltes Produkt auf Soll setzen</string>
     </property>
    </widget>
   </widget>
