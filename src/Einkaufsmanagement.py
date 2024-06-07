@@ -11,8 +11,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QDate, QDateTime
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
 
 import Inventory
+
 import time
 
 class Ui_RefillWindow(object):
@@ -193,6 +195,7 @@ class Ui_RefillWindow(object):
 
         #Buttons mit den entsprechenden Funktionen verbinden
         self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
+        self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
 
 
     def retranslateUi(self, RefillWindow):
@@ -219,7 +222,7 @@ class Ui_RefillWindow(object):
         self.pushButton_IstSoll_AllesAufSoll.setText(_translate("RefillWindow", "Alle Produkte auf Soll setzen"))
         self.label_13.setText(_translate("RefillWindow", "Anzahl:"))
 
-    def add_product_to_inventory(self):
+    def add_product_to_inventory(self):         #Methode zum Hinzufügen von Produkten
         # Bestimme den Produkttyp basierend auf dem ausgewählten Radio-Button
         if self.radioButton_countinous.isChecked():
             product_type = "continous"
@@ -250,13 +253,30 @@ class Ui_RefillWindow(object):
         # Lade das Inventar neu
         self.load_inventory()
 
+
     def load_inventory(self):
-        products = self.inventory.products
-        model = QtGui.QStandardItemModel()
-        for product in products:
-            item = QtGui.QStandardItem(f"{product.name} - {product.amount}")
+        inventory = Inventory.getInventory()
+        model = QStandardItemModel()
+        for item_info in inventory:
+            if item_info[1] == "stackable":
+                item_text = f"{item_info[2]} - {len(item_info[5])}"
+            else:
+                item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
+            item = QStandardItem(item_text)
             model.appendRow(item)
         self.listView_Inventaranzeige.setModel(model)
+        
+    def refill_product_to_inventory(self):         #Methode zum Auffüllen von Produkten
+        product_name = self.comboBox_AufAuswahl.currentText()
+        amount = self.doubleSpinBox_AufAnzahl.value()
+
+        # Erhalte das Ablaufdatum aus der DateEdit und konvertiere es in einen Unix-Zeitstempel
+        expiry_date = self.dateEdit_HinzuAblaufdatum.date().toPyDate()
+        expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
+
+        self.inventory.add_product(product_name, amount, expiry_date_timestamp)
+        self.load_inventory()
+
 
 if __name__ == "__main__":
             import sys
