@@ -9,7 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QDate, QDateTime
+from PyQt5.QtWidgets import QMessageBox
 
+import Inventory
+import time
 
 class Ui_RefillWindow(object):
     def setupUi(self, RefillWindow):
@@ -92,10 +96,10 @@ class Ui_RefillWindow(object):
         self.line_6.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_6.setObjectName("line_6")
-        self.radioButton_countable = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioButton_countable.setGeometry(QtCore.QRect(10, 280, 95, 20))
-        self.radioButton_countable.setChecked(True)
-        self.radioButton_countable.setObjectName("radioButton_countable")
+        self.radioButton_Stackable = QtWidgets.QRadioButton(self.centralwidget)
+        self.radioButton_Stackable.setGeometry(QtCore.QRect(10, 280, 95, 20))
+        self.radioButton_Stackable.setChecked(True)
+        self.radioButton_Stackable.setObjectName("radioButton_countable")
         self.radioButton_countinous = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_countinous.setGeometry(QtCore.QRect(120, 280, 95, 20))
         self.radioButton_countinous.setObjectName("radioButton_countinous")
@@ -171,6 +175,12 @@ class Ui_RefillWindow(object):
         self.pushButton_IstSoll_AllesAufSoll = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_IstSoll_AllesAufSoll.setGeometry(QtCore.QRect(380, 280, 311, 28))
         self.pushButton_IstSoll_AllesAufSoll.setObjectName("pushButton_IstSoll_AllesAufSoll")
+        self.label_13 = QtWidgets.QLabel(self.centralwidget)
+        self.label_13.setGeometry(QtCore.QRect(160, 230, 55, 16))
+        self.label_13.setObjectName("label_13")
+        self.doubleSpinBox_HinzuAnzahl = QtWidgets.QDoubleSpinBox(self.centralwidget)
+        self.doubleSpinBox_HinzuAnzahl.setGeometry(QtCore.QRect(160, 250, 62, 22))
+        self.doubleSpinBox_HinzuAnzahl.setObjectName("doubleSpinBox_HinzuAnzahl")
         RefillWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(RefillWindow)
         self.statusbar.setObjectName("statusbar")
@@ -178,6 +188,12 @@ class Ui_RefillWindow(object):
 
         self.retranslateUi(RefillWindow)
         QtCore.QMetaObject.connectSlotsByName(RefillWindow)
+
+
+
+        #Buttons mit den entsprechenden Funktionen verbinden
+        self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
+
 
     def retranslateUi(self, RefillWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -190,8 +206,8 @@ class Ui_RefillWindow(object):
         self.label_5.setText(_translate("RefillWindow", "Produktname angeben:"))
         self.pushButton_HinzuAnlegen.setText(_translate("RefillWindow", "Anlegen"))
         self.label_6.setText(_translate("RefillWindow", "Aktuelles Inventar:"))
-        self.radioButton_countable.setText(_translate("RefillWindow", "Countable"))
-        self.radioButton_countinous.setText(_translate("RefillWindow", "Continous"))
+        self.radioButton_Stackable.setText(_translate("RefillWindow", "stackable"))
+        self.radioButton_countinous.setText(_translate("RefillWindow", "continous"))
         self.label_7.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
         self.label_8.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
         self.label_9.setText(_translate("RefillWindow", "Einkaufsliste"))
@@ -201,3 +217,52 @@ class Ui_RefillWindow(object):
         self.label_12.setText(_translate("RefillWindow", "Soll festlegen:"))
         self.pushButton_IstSoll_AufSollSetzen.setText(_translate("RefillWindow", "Ausgewähltes Produkt auf Soll setzen"))
         self.pushButton_IstSoll_AllesAufSoll.setText(_translate("RefillWindow", "Alle Produkte auf Soll setzen"))
+        self.label_13.setText(_translate("RefillWindow", "Anzahl:"))
+
+    def add_product_to_inventory(self):
+        # Bestimme den Produkttyp basierend auf dem ausgewählten Radio-Button
+        if self.radioButton_countinous.isChecked():
+            product_type = "continous"
+        else:
+            product_type = "stackable"
+
+        # Erhalte den Produktnamen aus der LineEdit
+        product_name = self.lineEdit_HinzuProduktname.text()
+
+        # Prüfe, ob der Produktname leer ist
+        if not product_name:
+            QMessageBox.warning(self, "Warnung", "Bitte geben Sie einen Produktnamen ein.")
+            return
+
+        # Erhalte die Menge aus der DoubleSpinBox
+        quantity = self.doubleSpinBox_HinzuAnzahl.value()
+
+        # Erhalte das Ablaufdatum aus der DateEdit und konvertiere es in einen Unix-Zeitstempel
+        expiry_date = self.dateEdit_HinzuAblaufdatum.date().toPyDate()
+        expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
+
+        # Einheit (entsprechende LineEdit fehlt aktuell noch, daher erstmal auf KG)
+        unit = "KG"
+
+        # Füge das neue Produkt dem Inventar hinzu
+        Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit)
+
+        # Lade das Inventar neu
+        self.load_inventory()
+
+    def load_inventory(self):
+        products = self.inventory.products
+        model = QtGui.QStandardItemModel()
+        for product in products:
+            item = QtGui.QStandardItem(f"{product.name} - {product.amount}")
+            model.appendRow(item)
+        self.listView_Inventaranzeige.setModel(model)
+
+if __name__ == "__main__":
+            import sys
+            app = QtWidgets.QApplication(sys.argv)
+            RefillWindow = QtWidgets.QMainWindow()
+            ui = Ui_RefillWindow()
+            ui.setupUi(RefillWindow)
+            RefillWindow.show()
+            sys.exit(app.exec_())
