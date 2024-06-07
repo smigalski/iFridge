@@ -519,6 +519,19 @@
      <string>Ausgewähltes Produkt auf Soll setzen</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_IstSoll_AllesAufSoll">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>280</y>
+      <width>311</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Alle Produkte auf Soll setzen</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
