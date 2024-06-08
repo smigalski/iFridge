@@ -196,11 +196,12 @@ class Ui_RefillWindow(object):
 
 
 
-        #Buttons mit den entsprechenden Funktionen verbinden
+        #Buttons und Elemente mit den entsprechenden Funktionen verbinden (Slots)
         self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
         self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
         self.radioButton_Stackable.toggled.connect(self.on_radio_button_toggled)
         self.radioButton_countinous.toggled.connect(self.on_radio_button_toggled)
+        self.comboBox_AufAuswahl.currentTextChanged.connect(self.on_comboBox_changed)
 
     #Diese Methode sorgt dafür, dass bei Verwendung des Typs Stackable die Spinbox deaktiviert ist, da die hinzugefügte Menge immer 1 sein muss (siehe Dokumentation)
     def on_radio_button_toggled(self):
@@ -210,6 +211,21 @@ class Ui_RefillWindow(object):
         else:
             self.doubleSpinBox_HinzuAnzahl.setDisabled(False)
             self.doubleSpinBox_HinzuAnzahl.setValue(1) #Wert wird wieder standardmäßig auf 1 gesetzt
+
+    #diese Methode sorgt dafür, dass die Spinbox den Wert 1 hat und nicht vom Benutzer verändert werden kann, wenn der Produkttyp stackable ist, da der Wert dafür 1 sein muss
+    def on_comboBox_changed(self):
+        print("Aufruf on_comboBox_changed")
+        AuswahlCB = self.comboBox_AufAuswahl.currentText()
+        PIndex = Inventory.getItemIndex(AuswahlCB)
+        product_info = Inventory.ItemInfo(PIndex)
+
+        print(product_info)
+
+        if product_info[1] == "StackableItem":
+            self.doubleSpinBox_AufAnzahl.setValue(1)
+            self.doubleSpinBox_AufAnzahl.setEnabled(False)
+        else:
+            self.doubleSpinBox_AufAnzahl.setEnabled(True)
 
     def retranslateUi(self, RefillWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -290,6 +306,9 @@ class Ui_RefillWindow(object):
                 print("stackable erfogreich")
             else:
                 item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
+
+            # ComboBox leeren, bevor Produkte hinzugefügt werden
+            self.comboBox_AufAuswahl.clear()
 
             #Vorbereitung zur Darstellung im ListView
             item = QStandardItem(item_text)
