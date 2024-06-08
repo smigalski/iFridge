@@ -198,6 +198,8 @@ class Ui_RefillWindow(object):
         self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
 
 
+
+
     def retranslateUi(self, RefillWindow):
         _translate = QtCore.QCoreApplication.translate
         RefillWindow.setWindowTitle(_translate("RefillWindow", "Einkaufsmanagement"))
@@ -251,15 +253,26 @@ class Ui_RefillWindow(object):
         Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit)
 
         # Lade das Inventar neu
+        print("lade Inventar")
         self.load_inventory()
 
 
     def load_inventory(self):
-        inventory = Inventory.getInventory()
+        print("Methode load_inventory wird aufgerufen")
+
+        inventory = Inventory.getInventory() #Inventar abrufen aus der Inventory.py
+        print("Inventory.getInventory erhalten")
         model = QStandardItemModel()
+        print("QStandardItemModel")
+
+        print(f"Länge inventory : {len(inventory)}")
+        print(inventory[-1])
+
         for item_info in inventory:
+            print("Schleife")
             if item_info[1] == "stackable":
                 item_text = f"{item_info[2]} - {len(item_info[5])}"
+                print("stackable erfogreich")
             else:
                 item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
             item = QStandardItem(item_text)
