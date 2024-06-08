@@ -188,6 +188,9 @@ class Ui_RefillWindow(object):
         self.statusbar.setObjectName("statusbar")
         RefillWindow.setStatusBar(self.statusbar)
 
+        self.doubleSpinBox_HinzuAnzahl.setValue(1)
+        self.doubleSpinBox_AufAnzahl.setValue(1)
+        self.doubleSpinBox_HinzuAnzahl.setDisabled(True)
         self.retranslateUi(RefillWindow)
         QtCore.QMetaObject.connectSlotsByName(RefillWindow)
 
@@ -196,9 +199,17 @@ class Ui_RefillWindow(object):
         #Buttons mit den entsprechenden Funktionen verbinden
         self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
         self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
+        self.radioButton_Stackable.toggled.connect(self.on_radio_button_toggled)
+        self.radioButton_countinous.toggled.connect(self.on_radio_button_toggled)
 
-
-
+    #Diese Methode sorgt dafür, dass bei Verwendung des Typs Stackable die Spinbox deaktiviert ist, da die hinzugefügte Menge immer 1 sein muss (siehe Dokumentation)
+    def on_radio_button_toggled(self):
+        if self.radioButton_Stackable.isChecked():
+            self.doubleSpinBox_HinzuAnzahl.setValue(1)
+            self.doubleSpinBox_HinzuAnzahl.setDisabled(True)
+        else:
+            self.doubleSpinBox_HinzuAnzahl.setDisabled(False)
+            self.doubleSpinBox_HinzuAnzahl.setValue(1) #Wert wird wieder standardmäßig auf 1 gesetzt
 
     def retranslateUi(self, RefillWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -260,24 +271,33 @@ class Ui_RefillWindow(object):
     def load_inventory(self):
         print("Methode load_inventory wird aufgerufen")
 
-        inventory = Inventory.getInventory() #Inventar abrufen aus der Inventory.py
-        print("Inventory.getInventory erhalten")
+        loadedinventory = [] #Liste erstellen
         model = QStandardItemModel()
-        print("QStandardItemModel")
 
-        print(f"Länge inventory : {len(inventory)}")
-        print(inventory[-1])
+        NumberOfItems = Inventory.getNumberOfItems()
 
-        for item_info in inventory:
+        print(NumberOfItems)
+        print(Inventory.ItemInfo(0))
+
+        for Item in range(0,NumberOfItems):
+            loadedinventory.append(Inventory.ItemInfo(Item))
+
+
+        for item_info in loadedinventory:
             print("Schleife")
-            if item_info[1] == "stackable":
-                item_text = f"{item_info[2]} - {len(item_info[5])}"
+            if item_info[1] == "StackableItem":
+                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]}"
                 print("stackable erfogreich")
             else:
                 item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
+
+            #Vorbereitung zur Darstellung im ListView
             item = QStandardItem(item_text)
             model.appendRow(item)
-        self.listView_Inventaranzeige.setModel(model)
+            for item in range(0,(NumberOfItems)):
+                self.comboBox_AufAuswahl.addItem(loadedinventory[item][2])
+
+        self.listView_Inventaranzeige.setModel(model)   #Darstellung im ListView
         
     def refill_product_to_inventory(self):         #Methode zum Auffüllen von Produkten
         product_name = self.comboBox_AufAuswahl.currentText()
@@ -287,8 +307,22 @@ class Ui_RefillWindow(object):
         expiry_date = self.dateEdit_HinzuAblaufdatum.date().toPyDate()
         expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
 
-        self.inventory.add_product(product_name, amount, expiry_date_timestamp)
+        #Ermitteln, von welchem Typ das hinzugefügte Produkt ist
+        EIndex = Inventory.getItemIndex(product_name)
+        EInfo = Inventory.ItemInfo(EIndex)
+        ETyp = EInfo[1]
+        #Umbenennen, damit die Methode die richtigen Attribute erhält
+        print(f"Produkttyp: {ETyp}")
+        if ETyp == "StackableItem":
+            ETyp = "stackable"
+        else:
+            ETyp ="continous"
+
+        print(f"ETyp umbenannt {ETyp}")
+        Inventory.addItem(ETyp, product_name, expiry_date_timestamp, amount)
+
         self.load_inventory()
+
 
 
 if __name__ == "__main__":
