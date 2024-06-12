@@ -141,7 +141,7 @@ def InventoryToString():
     InventoryString = ""
     index = 0
     while (index < getNumberOfItems()):
-        if (index != 0):
+        if (index > 0):
             InventoryString += "\n"
         InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[3] + ";" + ItemInfo(index)[4] + ";"
         i = 0
