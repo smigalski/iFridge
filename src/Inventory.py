@@ -9,17 +9,17 @@ def getInventory():
     return _inventory
 
 
-def newItem(type, name, expiry, quantity, unit): #type can be "stackable" or "continous". unit can be "1" or "" if item is stackable. quantity must be 1 for stackable items.
+def newItem(type, name, expiry, quantity, unit, targetquantity = 0): #type can be "stackable" or "continous". unit can be "1" or "" if item is stackable. quantity must be 1 for stackable items.
     if getItemIndex(name) == -1:
         if type == "stackable" or type == "continous":
             if type == "stackable":
                 if quantity == 1 or quantity == "":
                     list = [int(expiry)]
-                    _inventory.append(StackableItem(name, list))
+                    _inventory.append(StackableItem(name, list, targetquantity))
                 else:
                     print("Error: You can ony add one stackable item at one time! quantity must be 1.")
             if type == "continous":
-                _inventory.append(ContinuousItem(name, int(expiry), quantity, unit))
+                _inventory.append(ContinuousItem(name, int(expiry), quantity, unit, targetquantity))
         else:
             print("Error: type {type} is unknown.")
     else:
@@ -81,12 +81,13 @@ def getItemIndex(name):
 
 
 class StackableItem:
-    def __init__(self, name, expiries):
+    def __init__(self, name, expiries, targetquantity = 0):
         self.type = "StackableItem"
         self.name = name
         self.expiries = expiries #List of expiry dates of stacked item
         self.quantity = 0 #Quantity of stacked items of same type
         self.unit = ""
+        self.targetquantity = targetquantity
 
     def getQuantity(self):
         return self.quantity
@@ -112,12 +113,13 @@ class StackableItem:
 
 
 class ContinuousItem:
-    def __init__(self, name, expiry, quantity, unit):
+    def __init__(self, name, expiry, quantity, unit, targetquantity = 0):
         self.type = "ContinuousItem"
         self.name = name
         self.expiry = expiry
         self.quantity = quantity
         self.unit = unit
+        self.targetquantity = targetquantity
 
     def getQuantity(self):
         return self.quantity
