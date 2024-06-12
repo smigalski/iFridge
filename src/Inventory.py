@@ -75,6 +75,7 @@ def getItemIndex(name):
             index = i
     return index
 
+
 def setTargetquantity(index, targetquantity):
     _inventory[index].setTargetquantity(targetquantity)
 
