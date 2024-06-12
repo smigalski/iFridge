@@ -75,6 +75,11 @@ def getItemIndex(name):
             index = i
     return index
 
+def setTargetquantity(index, targetquantity):
+    _inventory[index].setTargetquantity(targetquantity)
+
+
+
 
 #classes for items
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
@@ -111,6 +116,9 @@ class StackableItem:
             answer = "Error"
         return answer
 
+    def setTargetquantity(self, tgtqty):
+        self.targetquantity = tgtqty
+
 
 class ContinuousItem:
     def __init__(self, name, expiry, quantity, unit, targetquantity = 0):
@@ -137,6 +145,9 @@ class ContinuousItem:
             print("Error: You try to take more quantity of an Item than its actual existing quantity.")
             self.quantity = 0
         return answer
+
+    def setTargetquantity(self, tgtqty):
+        self.targetquantity = tgtqty
 
 
 def InventoryToString():
