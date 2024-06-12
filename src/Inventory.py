@@ -151,16 +151,3 @@ def InventoryToString():
     return InventoryString
 
 
-def ExportInventory(filename = "Inventory.txt"):
-    file = open(filename, "w")
-    file.write(InventoryToString())
-    file.close()
-
-
-def ImportInventory(filename = "Inventory.txt"):
-    InventoryToString = ""
-    file = open(filename, "r")
-    for line in file:
-        InventoryToString += file.readline()
-
-
