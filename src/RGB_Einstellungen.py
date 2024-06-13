@@ -2,16 +2,20 @@ import sys
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QColor
-from PyQt5.QtCore import pyqtSignal
-
+from PyQt5.QtWidgets import QPushButton
 
 
 class RGBSlider(QtWidgets.QWidget):
-    colorChanged = pyqtSignal(str) #Definiert ein Signal, das die Farbe sendet
 
-    def __init__(self):
+
+    def __init__(self, main_window):
         super(RGBSlider, self).__init__()
         uic.loadUi('RGB_Einstellungen.ui', self)
+
+        self.main_window = main_window
+
+        self.back_button = self.findChild(QPushButton, 'backButton')
+        self.back_button.clicked.connect(self.back_button_clicked)
 
         # Verbinde die Slider mit der updateColor Methode
         self.Slider_rot1.valueChanged.connect(self.updateColor)
@@ -43,10 +47,13 @@ class RGBSlider(QtWidgets.QWidget):
         self.labelColor1.setStyleSheet(f"background-color: {colorString1};  color: white;  padding: 10px;  border-radius: 15px;")
         self.labelColor2.setStyleSheet(f"background-color: {colorString2};  color: white;  padding: 10px;  border-radius: 15px;")
 
-        self.colorChanged.emit(colorString2)
+
+    def back_button_clicked(self):
+        self.main_window.openAllgemeineEinstellungen()
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    window = RGBSlider()
+    window = RGBSlider(None)
     window.show()
     sys.exit(app.exec_())

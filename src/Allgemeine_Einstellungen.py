@@ -6,13 +6,18 @@ from src.RGB_Einstellungen import RGBSlider
 
 
 class Ui_AllgemeineEinstellungen(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self, main_window):
         super(Ui_AllgemeineEinstellungen, self).__init__()
         uic.loadUi('Allgemeine_Einstellungen.ui', self)
 
+        self.main_window = main_window
+
+        self.backbutton = self.findChild(QPushButton, 'backButton')
+        self.backbutton.clicked.connect(self.back_button_clicked)
+
         # RGB Einstellungen Button wird gesucht, gefunden und mit der Methode verbunden das RGB_Einstellungen-Fenster zu öffnen
         self.button = self.findChild(QPushButton, 'pushButton')
-        self.button.clicked.connect(self.openRGB_Einstellungen)
+        self.button.clicked.connect(self.btnOpenRGB_Einstellungen)
 
         # Es wird nach Temperatur Scrollbar gesucht, gefunden. Der gänderte Wert wird an die Ausgabemethode weitergegeben
         self.TempScrollBar = self.findChild(QScrollBar, 'TempScrollBar')
@@ -28,9 +33,11 @@ class Ui_AllgemeineEinstellungen(QtWidgets.QWidget):
 
 
         self.setTemperatur()
-    def openRGB_Einstellungen(self):  # Öffnet RGB_Einstellungen-Fenster
-        self.window = RGBSlider()
-        self.window.show()
+    def btnOpenRGB_Einstellungen(self):  # Öffnet RGB_Einstellungen-Fenster
+        self.main_window.openRGB_Einstellungen()
+
+    def back_button_clicked(self):
+        self.main_window.openDesktopfenster()
 
     def setTemperatur(self): #Entnimmt den aktuellen Wert des Reglers, wandelt es in einen String um öndert den Text des QLabel
         temp_ausgabe = self.TempScrollBar.value()
@@ -47,7 +54,7 @@ class Ui_AllgemeineEinstellungen(QtWidgets.QWidget):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    window = Ui_AllgemeineEinstellungen()
+    window = Ui_AllgemeineEinstellungen(None)
     window.show()
     sys.exit(app.exec_())
 
