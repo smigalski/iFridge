@@ -23,6 +23,9 @@ class Ui_Abfrage_Benutzername(object):
         self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
         self.Auswahl_Benutzername.setGeometry(QtCore.QRect(40, 100, 131, 22))
         self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
+        self.button = QtWidgets.QPushButton(self.centralwidget)
+        self.button.setGeometry(QtCore.QRect(200, 140, 111, 21))
+        self.button.setObjectName("button")
         Abfrage_Benutzername.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Abfrage_Benutzername)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 405, 21))
@@ -39,6 +42,7 @@ class Ui_Abfrage_Benutzername(object):
         _translate = QtCore.QCoreApplication.translate
         Abfrage_Benutzername.setWindowTitle(_translate("Abfrage_Benutzername", "MainWindow"))
         self.wie_heisst_du.setText(_translate("Abfrage_Benutzername", "Wie lautet Dein Nutzername?"))
+        self.button.setText(_translate("Abfrage_Benutzername", "Eiskaffee ausgeben"))
 
 
 if __name__ == "__main__":
