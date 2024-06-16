@@ -217,6 +217,13 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         else:
             print(f"Der angegebene Nutzer existiert nicht")
 
+    def withdraw(self, username, amount):
+        if username in self.users:
+            self.users[username]['balance'] -= amount
+            ui.update_ui()
+        else:
+            print("Der angegebene Nutzer existiert nicht")
+
 
     def get_all_users(self):                                #Methode, die die Nutzernamen und Kontostände zurückgibt
         return self.users
