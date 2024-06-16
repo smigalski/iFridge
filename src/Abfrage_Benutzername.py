@@ -11,41 +11,41 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(405, 332)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_Abfrage_Benutzername(object):
+    def setupUi(self, Abfrage_Benutzername):
+        Abfrage_Benutzername.setObjectName("Abfrage_Benutzername")
+        Abfrage_Benutzername.resize(405, 332)
+        self.centralwidget = QtWidgets.QWidget(Abfrage_Benutzername)
         self.centralwidget.setObjectName("centralwidget")
         self.wie_heisst_du = QtWidgets.QLabel(self.centralwidget)
         self.wie_heisst_du.setGeometry(QtCore.QRect(40, 60, 151, 21))
         self.wie_heisst_du.setObjectName("wie_heisst_du")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(40, 100, 131, 22))
-        self.comboBox.setObjectName("comboBox")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
+        self.Auswahl_Benutzername.setGeometry(QtCore.QRect(40, 100, 131, 22))
+        self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
+        Abfrage_Benutzername.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(Abfrage_Benutzername)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 405, 21))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        Abfrage_Benutzername.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(Abfrage_Benutzername)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        Abfrage_Benutzername.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Abfrage_Benutzername)
+        QtCore.QMetaObject.connectSlotsByName(Abfrage_Benutzername)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Abfrage_Benutzername):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.wie_heisst_du.setText(_translate("MainWindow", "Wie lautet Dein Nutzername?"))
+        Abfrage_Benutzername.setWindowTitle(_translate("Abfrage_Benutzername", "MainWindow"))
+        self.wie_heisst_du.setText(_translate("Abfrage_Benutzername", "Wie lautet Dein Nutzername?"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    Abfrage_Benutzername = QtWidgets.QMainWindow()
+    ui = Ui_Abfrage_Benutzername()
+    ui.setupUi(Abfrage_Benutzername)
+    Abfrage_Benutzername.show()
     sys.exit(app.exec_())
