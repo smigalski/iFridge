@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'UsermanagementTrwVQt.ui'
+## Form generated from reading UI file 'Usermanagement.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.3
+## Created by: Qt User Interface Compiler version 6.7.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl,QStringListModel, Qt)
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
-    QSizePolicy, QWidget)
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QDoubleSpinBox,
+    QFrame, QLabel, QLineEdit, QListView,
+    QPushButton, QSizePolicy, QWidget)
 
-
-class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
+class Ui_Usermanagement(object):
     def setupUi(self, Usermanagement):
         if not Usermanagement.objectName():
             Usermanagement.setObjectName(u"Usermanagement")
@@ -138,15 +137,9 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         QMetaObject.connectSlotsByName(Usermanagement)
     # setupUi
 
-        # Buttons mit den entsprechenden Methoden verbinden
-        self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user(self.lineEdit.text()))
-        self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText()))
-        self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
-        self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
-
     def retranslateUi(self, Usermanagement):
         self.label.setText(QCoreApplication.translate("Usermanagement", u"Nutzerliste", None))
-        self.label_Nutzeranzahl.setText(QCoreApplication.translate("Usermanagement", u"0 registrierte Nutzer", None))
+        self.label_Nutzeranzahl.setText(QCoreApplication.translate("Usermanagement", u"XX registrierte Nutzer", None))
         self.pushButton_AddUser.setText(QCoreApplication.translate("Usermanagement", u"Hinzuf\u00fcgen", None))
         self.pushButton_RemoveUser.setText(QCoreApplication.translate("Usermanagement", u"Nutzer entfernen", None))
         self.label_3.setText(QCoreApplication.translate("Usermanagement", u"Name:", None))
@@ -161,85 +154,4 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         self.label_8.setText(QCoreApplication.translate("Usermanagement", u"- oder -", None))
         pass
     # retranslateUi
-
-    def LineEditClear(self):      #Methode zum Leeren der TextBox und der ComboBox, die in der Klasser Usermanagement aufgerufen werden kann
-        self.lineEdit.clear()
-        self.comboBox.clear()
-    def update_ui(self):
-        # Holen der Benutzerdaten aus der Usermanagement Instanz
-        users = UserManagementInstanz.get_all_users()
-
-        # ListView aktualisieren, damit die Namen neben den Kontoständen dort angezeigt werden
-        model = QStandardItemModel()                                     #Auswahl der Art des Inhalts beim Listview
-        for user, Kontostand in users.items():                           #das Dictionary users wird durchgegangen
-            item = QStandardItem(f"{user}: {Kontostand['balance']}")     #das Item wird aus Namen und Kontostand zusammengesetzt. Dafür wird der Kontostand aus dem Dictionary aufgerufen
-            model.appendRow(item)                                        #und danach an die Liste angehängt
-        self.listView.setModel(model)
-
-        # ComboBox aktualisieren
-        self.comboBox.clear() #damit die UI schöner aussieht, wird die ComboBox geleert
-        self.comboBox.addItems(users.keys()) #die User werden in der ComboBox aufgeführt, damit man diese dort auswählen und löschen kann
-
-        #Label mit der Anzahl der Nutzer aktualisieren
-        self.label_Nutzeranzahl.setText("Anzahl der Nutzer: " + str(len(UserManagementInstanz.get_all_users())))
-
-class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
-    def __init__(self):
-        self.users = {}  # Ein leeres Dictionary zur Speicherung von Benutzern
-
-    def add_user(self, username, initial_balance=0):        #Methode zum Hinzufügen von Usern. Der Startwert des Kontostands ist 0
-        if username not in self.users:
-            self.users[username] = {"name": username, "balance": initial_balance}
-            print(f"Benutzer '{username}' wurde hinzugefügt.")
-            ui.LineEditClear()
-            ui.update_ui()
-        else:
-            print(f"Benutzer '{username}' existiert bereits.")
-
-    def remove_user(self, username):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
-        if username in self.users:
-            del self.users[username]
-            ui.update_ui()
-        else:
-            print("Der angegebene Nutzer existiert nicht")
-
-    def deposit(self, username, amount):
-        if username in self.users:
-            self.users[username]['balance'] += amount
-            ui.update_ui()
-        else:
-            print("Der angegebene Nutzer existiert nicht")
-
-    def change_balance(self, username, new_balance):
-        if username in self.users:
-            self.users[username]['balance'] = new_balance
-            ui.update_ui()
-        else:
-            print(f"Der angegebene Nutzer existiert nicht")
-
-    def withdraw(self, username, amount):
-        if username in self.users:
-            self.users[username]['balance'] -= amount
-            ui.update_ui()
-        else:
-            print("Der angegebene Nutzer existiert nicht")
-
-
-    def get_all_users(self):                                #Methode, die die Nutzernamen und Kontostände zurückgibt
-        return self.users
-
-UserManagementInstanz = UserManagement()            #Zur besseren Übersichtlichkeit wird die Instanz der Klasse hier explizit erzeugt
-
-
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-    dialog = QDialog()
-    ui = Ui_Usermanagement()
-    ui.setupUi(dialog)
-    dialog.show()
-    sys.exit(app.exec())
 
