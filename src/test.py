@@ -2,11 +2,8 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QPushButton, QLabel, QWidget, QVBoxLayout
 
-
-from src.Nutzerfenster import Ui_Nutzerfenster
+from src.test_2 import Ui_Nutzerfenster
 from src.Desktopfenster import Ui_Desktopfenster
-from src.Allgemeine_Einstellungen import Ui_AllgemeineEinstellungen
-from src.RGB_Einstellungen import RGBSlider
 
 class Ui_QMainWindow(QtWidgets.QMainWindow):
 
@@ -36,14 +33,6 @@ class Ui_QMainWindow(QtWidgets.QMainWindow):
         self.desktopfenster = Ui_Desktopfenster(self)
         self._set_central_widget(self.desktopfenster)
 
-    def openAllgemeineEinstellungen(self):
-        self.allgemeine_einstellungen = Ui_AllgemeineEinstellungen(self)
-        self._set_central_widget(self.allgemeine_einstellungen)
-
-    def openRGB_Einstellungen(self):
-        self.rgb_einstellungen = RGBSlider(self)
-        self._set_central_widget(self.rgb_einstellungen)
-
     def openMainWindow(self):
         self._set_central_widget(None)
 
@@ -63,3 +52,5 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec_())
+
+
