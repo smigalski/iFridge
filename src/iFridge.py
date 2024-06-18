@@ -14,8 +14,8 @@ import Inventory
 
 #Config   -------------------------------------
 
-inventorypath = "Files/Inventory"
-userspath = "File/Users"
+inventorypath = "Storage/Inventory"
+userspath = "Storage/Users"
 
 
 
