@@ -25,7 +25,7 @@ try:
     Inventory.ImportInventory(inventorypath)
     print("Inventory loaded from " + inventorypath + " ." )
 except:
-    print("Error: An Error occoured while loading inventory from " + inventorypath + " . Ignore this error if this is the first run on this device or after an reset to factory state.")
+    print("Error: An Error occoured while loading inventory from >" + inventorypath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
 
 
