@@ -163,7 +163,7 @@ def InventoryToString():
             InventoryString += str(ItemInfo(index)[5][i]) + ";"
             i += 1
     return InventoryString
-    #Dateiformat: [type];[name];[quantity];[targetquantity];[unit];[expiry1];[expiry2];...
+    #File format: [type];[name];[quantity];[targetquantity];[unit];[expiry1];[expiry2];...
 
 
 def ExportInventory(filename = "Inventory.txt"):
