@@ -18,19 +18,20 @@ milch_value = 0
 class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(618, 437)                                                     #GrÃ¶ÃŸe des Fensters festlegen
+        MainWindow.resize(618, 437)                                                     #Größe des Fensters festlegen
         MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")      #Hintergrundfarbe festlegen
         self.centralwidget = QtWidgets.QWidget(MainWindow)                              #Erstellung des Zentralen Widget im MainWindow
-        self.centralwidget.setObjectName("centralwidget")                               #Name des Widget
-
+        self.centralwidget.setObjectName("centralwidget")
+        myuser = UserManagement()
+        print(myuser.get_all_users())
 
 #Konfigurieren des Ausgabe Buttons
-        self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)                 #GehÃ¶rt ins CentralWidget
-        self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 270, 141, 61))                #Größe und Geometrie des Buttons
+        self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)                 #Gehört ins CentralWidget
+        self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 320, 141, 61))                #Größe und Geometrie des Buttons
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
-        self.Ausgabe_Button.clicked.connect(self.showAbfrageBenutzername)                       #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
-        #self.Ausgabe_Button.clicked.connect(MainWindow.close)
+        self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                       #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
+        self.Ausgabe_Button.clicked.connect(MainWindow.close)
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
@@ -61,6 +62,12 @@ class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfl
         self.MilchSlider.setMinimum(0)                                                  #Minimumwert
         self.MilchSlider.setMaximum(100)                                                #Maximumwert
         self.MilchSlider.valueChanged.connect(self.getEiskaffeeValues)
+
+
+        self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
+        self.Auswahl_Benutzername.setGeometry(QtCore.QRect(80, 270, 131, 22))
+        self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
+        #self.Auswahl_Benutzername.addItems(ui_Usermanagement.users.keys())
 
 #Zwischenüberschrift erstellen
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)                 #Gehört ins CentralWidget
@@ -172,18 +179,11 @@ class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfl
         print("Kaffee:", kaffee_value)
         print("Milch:", milch_value)
 
-    #Die Funktion showAusgabePage ruft die AusgabePage auf und zeigt sie an.
-    def showAbfrageBenutzername(self):
-        self.Abfrage_Benutzername = QtWidgets.QMainWindow()
-        ui = Ui_Abfrage_Benutzername()
-        ui.setupUi(self.Abfrage_Benutzername)
-        self.Abfrage_Benutzername.show()
-
-    #def showAusgabeWindow(self):
-    #    self.Ausgabe_Window = QtWidgets.QMainWindow()
-    #    ui = Ui_Ausgabe_Window()
-     #   ui.setupUi(self.Ausgabe_Window)
-    #    self.Ausgabe_Window.show()
+    def showAusgabeWindow(self):
+        self.Ausgabe_Window = QtWidgets.QMainWindow()
+        ui = Ui_Ausgabe_Window()
+        ui.setupUi(self.Ausgabe_Window)
+        self.Ausgabe_Window.show()
 
 
 class Ui_Ausgabe_Window(object):
@@ -233,59 +233,6 @@ class Ui_Ausgabe_Window(object):
         self.Kaffee_Ausgabe.setText(_translate("Ausgabe_Window", "Kaffee: " + str(kaffee_value) + "ml"))
         self.Milch_Ausgabe.setText(_translate("Ausgabe_Window", "Milch: " + str(milch_value) + "ml"))
 
-
-
-
-class Ui_Abfrage_Benutzername(object):
-    def setupUi(self, Abfrage_Benutzername):
-        def showAusgabeWindow(self):
-            self.Ausgabe_Window = QtWidgets.QMainWindow()
-            ui = Ui_Ausgabe_Window()
-            ui.setupUi(self.Ausgabe_Window)
-            self.Ausgabe_Window.show()
-
-        Abfrage_Benutzername.setObjectName("Abfrage_Benutzername")
-        Abfrage_Benutzername.resize(405, 332)
-        self.centralwidget = QtWidgets.QWidget(Abfrage_Benutzername)
-        self.centralwidget.setObjectName("centralwidget")
-
-        self.wie_heisst_du = QtWidgets.QLabel(self.centralwidget)
-        self.wie_heisst_du.setGeometry(QtCore.QRect(40, 60, 151, 21))
-        self.wie_heisst_du.setObjectName("wie_heisst_du")
-
-        self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
-        self.Auswahl_Benutzername.setGeometry(QtCore.QRect(40, 100, 131, 22))
-        self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
-
-        self.button = QtWidgets.QPushButton(self.centralwidget)
-        self.button.setGeometry(QtCore.QRect(200, 140, 111, 21))
-        self.button.setObjectName("button")
-        self.button.clicked.connect(self.showAusgabeWindow)
-
-        Abfrage_Benutzername.setCentralWidget(self.centralwidget)
-
-        self.menubar = QtWidgets.QMenuBar(Abfrage_Benutzername)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 405, 21))
-        self.menubar.setObjectName("menubar")
-        Abfrage_Benutzername.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(Abfrage_Benutzername)
-        self.statusbar.setObjectName("statusbar")
-        Abfrage_Benutzername.setStatusBar(self.statusbar)
-
-        self.retranslateUi(Abfrage_Benutzername)
-        QtCore.QMetaObject.connectSlotsByName(Abfrage_Benutzername)
-
-    def retranslateUi(self, Abfrage_Benutzername):
-        _translate = QtCore.QCoreApplication.translate
-        Abfrage_Benutzername.setWindowTitle(_translate("Abfrage_Benutzername", "MainWindow"))
-        self.wie_heisst_du.setText(_translate("Abfrage_Benutzername", "Wie lautet Dein Nutzername?"))
-        self.button.setText(_translate("Abfrage_Benutzername", "Eiskaffee ausgeben"))
-
-    def showAusgabeWindow(self):
-        self.Ausgabe_Window = QtWidgets.QMainWindow()
-        ui = Ui_Ausgabe_Window()
-        ui.setupUi(self.Ausgabe_Window)
-        self.Ausgabe_Window.show()
 
 
 #Dieser Code initialisiert die GUI-Anwendung, startet die Hauptanwendungsschleife und zeigt das Anwendungsfenster an.
