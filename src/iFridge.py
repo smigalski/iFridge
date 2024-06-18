@@ -14,8 +14,8 @@ import Inventory
 
 #Config   -------------------------------------
 
-inventorypath = "Files/Inventory"
-userspath = "File/Users"
+inventorypath = "Storage/Inventory"
+userspath = "Storage/Users"
 
 
 
@@ -45,4 +45,6 @@ except:
 
 #Export inventory and users:
 Inventory.ExportInventory(inventorypath)
+print("Inventory successfully exported to >" + inventorypath + "<.")
 #Inventory.ExportUsers(userspath)
+#print("Users successfully exported to >" + userspath + "<.")
