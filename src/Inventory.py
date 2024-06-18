@@ -157,13 +157,13 @@ def InventoryToString():
     while (index < getNumberOfItems()):
         if (index > 0):
             InventoryString += "\n"
-        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[6] + ";" + ItemInfo(index)[4]
+        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[3]  + ";" + ItemInfo(index)[6] + ";" + ItemInfo(index)[4]
         i = 0
         while (i < len(ItemInfo(index)[5])):
             InventoryString += str(ItemInfo(index)[5][i]) + ";"
             i += 1
     return InventoryString
-    #Dateiformat: [Typ];[Name];[Sollmenge];[Einheit];[Ablaufdatum1];[Ablaufdatum2];...
+    #Dateiformat: [type];[name];[quantity];[targetquantity];[unit];[expiry1];[expiry2];...
 
 
 def ExportInventory(filename = "Inventory.txt"):
@@ -191,9 +191,25 @@ def ImportInventory(filename = "Inventory.txt"):
                 field += 1
                 Text = ""
             char += 1
+        count = 1
+        while(count + 4 < len(ItemInfo([index]))):
+            if (getItemIndex(InventoryToString[index][1]) == -1):
+                if (Iteminfo[index][0] == "stackable"):
+                    newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4], 1,
+                            InventoryToString[index][4], InventoryToString[index][2])
+                    count += 1
+                else:
+                    if (Iteminfo[index][0] == "stackable"):
+                        newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4],
+                                InventoryToString[index][3],
+                                InventoryToString[index][4], InventoryToString[index][2])
+                        count += 1
+                    else:
+                        print("Error in line {index}. Unknown type.")
+            else:
+                addItem(InventoryToString[index][0],InventoryToString[index][1],InventoryToString[index][count+4],1)
+                count += 1
         index += 1
-
-
 
 
 
