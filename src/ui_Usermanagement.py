@@ -139,10 +139,12 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
     # setupUi
 
         # Buttons mit den entsprechenden Methoden verbinden
-        self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user(self.lineEdit.text()))
+        self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user_clicked(self.lineEdit.text()))
         self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText()))
         self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
         self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
+
+
 
     def retranslateUi(self, Usermanagement):
         self.label.setText(QCoreApplication.translate("Usermanagement", u"Nutzerliste", None))
@@ -187,13 +189,21 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
     def __init__(self):
         self.users = {}  # Ein leeres Dictionary zur Speicherung von Benutzern
 
+    def add_user_clicked(self, username):
+        print(username)
+        self.add_user(username)
+        ui.update_ui()
+        ui.LineEditClear()
+        print(self.get_all_users())
+
+
+
+
     def add_user(self, username, initial_balance=0):        #Methode zum Hinzufügen von Usern. Der Startwert des Kontostands ist 0
         if username not in self.users:
             self.users[username] = {"name": username, "balance": initial_balance}
             print(f"Benutzer '{username}' wurde hinzugefügt.")
-            if ui:                                                      # Prüfen, ob die UI-Instanz existiert, damit der Code von außen ausgeführt werden kann (ohne meine GUI)
-                ui.LineEditClear()
-                ui.update_ui()
+
         else:
             print(f"Benutzer '{username}' existiert bereits.")
 
