@@ -7,42 +7,42 @@
 #This file should only contain the superior procedures.
 
 
-#Modules:
+#Modules   -------------------------------------
 
 import Inventory
 
 
-#Config:
+#Config   -------------------------------------
 
-inventorypath = "Inventory"
-userspath = "Users"
+inventorypath = "Files/Inventory"
+userspath = "File/Users"
 
 
 
-#Procedures:
+#Procedures   -------------------------------------
 
+#Load inventory and users:
 try:
     Inventory.ImportInventory(inventorypath)
     print("Inventory loaded from >" + inventorypath + "<." )
 except:
     print("Error: An Error occoured while loading inventory from >" + inventorypath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
-
-
-
-#Hauptmenü öffnen
-
-
-
-
-#Inventory.ExportInventory(inventorypath)
+#try:
+#   Inventory.ImportUsers(userspath)
+#   print("Users loaded from >" + userpath + "<.")
+#except:
+#   print("Error: An Error occoured while loading users from >" + userspath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
 
 
 
-
+#show main menu:
 
 
 
 
 
+#Export inventory and users:
+Inventory.ExportInventory(inventorypath)
+#Inventory.ExportUsers(userspath)
