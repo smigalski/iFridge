@@ -191,36 +191,41 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         if username not in self.users:
             self.users[username] = {"name": username, "balance": initial_balance}
             print(f"Benutzer '{username}' wurde hinzugefügt.")
-            ui.LineEditClear()
-            ui.update_ui()
+            if ui:                                                      # Prüfen, ob die UI-Instanz existiert, damit der Code von außen ausgeführt werden kann (ohne meine GUI)
+                ui.LineEditClear()
+                ui.update_ui()
         else:
             print(f"Benutzer '{username}' existiert bereits.")
 
     def remove_user(self, username):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
         if username in self.users:
             del self.users[username]
-            ui.update_ui()
+            if ui:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
     def deposit(self, username, amount):
         if username in self.users:
             self.users[username]['balance'] += amount
-            ui.update_ui()
+            if ui:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
     def change_balance(self, username, new_balance):
         if username in self.users:
             self.users[username]['balance'] = new_balance
-            ui.update_ui()
+            if ui:
+                ui.update_ui()
         else:
             print(f"Der angegebene Nutzer existiert nicht")
 
     def withdraw(self, username, amount):
         if username in self.users:
             self.users[username]['balance'] -= amount
-            ui.update_ui()
+            if ui:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
