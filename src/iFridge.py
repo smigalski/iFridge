@@ -45,4 +45,6 @@ except:
 
 #Export inventory and users:
 Inventory.ExportInventory(inventorypath)
+print("Inventory successfully exported to >" + inventorypath + "<.")
 #Inventory.ExportUsers(userspath)
+#print("Users successfully exported to >" + userspath + "<.")
