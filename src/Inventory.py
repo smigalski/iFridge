@@ -196,13 +196,13 @@ def ImportInventory(filename = "Inventory.txt"):
             if (getItemIndex(InventoryToString[index][1]) == -1):
                 if (Iteminfo[index][0] == "stackable"):
                     newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4], 1,
-                            InventoryToString[index][4], InventoryToString[index][2])
+                            InventoryToString[index][4], int(InventoryToString[index][2]))
                     count += 1
                 else:
                     if (Iteminfo[index][0] == "stackable"):
                         newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4],
                                 InventoryToString[index][3],
-                                InventoryToString[index][4], InventoryToString[index][2])
+                                InventoryToString[index][4], int(InventoryToString[index][2]))
                         count += 1
                     else:
                         print("Error in line {index}. Unknown type.")
