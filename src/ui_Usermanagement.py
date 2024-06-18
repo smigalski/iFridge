@@ -139,10 +139,10 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
     # setupUi
 
         # Buttons mit den entsprechenden Methoden verbinden
-        self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user(self.lineEdit.text()))
-        self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText()))
-        self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
-        self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value()))
+        self.pushButton_AddUser.clicked.connect(lambda: UserManagementInstanz.add_user(self.lineEdit.text(),0,True))
+        self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText(),True))
+        self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value(),True))
+        self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value(),True))
 
     def retranslateUi(self, Usermanagement):
         self.label.setText(QCoreApplication.translate("Usermanagement", u"Nutzerliste", None))
@@ -187,40 +187,45 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
     def __init__(self):
         self.users = {}  # Ein leeres Dictionary zur Speicherung von Benutzern
 
-    def add_user(self, username, initial_balance=0):        #Methode zum Hinzufügen von Usern. Der Startwert des Kontostands ist 0
+    def add_user(self, username, initial_balance=0, clicked=False):        #Methode zum Hinzufügen von Usern. Der Startwert des Kontostands ist 0
         if username not in self.users:
             self.users[username] = {"name": username, "balance": initial_balance}
             print(f"Benutzer '{username}' wurde hinzugefügt.")
-            ui.LineEditClear()
-            ui.update_ui()
+            if clicked == True:
+                ui.LineEditClear()
+                ui.update_ui()
         else:
             print(f"Benutzer '{username}' existiert bereits.")
 
-    def remove_user(self, username):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
+    def remove_user(self, username,clicked=False):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
         if username in self.users:
             del self.users[username]
-            ui.update_ui()
+            if clicked == True:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
-    def deposit(self, username, amount):
+    def deposit(self, username, amount,clicked=False):
         if username in self.users:
             self.users[username]['balance'] += amount
-            ui.update_ui()
+            if clicked == True:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
-    def change_balance(self, username, new_balance):
+    def change_balance(self, username, new_balance, clicked=False):
         if username in self.users:
             self.users[username]['balance'] = new_balance
-            ui.update_ui()
+            if clicked == True:
+                ui.update_ui()
         else:
             print(f"Der angegebene Nutzer existiert nicht")
 
-    def withdraw(self, username, amount):
+    def withdraw(self, username, amount, clicked):
         if username in self.users:
             self.users[username]['balance'] -= amount
-            ui.update_ui()
+            if clicked == True:
+                ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
 
