@@ -179,7 +179,17 @@ def ImportInventory(filename = "Inventory.txt"):
     for line in file:
         InventoryToString.append(file.readline())
         char = 0
+        field = 0
+        Iteminfo = []
+        Text = ""
         while (char < len(InventoryToString)):
+            if (InventoryToString[index][char] != ";"):
+                if (InventoryToString[index][char] != " "):
+                    Text += str(InventoryToString[index][char])
+            else:
+                Iteminfo.append(Text)
+                field += 1
+                Text = ""
             char += 1
         index += 1
 
