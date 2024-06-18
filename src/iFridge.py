@@ -22,11 +22,11 @@ userspath = "Storage/Users"
 #Procedures   -------------------------------------
 
 #Load inventory and users:
-#try:
+try:
     Inventory.ImportInventory(inventorypath)
     print("Inventory loaded from >" + inventorypath + "<." )
-#except:
-#    print("Error: An Error occoured while loading inventory from >" + inventorypath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
+except:
+    print("Error: An Error occoured while loading inventory from >" + inventorypath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
 #try:
 #   Inventory.ImportUsers(userspath)
