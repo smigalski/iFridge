@@ -157,12 +157,13 @@ def InventoryToString():
     while (index < getNumberOfItems()):
         if (index > 0):
             InventoryString += "\n"
-        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[3] + ";" + ItemInfo(index)[4] + ";"
+        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[6] + ";" + ItemInfo(index)[4]
         i = 0
         while (i < len(ItemInfo(index)[5])):
             InventoryString += str(ItemInfo(index)[5][i]) + ";"
             i += 1
     return InventoryString
+    #Dateiformat: [Typ];[Name];[Sollmenge];[Einheit];[Ablaufdatum1];[Ablaufdatum2];...
 
 
 def ExportInventory(filename = "Inventory.txt"):
@@ -172,9 +173,15 @@ def ExportInventory(filename = "Inventory.txt"):
 
 
 def ImportInventory(filename = "Inventory.txt"):
-    InventoryToString = ""
+    InventoryToString = []
     file = open(filename, "r")
+    index = 0
     for line in file:
-        InventoryToString += file.readline()
+        InventoryToString.append(file.readline())
+        char = 0
+        while (char < len(InventoryToString)):
+            char += 1
+        index += 1
+
 
 
