@@ -22,8 +22,8 @@ class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfl
         MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")      #Hintergrundfarbe festlegen
         self.centralwidget = QtWidgets.QWidget(MainWindow)                              #Erstellung des Zentralen Widget im MainWindow
         self.centralwidget.setObjectName("centralwidget")
-        myuser = UserManagement()
-        print(myuser.get_all_users())
+        users = UserManagement()
+        print(users.get_all_users())
 
 #Konfigurieren des Ausgabe Buttons
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)                 #Gehört ins CentralWidget
@@ -32,6 +32,7 @@ class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfl
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
         self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                       #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
         self.Ausgabe_Button.clicked.connect(MainWindow.close)
+        #self.Ausgabe_Button.clicked.connect(users.withdraw(users, 1))
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
@@ -189,12 +190,12 @@ class Ui_MainWindow(object):      #Klasse des Fensters erstellen. Benutzeroberfl
 class Ui_Ausgabe_Window(object):
     def setupUi(self, Ausgabe_Window):
         Ausgabe_Window.setObjectName("Ausgabe_Window")
-        Ausgabe_Window.resize(800, 600)
+        Ausgabe_Window.resize(618, 437)
         self.centralwidget = QtWidgets.QWidget(Ausgabe_Window)
         self.centralwidget.setObjectName("centralwidget")
 
         self.geniesse_title = QtWidgets.QLabel(self.centralwidget)
-        self.geniesse_title.setGeometry(QtCore.QRect(130, 120, 431, 41))
+        self.geniesse_title.setGeometry(QtCore.QRect(80, 100, 431, 41))
         font = QtGui.QFont()
         font.setFamily("Segoe UI Black")
         font.setPointSize(12)
@@ -204,15 +205,15 @@ class Ui_Ausgabe_Window(object):
         self.geniesse_title.setObjectName("geniesse_title")
 
         self.Eiswuerfel_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(140, 240, 131, 31))
+        self.Eiswuerfel_Ausgabe.setGeometry(QtCore.QRect(80, 150, 131, 31))
         self.Eiswuerfel_Ausgabe.setObjectName("Eiswuerfel_Ausgabe")
 
         self.Kaffee_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Kaffee_Ausgabe.setGeometry(QtCore.QRect(140, 260, 131, 31))
+        self.Kaffee_Ausgabe.setGeometry(QtCore.QRect(80, 180, 131, 31))
         self.Kaffee_Ausgabe.setObjectName("Kaffee_Ausgabe")
 
         self.Milch_Ausgabe = QtWidgets.QLabel(self.centralwidget)
-        self.Milch_Ausgabe.setGeometry(QtCore.QRect(140, 300, 131, 31))
+        self.Milch_Ausgabe.setGeometry(QtCore.QRect(80, 210, 131, 31))
         self.Milch_Ausgabe.setObjectName("Milch_Ausgabe")
 
         Ausgabe_Window.setCentralWidget(self.centralwidget)
