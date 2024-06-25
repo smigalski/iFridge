@@ -16,19 +16,25 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QLayout, QSizePolicy, QSpacerItem, QSpinBox,
-    QVBoxLayout, QWidget)
+    QLayout, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(668, 429)
+        Form.resize(668, 458)
         self.verticalLayout_2 = QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        self.pushButton = QPushButton(Form)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout.addWidget(self.pushButton)
+
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
@@ -62,6 +68,12 @@ class Ui_Form(object):
         self.horizontalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+        self.pushButton_2 = QPushButton(Form)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout.addWidget(self.pushButton_2)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
@@ -529,6 +541,10 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+#if QT_CONFIG(tooltip)
+        self.pushButton.setToolTip(QCoreApplication.translate("Form", u"Vorheriges Fenster anzeigen", None))
+#endif // QT_CONFIG(tooltip)
+        self.pushButton.setText(QCoreApplication.translate("Form", u"\u2190 Zur\u00fcck", None))
         self.comboBoxMonat.setItemText(0, QCoreApplication.translate("Form", u"Januar", None))
         self.comboBoxMonat.setItemText(1, QCoreApplication.translate("Form", u"Februar", None))
         self.comboBoxMonat.setItemText(2, QCoreApplication.translate("Form", u"M\u00e4rz", None))
@@ -548,6 +564,10 @@ class Ui_Form(object):
 #if QT_CONFIG(tooltip)
         self.spinBoxJahreszahl.setToolTip(QCoreApplication.translate("Form", u"Jahreszahl", None))
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.pushButton_2.setToolTip(QCoreApplication.translate("Form", u"Termin Hinzuf\u00fcgen", None))
+#endif // QT_CONFIG(tooltip)
+        self.pushButton_2.setText(QCoreApplication.translate("Form", u"+ Termin", None))
         self.LabelKW.setText(QCoreApplication.translate("Form", u"KW", None))
         self.labelMon.setText(QCoreApplication.translate("Form", u"Montag", None))
         self.labelTue.setText(QCoreApplication.translate("Form", u"Dienstag", None))
@@ -606,15 +626,3 @@ class Ui_Form(object):
         self.labelSun_7.setText(QCoreApplication.translate("Form", u"77", None))
     # retranslateUi
 
-class UI(QWidget, Ui_Form):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_Form()
-        self.ui.setupUi(self)
-
-
-if __name__ == "__main__":
-    app = QApplication()
-    win = UI()
-    win.show()
-    app.exec()

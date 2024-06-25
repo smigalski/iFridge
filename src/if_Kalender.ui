@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>668</width>
-    <height>429</height>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,6 +19,22 @@
      <property name="sizeConstraint">
       <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
      </property>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Vorheriges Fenster anzeigen</string>
+       </property>
+       <property name="text">
+        <string>← Zurück</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -133,6 +149,22 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Termin Hinzufügen</string>
+       </property>
+       <property name="text">
+        <string>+ Termin</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
