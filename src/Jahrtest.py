@@ -45,11 +45,8 @@ for kalenderwoche in testJahr.kw:
     kwCount += 1
 
 
-#Anzeige eines beliebigen Monats des Jahres im Kalenderwochenformat
-# !!! MUSS NOCH IN EIGENE FUNKTION IM MODUL if_Kalender.py UMGEWANDELT WERDEN !!!
-
+#Test der Funktion getMonat von if_Kalender
 ausgewMonat = int(input("Bitte geben sie den Monat an (als Zahl von 1-12): "))-1
-#print("Ausgew. Monat ist " + str(ausgewMonat))
 ausgewKW = if_Kalender.getMonat(testJahr, ausgewMonat)
 
 #Ausgabe
