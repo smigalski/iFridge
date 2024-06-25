@@ -47,29 +47,10 @@ for kalenderwoche in testJahr.kw:
 
 #Anzeige eines beliebigen Monats des Jahres im Kalenderwochenformat
 # !!! MUSS NOCH IN EIGENE FUNKTION IM MODUL if_Kalender.py UMGEWANDELT WERDEN !!!
-ausgewMonat = int(input("Bitte geben sie den Monat an (als Zahl von 1-12): "))-1
-print("Ausgew. Monat ist " + str(ausgewMonat))
-kwGefunden = False
-kwCount = -1
-tagCount = 6
-while kwGefunden == False:
-    tagCount += 1
-    if tagCount == 7:
-        tagCount = 0
-        kwCount += 1
-    print(str(tagCount) + "; " + str(kwCount))
-    print(testJahr.kw[kwCount][tagCount].imMonat)
-    if testJahr.kw[kwCount][tagCount].imMonat == ausgewMonat:
-        kwGefunden = True
-print(kwCount)
 
-ausgewKW = [[], [], [], [], [], []] 
-counter = 0
-while counter < 6:
-    ausgewKW[counter] = testJahr.kw[kwCount]
-    ausgewKW[counter].append(kwCount+1)
-    kwCount += 1
-    counter += 1
+ausgewMonat = int(input("Bitte geben sie den Monat an (als Zahl von 1-12): "))-1
+#print("Ausgew. Monat ist " + str(ausgewMonat))
+ausgewKW = if_Kalender.getMonat(testJahr, ausgewMonat)
 
 #Ausgabe
 kwCount = 0

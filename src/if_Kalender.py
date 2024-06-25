@@ -193,7 +193,33 @@ class jahr:
                 tagCount += 1
             monatCount += 1
 
-         
+
+#Funktion zum Auswählen aller Kalenderwochen eines gegebenen Monats
+def getMonat(ausgewJahr, ausgewMonat):
+#    ausgewMonat = int(input("Bitte geben sie den Monat an (als Zahl von 1-12): "))-1
+    print("Ausgew. Monat ist " + str(ausgewMonat))
+    kwGefunden = False
+    kwCount = -1
+    tagCount = 6
+    while kwGefunden == False:
+        tagCount += 1
+        if tagCount == 7:
+            tagCount = 0
+            kwCount += 1
+        print(str(tagCount) + "; " + str(kwCount))
+        print(ausgewJahr.kw[kwCount][tagCount].imMonat)
+        if ausgewJahr.kw[kwCount][tagCount].imMonat == ausgewMonat:
+            kwGefunden = True
+    print(kwCount)
+
+    ausgewKW = [[], [], [], [], [], []] 
+    counter = 0
+    while counter < 6:
+        ausgewKW[counter] = ausgewJahr.kw[kwCount]
+        ausgewKW[counter].append(kwCount+1)
+        kwCount += 1
+        counter += 1
+    return(ausgewKW)
         
 
 #Funktion zum Überprüfen, ob das eingegebene Jahr ein Schaltjahr ist
