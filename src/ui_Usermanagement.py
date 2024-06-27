@@ -13,8 +13,8 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QSize, QTime, QUrl,QStringListModel, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QSequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
+    QImage, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
     QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
     QSizePolicy, QWidget)
@@ -221,7 +221,7 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         else:
             print(f"Der angegebene Nutzer existiert nicht")
 
-    def withdraw(self, username, amount, clicked):
+    def withdraw(self, username, amount, clicked=False):
         if username in self.users:
             self.users[username]['balance'] -= amount
             if clicked == True:
