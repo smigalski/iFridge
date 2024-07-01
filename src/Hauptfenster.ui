@@ -99,7 +99,7 @@ background-color: rgb(255, 255, 255);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>RGB-Leiste</string>
+     <string/>
     </property>
    </widget>
    <zorder>label_2</zorder>
