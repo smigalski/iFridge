@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.gitlab/issue_templates" />
+      <excludeFolder url="file://$MODULE_DIR$/training" />
+      <excludeFolder url="file://$MODULE_DIR$/.gitlab" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (iFridge)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
