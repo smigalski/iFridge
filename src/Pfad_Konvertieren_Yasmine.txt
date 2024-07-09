@@ -1,0 +1,1 @@
+Dateipfad zum konvertieren QT zu PY: C:\Users\Yasmine\AppData\Local\Programs\Python\Python311\Scripts\pyuic5 -x *NameDate.ui* -o *NeuerNameDerDatei.py*

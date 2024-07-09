@@ -6,23 +6,23 @@
 #This file should only contain the superior procedures.
 
 
-#Modules   -------------------------------------
+#Modules   -------------------------------------------------------------------------------------------------------------
 import sys
 from PyQt5 import QtWidgets
 
 
-#Import Funktionen, Klassen von .py Dateien
+#Import Funktionen, Klassen von .py Dateien ----------------------------------------------------------------------------
 import Inventory
 from Hauptfenster import Ui_QMainWindow
 
 
 
-#Config   -------------------------------------
+#Config   --------------------------------------------------------------------------------------------------------------
 
 inventorypath = "Storage/Inventory"
 userspath = "Storage/Users"
 
-#Procedures   -------------------------------------
+#Procedures   ----------------------------------------------------------------------------------------------------------
 
 
 #Import des Inventory:
