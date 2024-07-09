@@ -13,6 +13,7 @@ from PyQt5 import QtWidgets
 
 #Import Funktionen, Klassen von .py Dateien ----------------------------------------------------------------------------
 import Inventory
+import UserImportExport
 from Hauptfenster import Ui_QMainWindow
 
 
@@ -32,11 +33,11 @@ try:
 except:
     print("Error: An Error occoured while loading inventory from >" + inventorypath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
-#try:
-#   Inventory.ImportUsers(userspath)
-#   print("Users loaded from >" + userpath + "<.")
-#except:
-#   print("Error: An Error occoured while loading users from >" + userspath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
+try:
+    UserImportExport.ImportUsers(userspath)
+    print("Users loaded from >" + userspath + "<.")
+except:
+    print("Error: An Error occoured while loading users from >" + userspath + "<. Ignore this error if this is the first run on this device or after an reset to factory state.")
 
 
 # Start des Hauptfenster.py
@@ -51,9 +52,10 @@ Hauptfenster.openMainWindow()
 #Export inventory and users:
 Inventory.ExportInventory(inventorypath)
 print("Inventory successfully exported to >" + inventorypath + "<.")
-#Inventory.ExportUsers(userspath)
-#print("Users successfully exported to >" + userspath + "<.")
+UserImportExport.ExportUsers(userspath)
+print("Users successfully exported to >" + userspath + "<.")
 
 
 #Die Ui schließen
 sys.exit(app.exec_())
+
