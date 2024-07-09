@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QWidget, QPushButton
 
@@ -12,9 +13,12 @@ class Ui_Desktopfenster(QtWidgets.QWidget):
 
         self.main_window = main_window
 
-        #hier werden die Methoden reingeschrieben, die zu den Fenstern mit eueren Funktionen weiterleiten
+#------------HIER WERDEN DIE METHODEN REINGESCHRIEBEN, DIE ZU DEN FENSTERN (WIDGETS) MIT EUREN FUNKTIONEN WEITERLEITEN------------
         self.buttonAllgemeineEinstellungen = self.findChild(QPushButton, "pushButtonAllgemeineEinstellungen")
         self.buttonAllgemeineEinstellungen.clicked.connect(self.btnAllgemeineEinstellungen)
+
+        self.buttonEiskaffee = self.findChild(QPushButton, "pushButtonEiskaffee")
+        self.buttonEiskaffee.clicked.connect(self.btnEiskaffee)
 
         self.backbutton = self.findChild(QPushButton, 'backButton')
         self.backbutton.clicked.connect(self.back_button_clicked)
@@ -22,6 +26,10 @@ class Ui_Desktopfenster(QtWidgets.QWidget):
     #hier werden die Methoden reingeschrieben, die die Methoden in der Konstruktormethode (__init__) ausführen
     def btnAllgemeineEinstellungen(self):
         self.main_window.openAllgemeineEinstellungen()
+
+    def btnEiskaffee(self):
+        subprocess.run(['python', 'Eiskaffee_front_page_2.py'])
+
     def back_button_clicked(self):
         self.main_window.openNutzerfenster()
 
