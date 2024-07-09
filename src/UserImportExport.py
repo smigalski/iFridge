@@ -12,7 +12,7 @@ def UsersToString():
     users = UserManagement.get_all_users()
     index = 0
     while (index < len(users)):
-        usersstring.append(str(users[index]["name"]) + ";" + str(users[index]["balance"]) + ";" + "/n")
+        usersstring += str( str(users[index]["name"]) + ";" + str(users[index]["balance"]) + ";" + "/n" )
         index += 1
     return usersstring
 
