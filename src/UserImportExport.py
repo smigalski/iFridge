@@ -22,6 +22,25 @@ def ExportUsers(path = "Users.txt"):
     file.close()
 
 
-
+def ImportUsers(path = "Users.txt"):
+    file = open(path, "r")
+    for line in file:
+        userstring = file.readline()
+        username = ""
+        userbalance = ""
+        index = 0
+        row = 0
+        while index < len(userstring):
+            if (userstring[index] != ";"):
+                if (row == 0):
+                    username += str(userstring[index])
+                if (row == 1):
+                    userbalance += str(userstring[index])
+            else:
+                row += 1
+            index += 1
+        if (username != "") and (userbalance != ""):
+            userbalance = int(userbalance)
+            UserManagement.add_user(username, userbalance)
 
 
