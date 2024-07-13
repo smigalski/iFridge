@@ -15,7 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QLinearGradient, QPainter,
 <<<<<<< HEAD
+<<<<<<< HEAD
     QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
+=======
+    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
+>>>>>>> main
 =======
     QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
 >>>>>>> main
