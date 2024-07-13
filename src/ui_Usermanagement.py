@@ -13,16 +13,9 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QSize, QTime, QUrl,QStringListModel, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QLinearGradient, QPainter,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
-=======
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
->>>>>>> main
-=======
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
->>>>>>> main
+    QImage, QLinearGradient, QPainter, QKeySequence)
+from PySide6.QtGui import *
+
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
     QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
     QSizePolicy, QWidget)
