@@ -10,17 +10,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import ui_Usermanagement
 import Inventory
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl,QStringListModel, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QSequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
-    QSizePolicy, QWidget)
-
 
 eiswuerfel_value = 0
 kaffee_value = 0
@@ -34,17 +23,24 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")      #Hintergrundfarbe festlegen
         self.centralwidget = QtWidgets.QWidget(MainWindow)                              #Erstellung des Zentralen Widget im MainWindow
         self.centralwidget.setObjectName("centralwidget")
-        #users = ui_Usermanagement.UserManagementInstanz.add_user("Yasmine")
-        #print(users)
+        ui_Usermanagement.UserManagementInstanz = ui_Usermanagement.UserManagement()
+        users = ui_Usermanagement.UserManagementInstanz.add_user("Yasmine", 20)
+        print(ui_Usermanagement.UserManagementInstanz.get_all_users())
+
+        self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
+        self.Auswahl_Benutzername.setGeometry(QtCore.QRect(80, 270, 131, 22))
+        self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
+        self.Auswahl_Benutzername.addItems(ui_Usermanagement.UserManagementInstanz.get_all_users().keys())
 
 #Konfigurieren des Ausgabe Buttons
         self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)                 #Gehört ins CentralWidget
         self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 320, 141, 61))                #Größe und Geometrie des Buttons
         self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
-        self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                       #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
+        self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                     #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
         self.Ausgabe_Button.clicked.connect(MainWindow.close)
-        #self.Ausgabe_Button.clicked.connect(users.withdraw(users, 1))
+        self.Ausgabe_Button.clicked.connect(lambda: ui_Usermanagement.UserManagementInstanz.withdraw(self.Auswahl_Benutzername.currentText(), 10.3, False))
+        self.Ausgabe_Button.clicked.connect(lambda: print(ui_Usermanagement.UserManagementInstanz.get_all_users()))
 
 #Konfigurieren des Eiswürfelsliders
         self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
@@ -80,7 +76,7 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.Auswahl_Benutzername = QtWidgets.QComboBox(self.centralwidget)
         self.Auswahl_Benutzername.setGeometry(QtCore.QRect(80, 270, 131, 22))
         self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
-        #self.Auswahl_Benutzername.addItems(users)
+        self.Auswahl_Benutzername.addItems(ui_Usermanagement.UserManagementInstanz.get_all_users().keys())
 
 #Zwischenüberschrift erstellen
         self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)                 #Gehört ins CentralWidget

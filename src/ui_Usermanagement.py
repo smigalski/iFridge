@@ -13,7 +13,7 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QSize, QTime, QUrl,QStringListModel, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QSequence, QLinearGradient, QPainter,
+    QImage, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
     QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
