@@ -159,11 +159,15 @@ def InventoryToString():
     while (index < getNumberOfItems()):
         if (index > 0):
             InventoryString += "\n"
-        InventoryString += ItemInfo(index)[1] + ";" + ItemInfo(index)[2] + ";" + ItemInfo(index)[3]  + ";" + ItemInfo(index)[6] + ";" + ItemInfo(index)[4]
-        i = 0
-        while (i < len(ItemInfo(index)[5])):
-            InventoryString += str(ItemInfo(index)[5][i]) + ";"
-            i += 1
+        InventoryString += str(ItemInfo(index)[1]) + ";" + str(ItemInfo(index)[2]) + ";" + str(ItemInfo(index)[3])  + ";" + str(ItemInfo(index)[6]) + ";" + str(ItemInfo(index)[4])
+        if ItemInfo(index)[1] == "StackableItem":
+            i = 0
+            while (i < len(ItemInfo(index)[5])):
+                InventoryString += str(ItemInfo(index)[5][i]) + ";"
+                i += 1
+        else:
+            InventoryString += str(ItemInfo(index)[5]) + ";"
+        index += 1
     return InventoryString
     #File format: [type];[name];[quantity];[targetquantity];[unit];[expiry1];[expiry2];...
 
