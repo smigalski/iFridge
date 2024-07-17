@@ -21,7 +21,7 @@ def newItem(type, name, expiry, quantity, unit, targetquantity = 0): #type can b
             if type == "continous":
                 _inventory.append(ContinuousItem(name, int(expiry), quantity, unit, targetquantity))
         else:
-            print("Error: type {type} is unknown.")
+            print(f"Error: type {type} is unknown.")
     else:
         print(f"Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
 
