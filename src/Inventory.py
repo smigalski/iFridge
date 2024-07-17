@@ -97,7 +97,6 @@ class StackableItem:
     def getQuantity(self):
         return len(self.expiries)
 
-
     def add(self, expiry):
         self.quantity += 1
         self.expiries.append(expiry)
