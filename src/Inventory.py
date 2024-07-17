@@ -23,7 +23,7 @@ def newItem(type, name, expiry, quantity, unit, targetquantity = 0): #type can b
         else:
             print("Error: type {type} is unknown.")
     else:
-        print("Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
+        print(f"Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
 
 
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
@@ -205,7 +205,7 @@ def ImportInventory(filename = "Inventory.txt"):
                                 InventoryToString[index][4], int(InventoryToString[index][2]))
                         count += 1
                     else:
-                        print("Error in line {index}. Unknown type.")
+                        print(f"Error in line {index}. Unknown type.")
             else:
                 addItem(InventoryToString[index][0],InventoryToString[index][1],InventoryToString[index][count+4],1)
                 count += 1
