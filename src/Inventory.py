@@ -43,7 +43,11 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
 
 
 def ItemInfo(index):
-    information = [index,_inventory[index].type,_inventory[index].name,_inventory[index].quantity,_inventory[index].unit,_inventory[index].expiries,_inventory[index].targetquantity]
+    information = ""
+    if _inventory[index].type == "stackable":
+        information = [index,_inventory[index].type,_inventory[index].name,_inventory[index].quantity,_inventory[index].unit,_inventory[index].expiries,_inventory[index].targetquantity]
+    if _inventory[index].type == "continous":
+        information = [index, _inventory[index].type, _inventory[index].name, _inventory[index].quantity, _inventory[index].unit, _inventory[index].expiry, _inventory[index].targetquantity]
     return information
 
 
