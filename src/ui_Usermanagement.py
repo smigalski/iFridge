@@ -1,23 +1,6 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'UsermanagementTrwVQt.ui'
-##
-## Created by: Qt User Interface Compiler version 6.4.3
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl,QStringListModel, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform, QStandardItemModel, QStandardItem)   #QSequence
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
-    QSizePolicy, QWidget)
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 
 class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
