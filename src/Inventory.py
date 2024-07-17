@@ -91,12 +91,11 @@ class StackableItem:
         self.type = "StackableItem"
         self.name = name
         self.expiries = expiries #List of expiry dates of stacked item
-        self.quantity = 0 #Quantity of stacked items of same type
         self.unit = ""
         self.targetquantity = targetquantity
 
     def getQuantity(self):
-        return self.quantity
+        return len(self.expiries)
 
 
     def add(self, expiry):
