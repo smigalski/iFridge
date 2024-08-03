@@ -188,6 +188,7 @@ class Ui_RefillWindow(object):
         self.statusbar.setObjectName("statusbar")
         RefillWindow.setStatusBar(self.statusbar)
 
+        #Festlegen einiger Standardwerte
         self.doubleSpinBox_HinzuAnzahl.setValue(1)
         self.doubleSpinBox_AufAnzahl.setValue(1)
         self.doubleSpinBox_HinzuAnzahl.setDisabled(True)
@@ -196,12 +197,15 @@ class Ui_RefillWindow(object):
 
 
 
-        #Buttons und Elemente mit den entsprechenden Funktionen verbinden (Slots)
+
+        #Buttons und Elemente mit den entsprechenden Funktionen verbinden (quasi wie Slots)
         self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
         self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
         self.radioButton_Stackable.toggled.connect(self.on_radio_button_toggled)
         self.radioButton_countinous.toggled.connect(self.on_radio_button_toggled)
         self.comboBox_AufAuswahl.currentTextChanged.connect(self.on_comboBox_changed)
+        self.pushButton_EinkaufslisteAusgabe.clicked.connect(self.export_inventory)
+        self.lineEdit_HinzuProduktname.returnPressed.connect(self.add_product_to_inventory)
 
     #Diese Methode sorgt dafür, dass bei Verwendung des Typs Stackable die Spinbox deaktiviert ist, da die hinzugefügte Menge immer 1 sein muss (siehe Dokumentation)
     def on_radio_button_toggled(self):
@@ -242,7 +246,7 @@ class Ui_RefillWindow(object):
         self.radioButton_countinous.setText(_translate("RefillWindow", "continous"))
         self.label_7.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
         self.label_8.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
-        self.label_9.setText(_translate("RefillWindow", "Einkaufsliste"))
+        self.label_9.setText(_translate("RefillWindow", "Inventarliste"))
         self.pushButton_EinkaufslisteAusgabe.setText(_translate("RefillWindow", "Als .txt ausgeben"))
         self.label_10.setText(_translate("RefillWindow", "Ist/ Soll"))
         self.label_11.setText(_translate("RefillWindow", "Produkt auswählen:"))
@@ -274,10 +278,13 @@ class Ui_RefillWindow(object):
         expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
 
         # Einheit (entsprechende LineEdit fehlt aktuell noch, daher erstmal auf KG)
-        unit = "KG"
+        unit = "KG/LITER"
 
         # Füge das neue Produkt dem Inventar hinzu
-        Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit)
+        Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit,1)
+
+        # Leeren der LineEdit für eine bessere Übersichtlichkeit
+        self.lineEdit_HinzuProduktname.clear()
 
         # Lade das Inventar neu
         print("lade Inventar")
@@ -293,7 +300,7 @@ class Ui_RefillWindow(object):
         NumberOfItems = Inventory.getNumberOfItems()
 
         print(NumberOfItems)
-        print(Inventory.ItemInfo(0))
+        #print(Inventory.ItemInfo(0))
 
         for Item in range(0,NumberOfItems):
             loadedinventory.append(Inventory.ItemInfo(Item))
@@ -341,6 +348,20 @@ class Ui_RefillWindow(object):
         Inventory.addItem(ETyp, product_name, expiry_date_timestamp, amount)
 
         self.load_inventory()
+
+    #diese Methode ist für das Erstellen der Inventarliste zuständig
+    def export_inventory(self):
+        # Dialogfenster, damit Nutzer den Speicherort und Dateinamen auszuwählen kann
+        options = QtWidgets.QFileDialog.Options()
+        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(None, "Inventar als Textdatei speichern", "",
+                                                            "Textdateien (*.txt);;Alle Dateien (*)", options=options)
+        if fileName:
+            with open(fileName, 'w') as file:
+                # Header erzeugen, damit der Nutzer weiß, was die Datei beinhaltet
+                file.write("Inventarliste\n")
+                file.write(
+                    f"Erstellt am: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")  # Zeitstempel drucken, damit der Stand bekannt ist, auf dem die Liste ist
+
 
 
 
