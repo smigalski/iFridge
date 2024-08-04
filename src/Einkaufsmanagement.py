@@ -278,7 +278,10 @@ class Ui_RefillWindow(object):
         expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
 
         # Einheit (entsprechende LineEdit fehlt aktuell noch, daher erstmal auf KG)
-        unit = "KG/LITER"
+        if product_type == "continous":
+            unit = "KG/LITER"
+        else:
+            unit = ""
 
         # Füge das neue Produkt dem Inventar hinzu
         Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit,1)
@@ -309,10 +312,10 @@ class Ui_RefillWindow(object):
         for item_info in loadedinventory:
             print("Schleife")
             if item_info[1] == "StackableItem":
-                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]}"
+                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]} Stk"
                 print("stackable erfogreich")
             else:
-                item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
+                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]} {item_info[4]}"
 
             # ComboBox leeren, bevor Produkte hinzugefügt werden
             self.comboBox_AufAuswahl.clear()
@@ -357,50 +360,42 @@ class Ui_RefillWindow(object):
                                                             "Textdateien (*.txt);;Alle Dateien (*)", options=options)
         if fileName:
             with open(fileName, 'w') as file:
-                # Header erzeugen, damit der Nutzer weiß, was die Datei beinhaltet
+                # Header erzeugen
                 file.write("Inventarliste\n")
-                file.write(
-                    f"Erstellt am: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")  # Zeitstempel drucken, damit der Stand bekannt ist, auf dem die Liste ist
+                file.write(f"Erstellt am: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")  # Zeitstempel drucken
 
-                # Inventardaten auslesen und in Kategorien unterteilen (stackable und continous)
+                # Inventardaten aus der Inventory.py erhalten
                 NumberOfItems = Inventory.getNumberOfItems()
                 inventory_dict = {}
 
                 for Item in range(NumberOfItems):
                     item_info = Inventory.ItemInfo(Item)
-                    item_type = item_info[1]  # Stackable oder Continous
+                    item_type = item_info[1]  # Stackable oder Continuous
                     name = item_info[2]
                     quantity = item_info[3]
                     unit = item_info[4]
 
+                    if item_type == "StackableItem":
+                        # Menge für StackableItem über die Anzahl der Ablaufdaten
+                        num_items = len(item_info[5])  # Anzahl der Ablaufdaten
+                        if name in inventory_dict:
+                            inventory_dict[name] += num_items
+                        else:
+                            inventory_dict[name] = num_items
+                    elif item_type == "ContinuousItem":
+                        # Menge hinzufügen
+                        if name in inventory_dict:
+                            inventory_dict[name] += quantity
+                        else:
+                            inventory_dict[name] = quantity
 
-                    if item_type == "StackableItem":    # Unterteilung in StackableItems und Continous Items, da unterschiedliche Informationen vorhanden (siehe Dokumentation)
-                        expiry_dates = item_info[5]  # Liste mit Ablaufdaten
-                        for expiry_date in expiry_dates:
-                            # Ablaufdatum in ein sinnvolles, lesbares Format umwandeln
-                            expiry_str = QDateTime.fromSecsSinceEpoch(expiry_date).date().toString("dd.MM.yyyy")
-                            # String erstellen mit den Infos, die in der Datei stehen sollen
-                            item_str = f"{name} - Menge: {quantity} {unit} - Ablaufdatum: {expiry_str}"
-                            # Überprüfen, ob das Ablaufdatum schon existiert oder erstellt werden muss
-                            if expiry_str not in inventory_dict:
-                                inventory_dict[expiry_str] = []
-                            inventory_dict[expiry_str].append(item_str)
-
-                    elif item_type == "ContinuousItem":     # Analoges Vorgehen wie mit stackableItem. Unterschied: bei ContinousItems hat man ein einziges Ablaufdatum und bei stackable eine Liste mit Ablaufdaten
-                        expiry_date = item_info[5]
-                        expiry_str = QDateTime.fromSecsSinceEpoch(expiry_date).date().toString("dd.MM.yyyy")
-                        item_str = f"{name} - Menge: {quantity} {unit} - Ablaufdatum: {expiry_str}"
-                        if expiry_str not in inventory_dict:
-                            inventory_dict[expiry_str] = []
-                        inventory_dict[expiry_str].append(item_str)
-
-                # Inventar in die Datei schreiben
-                for expiry_date, items in inventory_dict.items():
-                    file.write(f"Ablaufdatum: {expiry_date}\n") #Ablaufdatum jeweils als Überschrift
-                    # Die Ablaufdaten werden "gestackt" und die jeweiligen Produkte aufgelistet
-                    for item in items:
-                        file.write(f"\t{item}\n")
-                    file.write("\n")
+                # Inventar in die .TXT Datei schreiben und vorher noch die passenden Einheiten ermitteln
+                for name, total_quantity in inventory_dict.items():
+                    if isinstance(total_quantity, (float,)):
+                        unit = "KG/Liter"  # hatte einige Probleme durch die Inventory.py und daher hier ein kleiner, schneller Work-around
+                    else:
+                        unit = "Stk"
+                    file.write(f"{name} - Menge: {total_quantity} {unit}\n")
 
 
 if __name__ == "__main__":
