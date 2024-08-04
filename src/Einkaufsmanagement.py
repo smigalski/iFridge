@@ -362,7 +362,45 @@ class Ui_RefillWindow(object):
                 file.write(
                     f"Erstellt am: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")  # Zeitstempel drucken, damit der Stand bekannt ist, auf dem die Liste ist
 
+                # Inventardaten auslesen und in Kategorien unterteilen (stackable und continous)
+                NumberOfItems = Inventory.getNumberOfItems()
+                inventory_dict = {}
 
+                for Item in range(NumberOfItems):
+                    item_info = Inventory.ItemInfo(Item)
+                    item_type = item_info[1]  # Stackable oder Continous
+                    name = item_info[2]
+                    quantity = item_info[3]
+                    unit = item_info[4]
+
+
+                    if item_type == "StackableItem":    # Unterteilung in StackableItems und Continous Items, da unterschiedliche Informationen vorhanden (siehe Dokumentation)
+                        expiry_dates = item_info[5]  # Liste mit Ablaufdaten
+                        for expiry_date in expiry_dates:
+                            # Ablaufdatum in ein sinnvolles, lesbares Format umwandeln
+                            expiry_str = QDateTime.fromSecsSinceEpoch(expiry_date).date().toString("dd.MM.yyyy")
+                            # String erstellen mit den Infos, die in der Datei stehen sollen
+                            item_str = f"{name} - Menge: {quantity} {unit} - Ablaufdatum: {expiry_str}"
+                            # Überprüfen, ob das Ablaufdatum schon existiert oder erstellt werden muss
+                            if expiry_str not in inventory_dict:
+                                inventory_dict[expiry_str] = []
+                            inventory_dict[expiry_str].append(item_str)
+
+                    elif item_type == "ContinuousItem":     # Analoges Vorgehen wie mit stackableItem. Unterschied: bei ContinousItems hat man ein einziges Ablaufdatum und bei stackable eine Liste mit Ablaufdaten
+                        expiry_date = item_info[5]
+                        expiry_str = QDateTime.fromSecsSinceEpoch(expiry_date).date().toString("dd.MM.yyyy")
+                        item_str = f"{name} - Menge: {quantity} {unit} - Ablaufdatum: {expiry_str}"
+                        if expiry_str not in inventory_dict:
+                            inventory_dict[expiry_str] = []
+                        inventory_dict[expiry_str].append(item_str)
+
+                # Inventar in die Datei schreiben
+                for expiry_date, items in inventory_dict.items():
+                    file.write(f"Ablaufdatum: {expiry_date}\n") #Ablaufdatum jeweils als Überschrift
+                    # Die Ablaufdaten werden "gestackt" und die jeweiligen Produkte aufgelistet
+                    for item in items:
+                        file.write(f"\t{item}\n")
+                    file.write("\n")
 
 
 if __name__ == "__main__":
