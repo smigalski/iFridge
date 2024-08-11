@@ -76,7 +76,7 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>600</x>
       <y>170</y>
       <width>181</width>
       <height>31</height>
@@ -98,16 +98,16 @@
      </font>
     </property>
     <property name="text">
-     <string>Nutzer:</string>
+     <string>Mitarbeiter:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>220</y>
+      <y>250</y>
       <width>361</width>
-      <height>28</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -118,6 +118,24 @@
     </property>
     <property name="text">
      <string>Eine Einheit des ausgewählten Produktes kaufen!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>220</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Guthaben:</string>
     </property>
    </widget>
   </widget>
