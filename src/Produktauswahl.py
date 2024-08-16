@@ -69,14 +69,21 @@ class Ui_Produktauswahl(object):
         self.statusbar.setObjectName("statusbar")
         Produktauswahl.setStatusBar(self.statusbar)
 
+        # Neuer Button "Update Userinformationen"
+        self.pushButton_update = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_update.setGeometry(QtCore.QRect(600, 130, 181, 31))
+        self.pushButton_update.setObjectName("pushButton_update")
 
-        # Kontostand aktualisieren, wenn ein Nutzer ausgewählt wird
-        #self.comboBox.currentIndexChanged.connect(self.update_balance)
-
-
+        # update Button verbinden mit der Combobox Update Methode
+        self.pushButton_update.clicked.connect(self.update_comboBox)
 
         self.retranslateUi(Produktauswahl)
         QtCore.QMetaObject.connectSlotsByName(Produktauswahl)
+
+    # Methode zum Updaten der ComboBox mit den Userinformationen aus dem User Dictionary
+    def update_comboBox(self):
+        self.comboBox.clear()  # Erst die Combobox leeren, sonst doppelte Einträge
+        self.comboBox.addItems(users.keys())  # Hinzufügen aller Usernamen
 
 
 
@@ -88,6 +95,7 @@ class Ui_Produktauswahl(object):
         self.label_3.setText(_translate("Produktauswahl", "Mitarbeiter:"))
         self.pushButton.setText(_translate("Produktauswahl", "Eine Einheit des ausgewählten Produktes kaufen!"))
         self.label_4.setText(_translate("Produktauswahl", "Guthaben:"))
+        self.pushButton_update.setText(_translate("Produktauswahl", "Update Userinfos"))
 
     #Methode zum UI Aktualisieren
     def update_ui(self):
@@ -151,4 +159,3 @@ if __name__ == "__main__":
     ui.setupUi(Produktauswahl)
     Produktauswahl.show()
     sys.exit(app.exec_())
-    
