@@ -77,6 +77,9 @@ class Ui_Produktauswahl(object):
         # update Button verbinden mit der Combobox Update Methode
         self.pushButton_update.clicked.connect(self.update_comboBox)
 
+        # Wenn etwas anderes in der Combobox ausgewählt wird, wird der jeweilige Kontostand angezeigt
+        self.comboBox.currentIndexChanged.connect(self.update_balance)
+
         self.retranslateUi(Produktauswahl)
         QtCore.QMetaObject.connectSlotsByName(Produktauswahl)
 
@@ -84,9 +87,11 @@ class Ui_Produktauswahl(object):
     def update_comboBox(self):
         self.comboBox.clear()  # Erst die Combobox leeren, sonst doppelte Einträge
         self.comboBox.addItems(users.keys())  # Hinzufügen aller Usernamen
+        self.update_balance()
 
-
-
+    def update_balance(self):
+        if self.comboBox.currentText() != "":
+            self.label_4.setText(f"Guthaben: {users[self.comboBox.currentText()]} €")
 
     def retranslateUi(self, Produktauswahl):
         _translate = QtCore.QCoreApplication.translate
