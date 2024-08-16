@@ -89,7 +89,54 @@ class Ui_Produktauswahl(object):
         self.pushButton.setText(_translate("Produktauswahl", "Eine Einheit des ausgewählten Produktes kaufen!"))
         self.label_4.setText(_translate("Produktauswahl", "Guthaben:"))
 
+    #Methode zum UI Aktualisieren
+    def update_ui(self):
+        self.comboBox.addItems(users.keys())  # die User werden in der ComboBox aufgeführt, damit man diese dort auswählen
 
+
+#Ab hier die benötigten Funktionen
+
+
+users = {} #Initialiseren des Dictionaries für die Nutzer
+
+#Reuse der Save und Load Funktionen aus der ui_Usermanagement.py
+def save_users_to_file():
+    print("Methode save_users_to_file aufgerufen")  # Debug
+    file_path = "Userinformationen.txt"  # Kann bei Bedarf angepasst werden
+    try:
+        with open(file_path, 'w') as file:  # Aufruf im Write-Modus, damit die Datei jedes Mal überschrieben wird
+            for username, data in users.items():
+                file.write(f"{username};{data['balance']}\n")
+        print(f"Benutzerinformationen erfolgreich in {file_path} gespeichert.")
+    except Exception as e:  # just in Case
+        print(f"Fehler beim Speichern der Benutzerinformationen: {e}")
+
+
+# Diese Methode ruft die Userinformation aus der mit save_users_to_file angelegten txt ab
+def load_users_from_file():
+    file_path = "Userinformationen.txt"  # kann bei Bedarf verändert werden
+    try:
+        with open(file_path, 'r') as file:
+            for line in file:
+                # Jede Zeile in der txt sollte so aussehen Username;Kontostand"
+                user_data = line.strip().split(';')
+                if len(user_data) == 2:  # Es soll nur Name und Kontostand abgelegt sein, also 2 Einträge
+                    username = user_data[0]
+                    try:
+                        balance = float(user_data[1])  # Kontostand von String in Float
+                        users[username] = balance  # Statt add_user werden jetzt die Infos einfach in das users-Dictionary geschrieben
+                    except ValueError:
+                        print(f"Ungültiger Kontostand für Benutzer: {username}")
+                else:
+                    print(f"Dateiaufbau prüfen. Fehler in Zeile: {line}")
+        print("Userinformationen erfolgreich aus der Datei geladen.")
+    except FileNotFoundError:
+        print(f"Datei nicht gefunden")
+    except Exception as e:
+        print(f"sonstiger Fehler")
+
+load_users_from_file()
+print(users)
 
 
 
@@ -104,3 +151,4 @@ if __name__ == "__main__":
     ui.setupUi(Produktauswahl)
     Produktauswahl.show()
     sys.exit(app.exec_())
+    
