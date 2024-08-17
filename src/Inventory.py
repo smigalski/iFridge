@@ -5,10 +5,12 @@
 _inventory = [] #Contains all items which are stored in fridge. Do NOT directly access _inventory!
 
 
+#Gibt das Inventar als Liste zurück
 def getInventory():
     return _inventory
 
 
+#Legt ein neues Item an
 def newItem(type, name, expiry, quantity, unit, targetquantity = 0): #type can be "stackable" or "continous". unit can be "1" or "" if item is stackable. quantity must be 1 for stackable items.
     if getItemIndex(name) == -1:
         if type == "stackable" or type == "continous":
@@ -26,6 +28,7 @@ def newItem(type, name, expiry, quantity, unit, targetquantity = 0): #type can b
         print(f"Error: There is already an item with the name {name} existing. Choose an other name or add quantity to the existing item with addItem(type, name, expiry, addend)")
 
 
+#Füllt ein Item wieder auf
 def addItem(type, name, expiry, addend): #Increases quantity and adds properties to an existing type of item. addend is the added quantity for continous items or must be 1 for countable items. expiry can be nothing for continous items.
     index = getItemIndex(name)
     if index == -1:
@@ -42,6 +45,7 @@ def addItem(type, name, expiry, addend): #Increases quantity and adds properties
         print("Error: type {type} is unknown.")
 
 
+#Gibt die gespeicherten Informationen bezüglich eines Items zurück (siehe dokumentierte Funktionen)
 def ItemInfo(index):
     information = "Error"
     if _inventory[index].type == "StackableItem":
@@ -51,10 +55,12 @@ def ItemInfo(index):
     return information
 
 
+#Gibt die Anzahl der UNTERSCHIEDLICHEN Items zurück
 def getNumberOfItems():
     return len(_inventory)
 
 
+#Nimmt Item aus dem Inventar heraus
 def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(s)
     information = ItemInfo(index)
     if (information[1] == "StackableItem"):
@@ -72,6 +78,7 @@ def takeItem(index, subtrahend):    #quantity must be 1 or "" for StackableItem(
     return information
 
 
+#Gibt den Index eines Items mit dem angefragten Namen zurück
 def getItemIndex(name):
     index = -1
     for i in range (len(_inventory)):
@@ -80,6 +87,7 @@ def getItemIndex(name):
     return index
 
 
+#Legt die Zielmenge eines Items (Information für Einkaufsliste) fest
 def setTargetquantity(index, targetquantity):
     _inventory[index].setTargetquantity(targetquantity)
 
@@ -90,6 +98,7 @@ def setTargetquantity(index, targetquantity):
 #There will be 2 Types of items contained in inventory: StackableItem(s) and CountinousItem(s)
 
 
+#Klasse der Items, deren Menge eine natürliche Zahl ist
 class StackableItem:
     def __init__(self, name, expiries, targetquantity = 0):
         self.type = "StackableItem"
@@ -122,6 +131,7 @@ class StackableItem:
         self.targetquantity = tgtqty
 
 
+#Klasse der Items deren Menge eine nicht negative reelle Zahl ist.
 class ContinuousItem:
     def __init__(self, name, expiry, quantity, unit, targetquantity = 0):
         self.type = "ContinuousItem"
@@ -152,6 +162,7 @@ class ContinuousItem:
         self.targetquantity = tgtqty
 
 
+#Gibt einen String zurück, der die gesamte Information des Inventars enthält
 def InventoryToString():
     InventoryString = ""
     index = 0
@@ -171,12 +182,14 @@ def InventoryToString():
     #File format: [type];[name];[quantity];[targetquantity];[unit];[expiry1];[expiry2];...
 
 
+#Exportiert das Inventar in eine Textdatei und nutzt dazu InventoryToString()
 def ExportInventory(filename = "Inventory.txt"):
     file = open(filename, "w")
     file.write(InventoryToString())
     file.close()
 
 
+#Liest das Inventar aus einer Textdatei ein. (Siehe auch InventoryToString())
 def ImportInventory(filename = "Inventory.txt"):
     InventoryToString = []
     file = open(filename, "r")
