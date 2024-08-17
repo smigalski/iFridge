@@ -80,6 +80,17 @@ class Ui_Produktauswahl(object):
         # Wenn etwas anderes in der Combobox ausgewählt wird, wird der jeweilige Kontostand angezeigt
         self.comboBox.currentIndexChanged.connect(self.update_balance)
 
+        # Neuer Button "Inventar laden"
+        self.pushButton_updateInventory = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_updateInventory.setGeometry(QtCore.QRect(600, 85, 181, 31))
+        self.pushButton_updateInventory.setObjectName("pushButton_updateInventory")
+        self.pushButton_updateInventory.setText("Inventar laden")
+
+        # Button mit der Methode zum Laden des Inventars verbinden
+        self.pushButton_updateInventory.clicked.connect(self.load_inventory_into_listview)
+
+
+
         self.retranslateUi(Produktauswahl)
         QtCore.QMetaObject.connectSlotsByName(Produktauswahl)
 
@@ -105,6 +116,32 @@ class Ui_Produktauswahl(object):
     #Methode zum UI Aktualisieren
     def update_ui(self):
         self.comboBox.addItems(users.keys())  # die User werden in der ComboBox aufgeführt, damit man diese dort auswählen
+
+    # Methode zur Darstellung des Inventars in der ListView mit Name und Menge
+    def load_inventory_into_listview(self):
+        # StandardItemModel festlegen
+        model = QtGui.QStandardItemModel()
+
+        # Dateiname festlegen
+        file_path = "InventarFürProduktauswahl.txt"
+        try:
+            with open(file_path, 'r') as file:
+                for line in file:
+                    line_data = line.strip().split(';')
+                    if len(line_data) == 3:
+                        product_type, product_name, quantity = line_data
+                        # Formatieren des Textes für die ListView
+                        item_text = f"Name: {product_name} - Menge: {quantity}"
+                        item = QtGui.QStandardItem(item_text)
+                        model.appendRow(item)
+
+            # Listviewmodel festlegen
+            self.listView.setModel(model)
+
+        except FileNotFoundError:
+            print(f"Datei wurde noch nicht erstellt. Einkaufsmanagement öffnen.")
+        except Exception as e:
+            print(f"Fehler beim Laden der Datei: {e}")
 
 
 #Ab hier die benötigten Funktionen
