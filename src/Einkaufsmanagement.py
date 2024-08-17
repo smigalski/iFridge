@@ -290,8 +290,9 @@ class Ui_RefillWindow(object):
         self.lineEdit_HinzuProduktname.clear()
 
         # Lade das Inventar neu
-        print("lade Inventar")
+        #print("lade Inventar") Debug
         self.load_inventory()
+
 
 
     def load_inventory(self):
@@ -327,6 +328,9 @@ class Ui_RefillWindow(object):
                 self.comboBox_AufAuswahl.addItem(loadedinventory[item][2])
 
         self.listView_Inventaranzeige.setModel(model)   #Darstellung im ListView
+
+        #Inventar in Textdatei für Produktauswahlfenster exportieren
+        self.export_inventory_forProduktauswahl()
         
     def refill_product_to_inventory(self):         #Methode zum Auffüllen von Produkten
         product_name = self.comboBox_AufAuswahl.currentText()
@@ -396,6 +400,32 @@ class Ui_RefillWindow(object):
                     else:
                         unit = "Stk"
                     file.write(f"{name} - Menge: {total_quantity} {unit}\n")
+
+    #Modifizierte Exportfunktion. Es wird der Produkttyp (stackable/..), der Produktname und die Quantity für die Verwendung in der Produktauswahl exportiert
+    def export_inventory_forProduktauswahl(self):
+        # Kein Dialogfenster hier, sondern nur ein fester Dateiname
+        fileName = "InventarFürProduktauswahl.txt"
+
+        with open(fileName, 'w') as file:
+            # Inventardaten aus der Inventory.py erhalten
+            NumberOfItems = Inventory.getNumberOfItems()
+
+            for Item in range(NumberOfItems):
+                item_info = Inventory.ItemInfo(Item)
+                item_type = item_info[1]  # Stackable oder Continuous
+                name = item_info[2]
+                quantity = item_info[3]
+
+                # Bestimme den Produkttyp als string
+                if item_type == "StackableItem":
+                    product_type = "stackable"
+                else:
+                    product_type = "continous"
+
+                # Schreibe die Daten im gewünschten Format in die Datei
+                file.write(f"{product_type};{name};{quantity}\n")
+
+
 
 
 if __name__ == "__main__":
