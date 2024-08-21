@@ -1,1 +1,2 @@
-stackable;Testt;6
+stackable;Produkt1;23
+stackable;Produkt2;0
