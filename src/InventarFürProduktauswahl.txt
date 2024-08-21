@@ -1,2 +1,3 @@
-stackable;Produkt1;23
-stackable;Produkt2;0
+stackable;fsefsefse;1
+stackable;dsfdsfsdf;1
+stackable;sefsefesf;1

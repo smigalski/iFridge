@@ -294,7 +294,6 @@ class Ui_RefillWindow(object):
         self.load_inventory()
 
 
-
     def load_inventory(self):
         print("Methode load_inventory wird aufgerufen")
 
@@ -331,6 +330,9 @@ class Ui_RefillWindow(object):
 
         #Inventar in Textdatei für Produktauswahlfenster exportieren
         self.export_inventory_forProduktauswahl()
+
+        # Export mit der Inventory.export Funktion
+        Inventory.ExportInventory()
         
     def refill_product_to_inventory(self):         #Methode zum Auffüllen von Produkten
         product_name = self.comboBox_AufAuswahl.currentText()
