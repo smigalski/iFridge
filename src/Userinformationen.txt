@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Nutzer1Mit25;25.0
 Nutzer2Mit55;55.0
 Nutzer3Broke;0.0
@@ -9,3 +10,8 @@ sadkisa;0.0
 saijdal;0.0
 saskia;0.0
 skia;0.0
+=======
+Test1;20.0
+Test2;31.0
+Yasmine;20.0
+>>>>>>> Stashed changes
