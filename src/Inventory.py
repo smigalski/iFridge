@@ -213,12 +213,22 @@ def ImportInventory(filename = "Inventory.txt"):
         while(count + 4 < len(ItemInfo([index]))):
             if (getItemIndex(InventoryToString[index][1]) == -1):
                 if (Iteminfo[index][0] == "stackable"):
-                    newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4], 1,
+                    expiries = []
+                    numberOfExpiries = len(InventoryToString[index]) - 6
+                    index = 0
+                    while index < len numberOfExpiries:
+                        expiries.append(InventoryToString[index][index + 5])
+                        index += 1
+                    newItem(InventoryToString[index][0], InventoryToString[index][1], expiries[0], 1,
                             InventoryToString[index][4], int(InventoryToString[index][2]))
                     count += 1
+                    if len(expiries) > 1:
+                        index = 1
+                        while index < len(expiries):
+                            addItem(InventoryToString[index][0],InventoryToString[index][1],expiries[index],1)
                 else:
-                    if (Iteminfo[index][0] == "stackable"):
-                        newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][4],
+                    if (Iteminfo[index][0] == "continous"):
+                        newItem(InventoryToString[index][0], InventoryToString[index][1], InventoryToString[index][5],
                                 InventoryToString[index][3],
                                 InventoryToString[index][4], int(InventoryToString[index][2]))
                         count += 1
