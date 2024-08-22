@@ -9,11 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+#from PySide6 import QtCore, QtGui, QtWidgets
 
-import os
-
-# Initialiseren des Dictionaries für die Nutzer
-users = {}
 
 class Ui_Produktauswahl(object):
 
@@ -92,8 +89,6 @@ class Ui_Produktauswahl(object):
         # Button mit der Methode zum Laden des Inventars verbinden
         self.pushButton_updateInventory.clicked.connect(self.load_inventory_into_listview)
 
-        # Button zum Kaufen verbinden
-        self.pushButton.clicked.connect(self.buy_product)
 
 
         self.retranslateUi(Produktauswahl)
@@ -148,111 +143,20 @@ class Ui_Produktauswahl(object):
         except Exception as e:
             print(f"Fehler beim Laden der Datei: {e}")
 
-    # Funktion zum Kauf von einem Produkt
-    def buy_product(self):
-        #debug
-        print("Userdict vor Kauf: ", users)
-
-        # Aktuellen Usernamen aus ComboBox holen
-        selected_user = self.comboBox.currentText()
-
-        # Prüfen, ob überhaupt einer ausgewählt wurde
-        if selected_user == "":
-            print("Kein Benutzer ausgewählt.")
-            return
-
-        # Der User muss mindestens 2,50 auf seinem Konto haben, um etwas zu kaufen
-        current_balance = users.get(selected_user, 0)
-        if current_balance < 2.50:
-            print("Geld einzahlen! Der Kontostand reicht nicht aus!")
-            return
-
-        # Prüfen, welches Produkt in der ListView ausgewählt wurde
-        selected_indexes = self.listView.selectedIndexes()
-
-        # Prüfen, ob überhaupt ein Produkt ausgewählt wurde
-        if not selected_indexes:
-            print("Zum Kaufen muss ein Produkt ausgewählt werden!")
-            return
-
-        # Name und Menge des Produktes erhalten
-        selected_item = selected_indexes[0]
-        product_data = selected_item.data()
-        product_name = product_data.split(" - ")[0].replace("Name: ", "")
-        quantity = int(product_data.split(" - ")[1].replace("Menge: ", ""))
-
-        # Wenn die Menge des Produkts kleiner als 1 ist, abbrechen
-        if quantity < 1:
-            print("Produktmenge reicht nicht aus!")
-            return
-
-        # jetzt 2,50€ vom Kontostand abziehen
-        users[selected_user] -= 2.50
-        print("Userinformationen nach Abzug der 2,50", users)
-
-        # Aktualisiere den Kontostand in der UI und speichere die Änderungen in der Datei
-        self.update_balance()
-        print("Userinformationen nach update_balance ", users)
-        save_users_to_file()
-        print("Userinformationen nach save_users_to_file ", users)
-
-        # Reduziere die Menge des Produkts um 1 und aktualisiere die Inventardatei
-        new_quantity = quantity - 1
-        self.update_inventory_file(product_name, new_quantity)
-
-        # Lade das Inventar neu, um die aktualisierten Daten anzuzeigen
-        self.load_inventory_into_listview()
-
-    # Methode zum Aktualisieren des Inventars in der Textdatei
-    def update_inventory_file(self, product_name, new_quantity):
-        file_path = "InventarFürProduktauswahl.txt"
-        inventory_lines = []
-
-        # Lese die Inventardatei Zeile für Zeile und aktualisiere die Menge des ausgewählten Produkts
-        try:
-            with open(file_path, 'r') as file:
-                for line in file:
-                    # Splitte die Zeile in Produkttyp, Produktname und Menge
-                    line_data = line.strip().split(';')
-                    if len(line_data) == 3:
-                        product_type, name, quantity = line_data
-
-                        # Wenn das Produkt gefunden wurde, aktualisiere die Menge
-                        if name == product_name:
-                            line_data[2] = str(new_quantity)  # Setze die neue Menge
-                        inventory_lines.append(';'.join(line_data))  # Füge die aktualisierte Zeile zur Liste hinzu
-
-            # Schreibe die aktualisierten Daten zurück in die Datei
-            with open(file_path, 'w') as file:
-                for line in inventory_lines:
-                    file.write(line + "\n")
-
-        # Wenn die Datei nicht gefunden wurde, gebe eine Fehlermeldung aus
-        except FileNotFoundError:
-            print(f"Datei {file_path} nicht gefunden.")
-
-        # Fange andere Fehler ab und gebe eine Fehlermeldung aus
-        except Exception as e:
-            print(f"Fehler beim Aktualisieren der Datei: {e}")
-
-
-
-
-
 
 #Ab hier die benötigten Funktionen
 
 
+users = {} #Initialiseren des Dictionaries für die Nutzer
 
-
-# Reuse der Save und Load Funktionen aus der ui_Usermanagement.py
+#Reuse der Save und Load Funktionen aus der ui_Usermanagement.py
 def save_users_to_file():
     print("Methode save_users_to_file aufgerufen")  # Debug
     file_path = "Userinformationen.txt"  # Kann bei Bedarf angepasst werden
     try:
         with open(file_path, 'w') as file:  # Aufruf im Write-Modus, damit die Datei jedes Mal überschrieben wird
-            for username, balance in users.items():  # Verwende 'balance' direkt, da 'data' der float-Wert ist
-                file.write(f"{username};{balance}\n")
+            for username, data in users.items():
+                file.write(f"{username};{data['balance']}\n")
         print(f"Benutzerinformationen erfolgreich in {file_path} gespeichert.")
     except Exception as e:  # just in Case
         print(f"Fehler beim Speichern der Benutzerinformationen: {e}")
