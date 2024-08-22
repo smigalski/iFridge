@@ -216,7 +216,7 @@ def ImportInventory(filename = "Inventory.txt"):
                     expiries = []
                     numberOfExpiries = len(InventoryToString[index]) - 6
                     index = 0
-                    while index < len numberOfExpiries:
+                    while index < len(numberOfExpiries):
                         expiries.append(InventoryToString[index][index + 5])
                         index += 1
                     newItem(InventoryToString[index][0], InventoryToString[index][1], expiries[0], 1,
