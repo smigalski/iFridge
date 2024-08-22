@@ -51,7 +51,7 @@ Hauptfenster.openMainWindow()
 #Export inventory and users:
 Inventory.ExportInventory(inventorypath)
 print("Inventory successfully exported to >" + inventorypath + "<.")
-UserImportExport.ExportUsers(userspath)
+#UserImportExport.ExportUsers(userspath)
 print("Users successfully exported to >" + userspath + "<.")
 
 

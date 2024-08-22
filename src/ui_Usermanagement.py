@@ -1,24 +1,12 @@
-# -*- coding: utf-8 -*-
+from PyQt5.QtCore import *         # Ändern von PySide6 auf PyQt5
+from PyQt5.QtGui import *          # Ändern von PySide6 auf PyQt5
+from PyQt5.QtWidgets import *      # Ändern von PySide6 auf PyQt5
+import os
 
-################################################################################
-## Form generated from reading UI file 'UsermanagementTrwVQt.ui'
-##
-## Created by: Qt User Interface Compiler version 6.4.3
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
+#für Import und Export
+#import UserImportExport funktioniert nicht
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl,QStringListModel, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QLinearGradient, QPainter, QKeySequence)
-from PySide6.QtGui import *
 
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
-    QLabel, QLineEdit, QListView, QPushButton, QDoubleSpinBox,
-    QSizePolicy, QWidget)
 
 
 class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
@@ -56,7 +44,7 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         self.line = QFrame(Usermanagement)
         self.line.setObjectName(u"line")
         self.line.setGeometry(QRect(205, 10, 31, 451))
-        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShape(QFrame.VLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
         self.lineEdit = QLineEdit(Usermanagement)
         self.lineEdit.setObjectName(u"lineEdit")
@@ -134,6 +122,21 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(480, 260, 51, 20))
 
+        # Hinzufügen eines neuen Buttons (Update)
+        self.pushButton_InitUpdate = QPushButton(Usermanagement)
+        self.pushButton_InitUpdate.setObjectName(u"pushButton_InitUpdate")
+        self.pushButton_InitUpdate.setGeometry(QRect(300, 400, 151, 31))  # Passe die Position an
+        self.pushButton_InitUpdate.setText("Update n. ext. Änderung")
+
+        # Hinzufügen des neuen Labels "siehe Anleitung"
+        self.label_InitUpdate = QLabel(Usermanagement)
+        self.label_InitUpdate.setObjectName(u"label_InitUpdate")
+        self.label_InitUpdate.setGeometry(QRect(250, 440, 200, 31))
+        font1 = QFont()
+        font1.setPointSize(10)
+        self.label_InitUpdate.setFont(font1)
+        self.label_InitUpdate.setText("siehe Anleitung")
+
         self.retranslateUi(Usermanagement)
 
         QMetaObject.connectSlotsByName(Usermanagement)
@@ -144,6 +147,9 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         self.pushButton_RemoveUser.clicked.connect(lambda: UserManagementInstanz.remove_user(self.comboBox.currentText(),True))
         self.pushButton_deposit.clicked.connect(lambda: UserManagementInstanz.deposit(self.comboBox.currentText(),self.doubleSpinBox_amount.value(),True))
         self.pushButton_newBalance.clicked.connect(lambda: UserManagementInstanz.change_balance(self.comboBox.currentText(),self.doubleSpinBox_amount.value(),True))
+        self.pushButton_InitUpdate.clicked.connect(self.update_ui)
+
+        self.update_ui() #Initialisieren der User nach dem Programmstart
 
     def retranslateUi(self, Usermanagement):
         self.label.setText(QCoreApplication.translate("Usermanagement", u"Nutzerliste", None))
@@ -184,19 +190,25 @@ class Ui_Usermanagement(object):  #GUI als Dialog mit QtDesigner hinzugefügt
         #Label mit der Anzahl der Nutzer aktualisieren
         self.label_Nutzeranzahl.setText("Anzahl der Nutzer: " + str(len(UserManagementInstanz.get_all_users())))
 
+
+
 class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
     def __init__(self):
         self.users = {}  # Ein leeres Dictionary zur Speicherung von Benutzern
+        self.load_users_from_file()
+        
 
     def add_user(self, username, initial_balance=0, clicked=False):        #Methode zum Hinzufügen von Usern. Der Startwert des Kontostands ist 0
         if username not in self.users:
             self.users[username] = {"name": username, "balance": initial_balance}
             print(f"Benutzer '{username}' wurde hinzugefügt.")
+
             if clicked == True:
                 ui.LineEditClear()
                 ui.update_ui()
         else:
             print(f"Benutzer '{username}' existiert bereits.")
+        self.save_users_to_file()
 
     def remove_user(self, username,clicked=False):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
         if username in self.users:
@@ -205,6 +217,8 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
                 ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
+        self.save_users_to_file()
+
 
     def deposit(self, username, amount,clicked=False):
         if username in self.users:
@@ -213,6 +227,8 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
                 ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
+        self.save_users_to_file()
+
 
     def change_balance(self, username, new_balance, clicked=False):
         if username in self.users:
@@ -221,6 +237,8 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
                 ui.update_ui()
         else:
             print(f"Der angegebene Nutzer existiert nicht")
+        self.save_users_to_file()
+
 
     def withdraw(self, username, amount, clicked=False):
         if username in self.users:
@@ -229,13 +247,55 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
                 ui.update_ui()
         else:
             print("Der angegebene Nutzer existiert nicht")
+        self.save_users_to_file()
+
 
 
     def get_all_users(self):                                #Methode, die die Nutzernamen und Kontostände zurückgibt
+        #debug
+        #print("get_all_users:", self.users)
+
         return self.users
 
-UserManagementInstanz = UserManagement()            #Zur besseren Übersichtlichkeit wird die Instanz der Klasse hier explizit erzeugt
+    # Diese Methode fungiert als Workaround für das Problem mit der Kommunikation zwischen den Modulen. Die Userdaten werden bei Aufruf in einer Txt gespeichert
+    def save_users_to_file(self):
+        print("Methode save_users_to_file aufgerufen")  # Debug
+        file_path = "Userinformationen.txt" #Kann bei Bedarf angepasst werden
+        try:
+            with open(file_path, 'w') as file:  # Aufruf im Write-Modus, damit die Datei jedes Mal überschrieben wird
+                for username, data in self.users.items():
+                    file.write(f"{username};{data['balance']}\n")
+            print(f"Benutzerinformationen erfolgreich in {file_path} gespeichert.")
+        except Exception as e: #just in Case
+            print(f"Fehler beim Speichern der Benutzerinformationen: {e}")
 
+    #Diese Methode ruft die Userinformation aus der mit save_users_to_file angelegten txt ab
+    def load_users_from_file(self):
+        file_path = "Userinformationen.txt" #kann bei Bedarf verändert werden
+        try:
+            with open(file_path, 'r') as file:
+                for line in file:
+                    #Jede Zeile in der txt sollte so aussehen Username;Kontostand"
+                    user_data = line.strip().split(';')
+                    if len(user_data) == 2: #Es soll nur Name und Kontostand abgelegt sein, also 2 Einträge
+                        username = user_data[0]
+                        try:
+                            balance = float(user_data[1])  #Kontostand von String in Float
+                            self.add_user(username, balance)
+                        except ValueError:
+                            print(f"Ungültiger Kontostand für Benutzer: {username}")
+                    else:
+                        print(f"Dateiaufbau prüfen. Fehler in Zeile: {line}")
+            print("Userinformationen erfolgreich aus der Datei geladen.")
+        except FileNotFoundError:
+            print(f"Datei nicht gefunden")
+        except Exception as e:
+            print(f"sonstiger Fehler")
+
+
+
+
+UserManagementInstanz = UserManagement()            #Zur besseren Übersichtlichkeit wird die Instanz der Klasse hier explizit erzeugt
 
 
 

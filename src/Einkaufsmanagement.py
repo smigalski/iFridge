@@ -144,7 +144,7 @@ class Ui_RefillWindow(object):
         self.pushButton_EinkaufslisteAusgabe.setGeometry(QtCore.QRect(380, 60, 311, 28))
         self.pushButton_EinkaufslisteAusgabe.setObjectName("pushButton_EinkaufslisteAusgabe")
         self.line_10 = QtWidgets.QFrame(self.centralwidget)
-        self.line_10.setGeometry(QtCore.QRect(370, 150, 101, 21))
+        self.line_10.setGeometry(QtCore.QRect(370, 150, 290, 21))
         self.line_10.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_10.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_10.setObjectName("line_10")
@@ -159,24 +159,24 @@ class Ui_RefillWindow(object):
         self.line_11.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_11.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_11.setObjectName("line_11")
-        self.comboBox_IstSoll_Produktauswahl = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox_IstSoll_Produktauswahl.setGeometry(QtCore.QRect(380, 200, 121, 22))
-        self.comboBox_IstSoll_Produktauswahl.setObjectName("comboBox_IstSoll_Produktauswahl")
-        self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(380, 180, 131, 16))
-        self.label_11.setObjectName("label_11")
-        self.doubleSpinBox_IstSoll_SollFestlegen = QtWidgets.QDoubleSpinBox(self.centralwidget)
-        self.doubleSpinBox_IstSoll_SollFestlegen.setGeometry(QtCore.QRect(550, 200, 131, 22))
-        self.doubleSpinBox_IstSoll_SollFestlegen.setObjectName("doubleSpinBox_IstSoll_SollFestlegen")
-        self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(550, 180, 111, 16))
-        self.label_12.setObjectName("label_12")
-        self.pushButton_IstSoll_AufSollSetzen = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_IstSoll_AufSollSetzen.setGeometry(QtCore.QRect(380, 240, 311, 28))
-        self.pushButton_IstSoll_AufSollSetzen.setObjectName("pushButton_IstSoll_AufSollSetzen")
-        self.pushButton_IstSoll_AllesAufSoll = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_IstSoll_AllesAufSoll.setGeometry(QtCore.QRect(380, 280, 311, 28))
-        self.pushButton_IstSoll_AllesAufSoll.setObjectName("pushButton_IstSoll_AllesAufSoll")
+        # self.comboBox_IstSoll_Produktauswahl = QtWidgets.QComboBox(self.centralwidget)
+        # self.comboBox_IstSoll_Produktauswahl.setGeometry(QtCore.QRect(380, 200, 121, 22))
+        # self.comboBox_IstSoll_Produktauswahl.setObjectName("comboBox_IstSoll_Produktauswahl")
+        # self.label_11 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_11.setGeometry(QtCore.QRect(380, 180, 131, 16))
+        # self.label_11.setObjectName("label_11")
+        # self.doubleSpinBox_IstSoll_SollFestlegen = QtWidgets.QDoubleSpinBox(self.centralwidget)
+        # self.doubleSpinBox_IstSoll_SollFestlegen.setGeometry(QtCore.QRect(550, 200, 131, 22))
+        # self.doubleSpinBox_IstSoll_SollFestlegen.setObjectName("doubleSpinBox_IstSoll_SollFestlegen")
+        # self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_12.setGeometry(QtCore.QRect(550, 180, 111, 16))
+        # self.label_12.setObjectName("label_12")
+        # self.pushButton_IstSoll_AufSollSetzen = QtWidgets.QPushButton(self.centralwidget)
+        # self.pushButton_IstSoll_AufSollSetzen.setGeometry(QtCore.QRect(380, 240, 311, 28))
+        # self.pushButton_IstSoll_AufSollSetzen.setObjectName("pushButton_IstSoll_AufSollSetzen")
+        # self.pushButton_IstSoll_AllesAufSoll = QtWidgets.QPushButton(self.centralwidget)
+        # self.pushButton_IstSoll_AllesAufSoll.setGeometry(QtCore.QRect(380, 280, 311, 28))
+        # self.pushButton_IstSoll_AllesAufSoll.setObjectName("pushButton_IstSoll_AllesAufSoll")
         self.label_13 = QtWidgets.QLabel(self.centralwidget)
         self.label_13.setGeometry(QtCore.QRect(160, 230, 55, 16))
         self.label_13.setObjectName("label_13")
@@ -188,6 +188,7 @@ class Ui_RefillWindow(object):
         self.statusbar.setObjectName("statusbar")
         RefillWindow.setStatusBar(self.statusbar)
 
+        #Festlegen einiger Standardwerte
         self.doubleSpinBox_HinzuAnzahl.setValue(1)
         self.doubleSpinBox_AufAnzahl.setValue(1)
         self.doubleSpinBox_HinzuAnzahl.setDisabled(True)
@@ -196,12 +197,15 @@ class Ui_RefillWindow(object):
 
 
 
-        #Buttons und Elemente mit den entsprechenden Funktionen verbinden (Slots)
+
+        #Buttons und Elemente mit den entsprechenden Funktionen verbinden (quasi wie Slots)
         self.pushButton_HinzuAnlegen.clicked.connect(self.add_product_to_inventory)
         self.pushButton_AufHinzu.clicked.connect(self.refill_product_to_inventory)
         self.radioButton_Stackable.toggled.connect(self.on_radio_button_toggled)
         self.radioButton_countinous.toggled.connect(self.on_radio_button_toggled)
         self.comboBox_AufAuswahl.currentTextChanged.connect(self.on_comboBox_changed)
+        self.pushButton_EinkaufslisteAusgabe.clicked.connect(self.export_inventory)
+        self.lineEdit_HinzuProduktname.returnPressed.connect(self.add_product_to_inventory)
 
     #Diese Methode sorgt dafür, dass bei Verwendung des Typs Stackable die Spinbox deaktiviert ist, da die hinzugefügte Menge immer 1 sein muss (siehe Dokumentation)
     def on_radio_button_toggled(self):
@@ -242,13 +246,13 @@ class Ui_RefillWindow(object):
         self.radioButton_countinous.setText(_translate("RefillWindow", "continous"))
         self.label_7.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
         self.label_8.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
-        self.label_9.setText(_translate("RefillWindow", "Einkaufsliste"))
+        self.label_9.setText(_translate("RefillWindow", "Inventarliste"))
         self.pushButton_EinkaufslisteAusgabe.setText(_translate("RefillWindow", "Als .txt ausgeben"))
-        self.label_10.setText(_translate("RefillWindow", "Ist/ Soll"))
-        self.label_11.setText(_translate("RefillWindow", "Produkt auswählen:"))
-        self.label_12.setText(_translate("RefillWindow", "Soll festlegen:"))
-        self.pushButton_IstSoll_AufSollSetzen.setText(_translate("RefillWindow", "Ausgewähltes Produkt auf Soll setzen"))
-        self.pushButton_IstSoll_AllesAufSoll.setText(_translate("RefillWindow", "Alle Produkte auf Soll setzen"))
+        #self.label_10.setText(_translate("RefillWindow", "Ist/ Soll"))
+        #self.label_11.setText(_translate("RefillWindow", "Produkt auswählen:"))
+        #self.label_12.setText(_translate("RefillWindow", "Soll festlegen:"))
+        #self.pushButton_IstSoll_AufSollSetzen.setText(_translate("RefillWindow", "Ausgewähltes Produkt auf Soll setzen"))
+        #self.pushButton_IstSoll_AllesAufSoll.setText(_translate("RefillWindow", "Alle Produkte auf Soll setzen"))
         self.label_13.setText(_translate("RefillWindow", "Anzahl:"))
 
     def add_product_to_inventory(self):         #Methode zum Hinzufügen von Produkten
@@ -274,14 +278,21 @@ class Ui_RefillWindow(object):
         expiry_date_timestamp = int(QDateTime(expiry_date).toSecsSinceEpoch())
 
         # Einheit (entsprechende LineEdit fehlt aktuell noch, daher erstmal auf KG)
-        unit = "KG"
+        if product_type == "continous":
+            unit = "KG/LITER"
+        else:
+            unit = ""
 
         # Füge das neue Produkt dem Inventar hinzu
-        Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit)
+        Inventory.newItem(product_type, product_name, expiry_date_timestamp, quantity, unit,1)
+
+        # Leeren der LineEdit für eine bessere Übersichtlichkeit
+        self.lineEdit_HinzuProduktname.clear()
 
         # Lade das Inventar neu
-        print("lade Inventar")
+        #print("lade Inventar") Debug
         self.load_inventory()
+
 
 
     def load_inventory(self):
@@ -293,7 +304,7 @@ class Ui_RefillWindow(object):
         NumberOfItems = Inventory.getNumberOfItems()
 
         print(NumberOfItems)
-        print(Inventory.ItemInfo(0))
+        #print(Inventory.ItemInfo(0))
 
         for Item in range(0,NumberOfItems):
             loadedinventory.append(Inventory.ItemInfo(Item))
@@ -302,10 +313,10 @@ class Ui_RefillWindow(object):
         for item_info in loadedinventory:
             print("Schleife")
             if item_info[1] == "StackableItem":
-                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]}"
+                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]} Stk"
                 print("stackable erfogreich")
             else:
-                item_text = f"{item_info[2]} - {item_info[3]} {item_info[4]}"
+                item_text = f"Name:  {item_info[2]} - Menge:  {item_info[3]} {item_info[4]}"
 
             # ComboBox leeren, bevor Produkte hinzugefügt werden
             self.comboBox_AufAuswahl.clear()
@@ -317,6 +328,9 @@ class Ui_RefillWindow(object):
                 self.comboBox_AufAuswahl.addItem(loadedinventory[item][2])
 
         self.listView_Inventaranzeige.setModel(model)   #Darstellung im ListView
+
+        #Inventar in Textdatei für Produktauswahlfenster exportieren
+        self.export_inventory_forProduktauswahl()
         
     def refill_product_to_inventory(self):         #Methode zum Auffüllen von Produkten
         product_name = self.comboBox_AufAuswahl.currentText()
@@ -341,6 +355,76 @@ class Ui_RefillWindow(object):
         Inventory.addItem(ETyp, product_name, expiry_date_timestamp, amount)
 
         self.load_inventory()
+
+    #diese Methode ist für das Erstellen der Inventarliste zuständig
+    def export_inventory(self):
+        # Dialogfenster, damit Nutzer den Speicherort und Dateinamen auszuwählen kann
+        options = QtWidgets.QFileDialog.Options()
+        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(None, "Inventar als Textdatei speichern", "",
+                                                            "Textdateien (*.txt);;Alle Dateien (*)", options=options)
+        if fileName:
+            with open(fileName, 'w') as file:
+                # Header erzeugen
+                file.write("Inventarliste\n")
+                file.write(f"Erstellt am: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")  # Zeitstempel drucken
+
+                # Inventardaten aus der Inventory.py erhalten
+                NumberOfItems = Inventory.getNumberOfItems()
+                inventory_dict = {}
+
+                for Item in range(NumberOfItems):
+                    item_info = Inventory.ItemInfo(Item)
+                    item_type = item_info[1]  # Stackable oder Continuous
+                    name = item_info[2]
+                    quantity = item_info[3]
+                    unit = item_info[4]
+
+                    if item_type == "StackableItem":
+                        # Menge für StackableItem über die Anzahl der Ablaufdaten
+                        num_items = len(item_info[5])  # Anzahl der Ablaufdaten
+                        if name in inventory_dict:
+                            inventory_dict[name] += num_items
+                        else:
+                            inventory_dict[name] = num_items
+                    elif item_type == "ContinuousItem":
+                        # Menge hinzufügen
+                        if name in inventory_dict:
+                            inventory_dict[name] += quantity
+                        else:
+                            inventory_dict[name] = quantity
+
+                # Inventar in die .TXT Datei schreiben und vorher noch die passenden Einheiten ermitteln
+                for name, total_quantity in inventory_dict.items():
+                    if isinstance(total_quantity, (float,)):
+                        unit = "KG/Liter"  # hatte einige Probleme durch die Inventory.py und daher hier ein kleiner, schneller Work-around
+                    else:
+                        unit = "Stk"
+                    file.write(f"{name} - Menge: {total_quantity} {unit}\n")
+
+    #Modifizierte Exportfunktion. Es wird der Produkttyp (stackable/..), der Produktname und die Quantity für die Verwendung in der Produktauswahl exportiert
+    def export_inventory_forProduktauswahl(self):
+        # Kein Dialogfenster hier, sondern nur ein fester Dateiname
+        fileName = "InventarFürProduktauswahl.txt"
+
+        with open(fileName, 'w') as file:
+            # Inventardaten aus der Inventory.py erhalten
+            NumberOfItems = Inventory.getNumberOfItems()
+
+            for Item in range(NumberOfItems):
+                item_info = Inventory.ItemInfo(Item)
+                item_type = item_info[1]  # Stackable oder Continuous
+                name = item_info[2]
+                quantity = item_info[3]
+
+                # Bestimme den Produkttyp als string
+                if item_type == "StackableItem":
+                    product_type = "stackable"
+                else:
+                    product_type = "continous"
+
+                # Schreibe die Daten im gewünschten Format in die Datei
+                file.write(f"{product_type};{name};{quantity}\n")
+
 
 
 
