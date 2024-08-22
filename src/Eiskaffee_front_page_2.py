@@ -39,7 +39,7 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
         self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                     #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
         self.Ausgabe_Button.clicked.connect(MainWindow.close)
-        self.Ausgabe_Button.clicked.connect(lambda: ui_Usermanagement.UserManagementInstanz.withdraw(self.Auswahl_Benutzername.currentText(), 10.3, False))
+        self.Ausgabe_Button.clicked.connect(lambda: ui_Usermanagement.UserManagementInstanz.withdraw(self.Auswahl_Benutzername.currentText(), 1.5, False))
         self.Ausgabe_Button.clicked.connect(lambda: print(ui_Usermanagement.UserManagementInstanz.get_all_users()))
 
 #Konfigurieren des Eiswürfelsliders
