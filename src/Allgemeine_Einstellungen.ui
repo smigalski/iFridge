@@ -36,7 +36,7 @@
     <pixmap>../img/iFridge_klein.png</pixmap>
    </property>
    <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QScrollBar" name="TempScrollBar">
@@ -60,9 +60,6 @@
    <property name="pageStep">
     <number>1</number>
    </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
@@ -79,9 +76,6 @@
    </property>
    <property name="text">
     <string>Temperatur in Celsius</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -103,8 +97,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>220</y>
+     <x>430</x>
+     <y>70</y>
      <width>201</width>
      <height>20</height>
     </rect>
@@ -123,7 +117,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>250</y>
+     <y>180</y>
      <width>371</width>
      <height>361</height>
     </rect>
@@ -151,8 +145,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>100</y>
+     <x>600</x>
+     <y>680</y>
      <width>151</width>
      <height>81</height>
     </rect>
@@ -209,6 +203,9 @@ font: 12pt &quot;Terminal&quot;;</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="backButton">
