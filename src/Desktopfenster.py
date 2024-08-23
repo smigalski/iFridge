@@ -20,6 +20,9 @@ class Ui_Desktopfenster(QtWidgets.QWidget):
         self.buttonEiskaffee = self.findChild(QPushButton, "pushButtonEiskaffee")
         self.buttonEiskaffee.clicked.connect(self.btnEiskaffee)
 
+        self.buttonEinkaufen = self.findChild(QPushButton, "pushButtonEinkaufen")
+        self.buttonEinkaufen.clicked.connect(self.btnEinkaufen)
+
         self.buttonInventory = self.findChild(QPushButton, "pushButtonInventory")
         self.buttonInventory.clicked.connect(self.btnInventory)
 
@@ -38,6 +41,9 @@ class Ui_Desktopfenster(QtWidgets.QWidget):
 
     def btnEiskaffee(self):
         subprocess.run(['python', 'Eiskaffee_front_page_2.py'])
+
+    def btnEinkaufen(self):
+        subprocess.run(['python', 'Produktauswahl.py'])
 
     def btnInventory(self):
         subprocess.run(['python', 'Einkaufsmanagement.py'])
