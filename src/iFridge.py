@@ -1,8 +1,7 @@
 #iFridge
-#API course
 #(c) Daniel Smigala, Yasmine Hildebrand, Constantin Denden, Julius Schieck, David Nagel
 #This is the main file of the iFridge project.
-#This file should only contain the superior procedures.
+
 
 
 #Modules   -------------------------------------------------------------------------------------------------------------
