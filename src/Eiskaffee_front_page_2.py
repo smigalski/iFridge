@@ -6,13 +6,12 @@ eiswuerfel_value = 0
 kaffee_value = 0
 milch_value = 0
 
-#Im Folgenden wird zunächst die Front-Page des Eiskaffeemenüs konfiguriert
-class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. Benutzeroberfläche des Hauptfensters wird konfiguriert.
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(618, 437)                                                     #Größe des Fensters festlegen
-        MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")      #Hintergrundfarbe festlegen
-        self.centralwidget = QtWidgets.QWidget(MainWindow)                              #Erstellung des Zentralen Widget im MainWindow
+        MainWindow.resize(618, 437)
+        MainWindow.setStyleSheet("selection-background-color: rgb(197, 141, 92);")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         ui_Usermanagement.UserManagementInstanz = ui_Usermanagement.UserManagement()
         users = ui_Usermanagement.UserManagementInstanz.add_user("Yasmine", 20)
@@ -23,44 +22,44 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
         self.Auswahl_Benutzername.addItems(ui_Usermanagement.UserManagementInstanz.get_all_users().keys())
 
-#Konfigurieren des Ausgabe Buttons
-        self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)                 #Gehört ins CentralWidget
-        self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 320, 141, 61))                #Größe und Geometrie des Buttons
-        self.Ausgabe_Button.setObjectName("Ausgabe_Button")                             #Name des Buttons
-        self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")        #Hintergrundfarbe des Buttons
-        self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)                     #Beim Klicken des Buttons wird die Funktion showAusgabePage aufgerufen. Die AusgabePage wird geöffnet.
+
+        self.Ausgabe_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.Ausgabe_Button.setGeometry(QtCore.QRect(170, 320, 141, 61))
+        self.Ausgabe_Button.setObjectName("Ausgabe_Button")
+        self.Ausgabe_Button.setStyleSheet("background-color: rgb(252, 126, 0);")
+        self.Ausgabe_Button.clicked.connect(self.showAusgabeWindow)
         self.Ausgabe_Button.clicked.connect(MainWindow.close)
         self.Ausgabe_Button.clicked.connect(lambda: ui_Usermanagement.UserManagementInstanz.withdraw(self.Auswahl_Benutzername.currentText(), 1.5, False))
         self.Ausgabe_Button.clicked.connect(lambda: print(ui_Usermanagement.UserManagementInstanz.get_all_users()))
 
-#Konfigurieren des Eiswürfelsliders
-        self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)                   #Gehört ins CentralWidget
-        self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))              #Größe und Geometrie des Sliders
+
+        self.EiswuerfelSlider = QtWidgets.QSlider(self.centralwidget)
+        self.EiswuerfelSlider.setGeometry(QtCore.QRect(190, 220, 160, 22))
         self.EiswuerfelSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")                         #Name des Sliders erstellen
-        self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")    #Hintergrundfarbe des Sliders ändern
+        self.EiswuerfelSlider.setObjectName("EiswuerfelSlider")
+        self.EiswuerfelSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
         self.EiswuerfelSlider.setMinimum(0)
         self.EiswuerfelSlider.setMaximum(6)
-        self.EiswuerfelSlider.valueChanged.connect(self.getEiskaffeeValues)             #Werte des Sliders in die Methode getEiskaffeeValues geben
+        self.EiswuerfelSlider.valueChanged.connect(self.getEiskaffeeValues)
 
-# Konfigurieren des Kaffeesliders
-        self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)                       #Gehört ins CentralWidget
-        self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))                  #Größe und Geometrie des Sliders
+
+        self.KaffeeSlider = QtWidgets.QSlider(self.centralwidget)
+        self.KaffeeSlider.setGeometry(QtCore.QRect(190, 180, 160, 22))
         self.KaffeeSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.KaffeeSlider.setObjectName("KaffeeSlider")                                 #Name des Sliders erstellen
-        self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")        #Hintergrundfarbe des Sliders ändern
-        self.KaffeeSlider.setMinimum(0)                                                 #Minimumwert
-        self.KaffeeSlider.setMaximum(400)                                               #Maximumwert
+        self.KaffeeSlider.setObjectName("KaffeeSlider")
+        self.KaffeeSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.KaffeeSlider.setMinimum(0)
+        self.KaffeeSlider.setMaximum(400)
         self.KaffeeSlider.valueChanged.connect(self.getEiskaffeeValues)
 
-# Konfigurieren des Milchsliders
-        self.MilchSlider = QtWidgets.QSlider(self.centralwidget)                        #Gehört ins CentralWidget
-        self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))                   #Größe und Geometrie des Sliders
+
+        self.MilchSlider = QtWidgets.QSlider(self.centralwidget)
+        self.MilchSlider.setGeometry(QtCore.QRect(190, 140, 160, 22))
         self.MilchSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.MilchSlider.setObjectName("MilchSlider")                                   #Name des Sliders erstellen
-        self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")        #Hintergrundfarbe des Sliders ändern
-        self.MilchSlider.setMinimum(0)                                                  #Minimumwert
-        self.MilchSlider.setMaximum(100)                                                #Maximumwert
+        self.MilchSlider.setObjectName("MilchSlider")
+        self.MilchSlider.setStyleSheet("QSlider::handle:horizontal { background-color: red; }")
+        self.MilchSlider.setMinimum(0)
+        self.MilchSlider.setMaximum(100)
         self.MilchSlider.valueChanged.connect(self.getEiskaffeeValues)
 
 
@@ -69,36 +68,32 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.Auswahl_Benutzername.setObjectName("Auswahl_Benutzername")
         self.Auswahl_Benutzername.addItems(ui_Usermanagement.UserManagementInstanz.get_all_users().keys())
 
-#Zwischenüberschrift erstellen
-        self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)                 #Gehört ins CentralWidget
-        self.Zwischenuberschrift.setGeometry(QtCore.QRect(80, 100, 461, 31))            #Größe und Geometrie der Überschrift
+
+        self.Zwischenuberschrift = QtWidgets.QLabel(self.centralwidget)
+        self.Zwischenuberschrift.setGeometry(QtCore.QRect(80, 100, 461, 31))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")                                                #Schriftart wählen
-        font.setBold(True)                                                              #fett drucken
-        font.setWeight(75)                                                              #Größe
+        font.setFamily("Segoe UI Black")
+        font.setBold(True)
+        font.setWeight(75)
         self.Zwischenuberschrift.setFont(font)
         self.Zwischenuberschrift.setObjectName("Zwischenuberschrift")
 
-#Milchlabel/Text erstellen und neben den MilchSlider stellen. Inhalt des Textfeldes ist noch nicht definiert.
-#Erstellung, Lage und Name
+
         self.MilchLabel = QtWidgets.QLabel(self.centralwidget)
         self.MilchLabel.setGeometry(QtCore.QRect(80, 140, 41, 31))
         self.MilchLabel.setObjectName("MilchLabel")
 
-#Kaffeelabel erstellen und neben den KaffeeSlider stellen. Inhalt des Textfeldes ist noch nicht definiert.
-#Erstellung, Lage und Name
+
         self.KaffeeLabel = QtWidgets.QLabel(self.centralwidget)
         self.KaffeeLabel.setGeometry(QtCore.QRect(80, 180, 41, 31))
         self.KaffeeLabel.setObjectName("KaffeeLabel")
 
-#Eiswürfellabel erstellen und neben den EiswürfelSlider stellen. Inhalt des Textfeldes ist noch nicht definiert.
-#Erstellung, Lage und Name
+
         self.EiswuerfelLabel = QtWidgets.QLabel(self.centralwidget)
         self.EiswuerfelLabel.setGeometry(QtCore.QRect(80, 220, 51, 31))
         self.EiswuerfelLabel.setObjectName("EiswuerfelLabel")
 
-#die Minimumangabe neben die Slider schreiben: min = 0
-#Definition von weiteren drei Textfeldern, die links neben den Slidern stehen. Erst mal ohne Inhalt.
+
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(160, 140, 21, 31))
         self.label_5.setObjectName("label_5")
@@ -109,7 +104,7 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.label_7.setGeometry(QtCore.QRect(160, 220, 21, 31))
         self.label_7.setObjectName("label_7")
 
-#Erstellen von drei weiteren Textfeldern (rechts der Slider), die noch keinen Inhalt haben.
+
         self.sixpieces = QtWidgets.QLabel(self.centralwidget)
         self.sixpieces.setGeometry(QtCore.QRect(360, 220, 51, 31))
         self.sixpieces.setObjectName("sixpieces")
@@ -121,16 +116,16 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         self.fourhundred.setObjectName("fourhundred")
 
 
-#Erstellen von Zwischen- und Überschriften für das Eiskaffeehauptmenü
+
         self.Uberschrift = QtWidgets.QLabel(self.centralwidget)
         self.Uberschrift.setGeometry(QtCore.QRect(80, 30, 491, 61))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")                                #Schriftart auswählen
-        font.setPointSize(12)                                           #Größe auswählen
-        font.setBold(True)                                              #Fett schreiben
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
         font.setWeight(75)
         self.Uberschrift.setFont(font)
-        self.Uberschrift.setObjectName("Uberschrift")                   #Name der Überschrift definiert
+        self.Uberschrift.setObjectName("Uberschrift")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -145,7 +140,7 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
-#Slider, Textfelder und Zwischenüberschriften bekommen ihren anzuzeigenden Inhalt.
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Eiskaffee"))
@@ -165,9 +160,8 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
             "Du bist noch einen Klick von Deiner Erfrischung entfernt!"))
 
 
-#Start des Hauptprogramms
 
-#Die Funktion getEiswürfelValues speichert die eingestellten Werte aus den Slidern in Variablen.
+
     def getEiskaffeeValues(self):
         global eiswuerfel_value
         global kaffee_value
@@ -235,7 +229,7 @@ class Ui_Ausgabe_Window(object):
 
 
 
-#Dieser Code initialisiert die GUI-Anwendung, startet die Hauptanwendungsschleife und zeigt das Anwendungsfenster an.
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
