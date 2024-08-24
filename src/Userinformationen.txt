@@ -1,7 +1,7 @@
 Nutzer1Mit25;16.0
 Nutzer2Mit55;55.0
-Nutzer3Broke;0.0
-NeuerNutzer4Mit15;15.0
+Nutzer3Broke;-4.5
+NeuerNutzer4Mit15;13.5
 NeuerNutzer5Mit20;20.0
 Tom;0.0
 Na;0.0
@@ -11,4 +11,4 @@ saskia;0.0
 skia;0.0
 Test1;20.0
 Test2;31.0
-Yasmine;20.0
+Yasmine;17.0
