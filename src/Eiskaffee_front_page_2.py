@@ -148,7 +148,7 @@ class Ui_MainWindow(object):                    #Klasse des Fensters erstellen. 
 #Slider, Textfelder und Zwischenüberschriften bekommen ihren anzuzeigenden Inhalt.
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Eiskaffee"))
         self.Ausgabe_Button.setText(_translate("MainWindow", "Eiskaffee ausgeben"))
         self.Zwischenuberschrift.setText(_translate("MainWindow", "Wähle Deine Zusammensetzung indem Du die Slider nach Deinen Wünschen \n"
                 "verschiebst:"))
@@ -226,7 +226,7 @@ class Ui_Ausgabe_Window(object):
 
     def retranslateUi(self, Ausgabe_Window):
         _translate = QtCore.QCoreApplication.translate
-        Ausgabe_Window.setWindowTitle(_translate("Ausgabe_Window", "Ausgabe_Window"))
+        Ausgabe_Window.setWindowTitle(_translate("Ausgabe_Window", "Eiskaffeeausgabe"))
         self.geniesse_title.setText(_translate("Ausgabe_Window", "Du kannst jetzt Deinen perfekten Eiskaffee genießen!\n"
                                                                     "Er besteht aus:"))
         self.Eiswuerfel_Ausgabe.setText(_translate("Ausgabe_Window", "Eiswürfel: " + str(eiswuerfel_value) + " Stück"))
