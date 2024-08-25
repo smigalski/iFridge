@@ -160,24 +160,6 @@ class Ui_RefillWindow(object):
         self.line_11.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_11.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_11.setObjectName("line_11")
-        # self.comboBox_IstSoll_Produktauswahl = QtWidgets.QComboBox(self.centralwidget)
-        # self.comboBox_IstSoll_Produktauswahl.setGeometry(QtCore.QRect(380, 200, 121, 22))
-        # self.comboBox_IstSoll_Produktauswahl.setObjectName("comboBox_IstSoll_Produktauswahl")
-        # self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        # self.label_11.setGeometry(QtCore.QRect(380, 180, 131, 16))
-        # self.label_11.setObjectName("label_11")
-        # self.doubleSpinBox_IstSoll_SollFestlegen = QtWidgets.QDoubleSpinBox(self.centralwidget)
-        # self.doubleSpinBox_IstSoll_SollFestlegen.setGeometry(QtCore.QRect(550, 200, 131, 22))
-        # self.doubleSpinBox_IstSoll_SollFestlegen.setObjectName("doubleSpinBox_IstSoll_SollFestlegen")
-        # self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        # self.label_12.setGeometry(QtCore.QRect(550, 180, 111, 16))
-        # self.label_12.setObjectName("label_12")
-        # self.pushButton_IstSoll_AufSollSetzen = QtWidgets.QPushButton(self.centralwidget)
-        # self.pushButton_IstSoll_AufSollSetzen.setGeometry(QtCore.QRect(380, 240, 311, 28))
-        # self.pushButton_IstSoll_AufSollSetzen.setObjectName("pushButton_IstSoll_AufSollSetzen")
-        # self.pushButton_IstSoll_AllesAufSoll = QtWidgets.QPushButton(self.centralwidget)
-        # self.pushButton_IstSoll_AllesAufSoll.setGeometry(QtCore.QRect(380, 280, 311, 28))
-        # self.pushButton_IstSoll_AllesAufSoll.setObjectName("pushButton_IstSoll_AllesAufSoll")
         self.label_13 = QtWidgets.QLabel(self.centralwidget)
         self.label_13.setGeometry(QtCore.QRect(160, 230, 55, 16))
         self.label_13.setObjectName("label_13")
@@ -188,6 +170,13 @@ class Ui_RefillWindow(object):
         self.statusbar = QtWidgets.QStatusBar(RefillWindow)
         self.statusbar.setObjectName("statusbar")
         RefillWindow.setStatusBar(self.statusbar)
+
+        #Button Update nach Kauf hinzufügen
+        self.pushButton_UpdateNachKauf = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_UpdateNachKauf.setGeometry(QtCore.QRect(380, 220, 316, 41))  # Rechts vom "Anlegen" Button
+        self.pushButton_UpdateNachKauf.setObjectName("pushButton_UpdateNachKauf")
+
+
 
         # Festlegen einiger Standardwerte
         self.doubleSpinBox_HinzuAnzahl.setValue(1)
@@ -204,6 +193,7 @@ class Ui_RefillWindow(object):
         self.comboBox_AufAuswahl.currentTextChanged.connect(self.on_comboBox_changed)
         self.pushButton_EinkaufslisteAusgabe.clicked.connect(self.export_inventory)
         self.lineEdit_HinzuProduktname.returnPressed.connect(self.add_product_to_inventory)
+        self.pushButton_UpdateNachKauf.clicked.connect(self.load_inventory)
 
     # Diese Methode sorgt dafür, dass bei Verwendung des Typs Stackable die Spinbox deaktiviert ist, da die hinzugefügte Menge immer 1 sein muss (siehe Dokumentation)
     def on_radio_button_toggled(self):
@@ -246,12 +236,8 @@ class Ui_RefillWindow(object):
         self.label_8.setText(_translate("RefillWindow", "Ablaufdatum angeben:"))
         self.label_9.setText(_translate("RefillWindow", "Inventarliste"))
         self.pushButton_EinkaufslisteAusgabe.setText(_translate("RefillWindow", "Als .txt ausgeben"))
-        # self.label_10.setText(_translate("RefillWindow", "Ist/ Soll"))
-        # self.label_11.setText(_translate("RefillWindow", "Produkt auswählen:"))
-        # self.label_12.setText(_translate("RefillWindow", "Soll festlegen:"))
-        # self.pushButton_IstSoll_AufSollSetzen.setText(_translate("RefillWindow", "Ausgewähltes Produkt auf Soll setzen"))
-        # self.pushButton_IstSoll_AllesAufSoll.setText(_translate("RefillWindow", "Alle Produkte auf Soll setzen"))
         self.label_13.setText(_translate("RefillWindow", "Anzahl:"))
+        self.pushButton_UpdateNachKauf.setText(_translate("RefillWindow", "Update nach Kauf"))
 
     def add_product_to_inventory(self):  # Methode zum Hinzufügen von Produkten
         # Bestimme den Produkttyp basierend auf dem ausgewählten Radio-Button
@@ -288,7 +274,6 @@ class Ui_RefillWindow(object):
         self.lineEdit_HinzuProduktname.clear()
 
         # Lade das Inventar neu
-        # print("lade Inventar") Debug
         self.load_inventory()
 
     def load_inventory(self):
