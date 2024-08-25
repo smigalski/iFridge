@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import os
+import Inventory
 
 # Initialiseren des Dictionaries für die Nutzer
 users = {}
@@ -87,7 +88,7 @@ class Ui_Produktauswahl(object):
         self.pushButton_updateInventory = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_updateInventory.setGeometry(QtCore.QRect(600, 85, 181, 31))
         self.pushButton_updateInventory.setObjectName("pushButton_updateInventory")
-        self.pushButton_updateInventory.setText("Inventar laden")
+        self.pushButton_updateInventory.setText("Update Inventar")
 
         # Button mit der Methode zum Laden des Inventars verbinden
         self.pushButton_updateInventory.clicked.connect(self.load_inventory_into_listview)
@@ -128,13 +129,13 @@ class Ui_Produktauswahl(object):
         model = QtGui.QStandardItemModel()
 
         # Dateiname festlegen
-        file_path = "InventarFürProduktauswahl.txt"
+        file_path = "Inventory.txt"
         try:
             with open(file_path, 'r') as file:
                 for line in file:
                     line_data = line.strip().split(';')
-                    if len(line_data) == 3:
-                        product_type, product_name, quantity = line_data
+                    if len(line_data) >= 3:  # Überprüfen, ob mindestens 3 Einträge vorhanden sind
+                        product_type, product_name, quantity = line_data[:3]  # Die ersten drei Einträge extrahieren
                         # Formatieren des Textes für die ListView
                         item_text = f"Name: {product_name} - Menge: {quantity}"
                         item = QtGui.QStandardItem(item_text)
@@ -150,6 +151,9 @@ class Ui_Produktauswahl(object):
 
     # Funktion zum Kauf von einem Produkt
     def buy_product(self):
+
+
+
         #debug
         print("Userdict vor Kauf: ", users)
 
@@ -205,22 +209,24 @@ class Ui_Produktauswahl(object):
 
     # Methode zum Aktualisieren des Inventars in der Textdatei
     def update_inventory_file(self, product_name, new_quantity):
-        file_path = "InventarFürProduktauswahl.txt"
+        file_path = "Inventory.txt"
         inventory_lines = []
 
         # Lese die Inventardatei Zeile für Zeile und aktualisiere die Menge des ausgewählten Produkts
         try:
             with open(file_path, 'r') as file:
                 for line in file:
-                    # Splitte die Zeile in Produkttyp, Produktname und Menge
+                    # Splitte die Zeile in ihre Bestandteile
                     line_data = line.strip().split(';')
-                    if len(line_data) == 3:
-                        product_type, name, quantity = line_data
+                    if len(line_data) >= 3:  # Sicherstellen, dass die Zeile mindestens 3 Einträge hat
+                        product_type, name, quantity = line_data[:3]  # Extrahiere die ersten drei Einträge
 
                         # Wenn das Produkt gefunden wurde, aktualisiere die Menge
                         if name == product_name:
                             line_data[2] = str(new_quantity)  # Setze die neue Menge
-                        inventory_lines.append(';'.join(line_data))  # Füge die aktualisierte Zeile zur Liste hinzu
+
+                        # Füge die Zeile (mit den unveränderten restlichen Einträgen) zur Liste hinzu
+                        inventory_lines.append(';'.join(line_data))
 
             # Schreibe die aktualisierten Daten zurück in die Datei
             with open(file_path, 'w') as file:
