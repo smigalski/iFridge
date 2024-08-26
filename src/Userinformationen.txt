@@ -1,4 +1,4 @@
-Nutzer1Mit25;16.0
+Nutzer1Mit25;14.5
 Nutzer2Mit55;55.0
 Nutzer3Broke;-4.5
 NeuerNutzer4Mit15;13.5
