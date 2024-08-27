@@ -694,6 +694,38 @@ class Ui_Form(object):
         self.labelSun_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][6].tagNr+1), None))
         self.labelSun_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][6].tagNr+1), None))
         self.labelSun_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][6].tagNr+1), None))
+
+        #Ausgrauen und ent-Ausgrauen der Labels, je nachdem, ob der jeweilige Tag im Monat drin ist oder nicht
+        #Ausgrauen für vorhergehende Tage:
+        
+        if ausgewMonat[0][0].imMonat != monat:
+            self.labelMon_2.setStyleSheet("background-color : grey; color : grey;")
+        else:
+            self.labelMon_2.setStyleSheet("background-color : white; color : black")
+        if ausgewMonat[0][1].imMonat != monat:
+            self.labelTue_2.setStyleSheet("background-color : grey; color : grey;")
+        else:
+            self.labelTue_2.setStyleSheet("background-color : white; color : black")
+        if ausgewMonat[0][2].imMonat != monat:
+            self.labelWed_2.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelWed_2.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[0][3].imMonat != monat:
+            self.labelThu_2.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelThu_2.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[0][4].imMonat != monat:
+            self.labelFri_2.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelFri_2.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[0][5].imMonat != monat:
+            self.labelSat_2.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSat_2.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[0][6].imMonat != monat:
+            self.labelSun_2.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSun_2.setStyleSheet("background-color: white; color : black")
         
 
 
