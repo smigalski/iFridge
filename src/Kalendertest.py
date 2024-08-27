@@ -12,6 +12,8 @@ import if_Kalender
 
 #Usereingabe und hereinladen des Kalenders
 user = input("Bitte Usernamen Eingeben: ")
+if user == "":                                                          #Zum einfachen Testen wird eine leere Eingabe mit dem
+    user = "Max Mustermann"                                             #Namen 'Max Mustermann' ergänzt
 user = user.replace(" ", "_")
 print(user)
 termine = if_Kalender.termin("default", "default", "default", "default")
@@ -24,7 +26,8 @@ aktivKalender.einlesen(user)
 print("\n\nUser: " + aktivKalender.user.replace("_", " "))
 printCounter = 0
 for x in aktivKalender.terminliste:
-    printAusgabe = "Termin " + str(printCounter+1) + ":\n"
+    printAusgabe = "Termin " + str(printCounter+1) + ":\n"              #Hilfsvariable zum Erstellen der Ausgabe eines Termins
+                                                                        #zu Testzwecken
     aktivTermin = aktivKalender.terminliste[printCounter]
     printAusgabe += " Datum: " + aktivTermin.datum
     printAusgabe += " Zeit:  " + aktivTermin.zeit
@@ -37,7 +40,7 @@ for x in aktivKalender.terminliste:
 addDateQuery = input("Soll ein neuer Termin hinzugefügt werden? [y/n]: ")
 
 if addDateQuery == "y":
-    newDate = input("Neues Datum eingeben [dd.mm.yyyy]: ")              #Eingabe der Daten des neuen Termins
+    newDate = input("Neues Datum eingeben [dd.mm.yyyy]: ")              #Eingabe der Daten des neuen Termins mittels Hilfsvariablen
     newTime = input("Uhrzeit des Termins eingeben [hh:mm]: ")
     newTitle = input("Titel des Termins eingeben: ")
     newEvent = input("Kurze Beschreibung des Event eingeben: ")
@@ -50,7 +53,8 @@ if addDateQuery == "y":
     print("\n\nNeuer Termin hinzugefügt: ")
     printCounter = 0
     for x in aktivKalender.terminliste:
-        printAusgabe = "Termin " + str(printCounter+1) + ":\n"
+        printAusgabe = "Termin " + str(printCounter+1) + ":\n"          #Hilfsvariable zum Erstellen der Ausgabe eines Termins
+                                                                        #zu Testzwecken
         aktivTermin = aktivKalender.terminliste[printCounter]
         printAusgabe += "Datum: " + aktivTermin.datum
         printAusgabe += " Zeit: " + aktivTermin.zeit
