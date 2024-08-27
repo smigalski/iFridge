@@ -20,7 +20,7 @@
       <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="backButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -151,7 +151,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="addTerminButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
