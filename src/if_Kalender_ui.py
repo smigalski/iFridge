@@ -727,6 +727,64 @@ class Ui_Form(object):
         else:
             self.labelSun_2.setStyleSheet("background-color: white; color : black")
         
+        #Ausgrauen für nachfolgende Tage:
+        
+        if ausgewMonat[4][0].imMonat != monat:
+            self.labelMon_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelMon_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][0].imMonat != monat:
+            self.labelMon_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelMon_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][1].imMonat != monat:
+            self.labelTue_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelTue_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][1].imMonat != monat:
+            self.labelTue_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelTue_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][2].imMonat != monat:
+            self.labelWed_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelWed_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][2].imMonat != monat:
+            self.labelWed_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelWed_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][3].imMonat != monat:
+            self.labelThu_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelThu_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][3].imMonat != monat:
+            self.labelThu_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelThu_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][4].imMonat != monat:
+            self.labelFri_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelFri_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][4].imMonat != monat:
+            self.labelFri_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelFri_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][5].imMonat != monat:
+            self.labelSat_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSat_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][5].imMonat != monat:
+            self.labelSat_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSat_7.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[4][6].imMonat != monat:
+            self.labelSun_6.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSun_6.setStyleSheet("background-color: white; color : black")
+        if ausgewMonat[5][6].imMonat != monat:
+            self.labelSun_7.setStyleSheet("background-color: grey; color : grey;")
+        else:
+            self.labelSun_7.setStyleSheet("background-color: white; color : black")
 
 
 class UI(QWidget, Ui_Form):
