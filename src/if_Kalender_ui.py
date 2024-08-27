@@ -19,7 +19,10 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
     QLayout, QPushButton, QSizePolicy, QSpacerItem,
     QSpinBox, QVBoxLayout, QWidget)
 
+import if_Kalender
+
 class Ui_Form(object):
+
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
@@ -29,11 +32,11 @@ class Ui_Form(object):
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
-        self.pushButton = QPushButton(Form)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 30))
+        self.backButton = QPushButton(Form)
+        self.backButton.setObjectName(u"backButton")
+        self.backButton.setMinimumSize(QSize(0, 30))
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.backButton)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -69,11 +72,11 @@ class Ui_Form(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
-        self.pushButton_2 = QPushButton(Form)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(0, 30))
+        self.addTerminButton = QPushButton(Form)
+        self.addTerminButton.setObjectName(u"addTerminButton")
+        self.addTerminButton.setMinimumSize(QSize(0, 30))
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.addWidget(self.addTerminButton)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
@@ -542,9 +545,10 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
 #if QT_CONFIG(tooltip)
-        self.pushButton.setToolTip(QCoreApplication.translate("Form", u"Vorheriges Fenster anzeigen", None))
+        self.backButton.setToolTip(QCoreApplication.translate("Form", u"Vorheriges Fenster anzeigen", None))
+        self.backButton.clicked.connect(self.backButtonClicked)
 #endif // QT_CONFIG(tooltip)
-        self.pushButton.setText(QCoreApplication.translate("Form", u"\u2190 Zur\u00fcck", None))
+        self.backButton.setText(QCoreApplication.translate("Form", u"\u2190 Zur\u00fcck", None))
         self.comboBoxMonat.setItemText(0, QCoreApplication.translate("Form", u"Januar", None))
         self.comboBoxMonat.setItemText(1, QCoreApplication.translate("Form", u"Februar", None))
         self.comboBoxMonat.setItemText(2, QCoreApplication.translate("Form", u"M\u00e4rz", None))
@@ -560,14 +564,18 @@ class Ui_Form(object):
 
 #if QT_CONFIG(tooltip)
         self.comboBoxMonat.setToolTip(QCoreApplication.translate("Form", u"Monat", None))
+        self.comboBoxMonat.currentIndexChanged.connect(self.monatJahrChanged)
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
         self.spinBoxJahreszahl.setToolTip(QCoreApplication.translate("Form", u"Jahreszahl", None))
+        self.spinBoxJahreszahl.valueChanged.connect(self.monatJahrChanged)
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
-        self.pushButton_2.setToolTip(QCoreApplication.translate("Form", u"Termin Hinzuf\u00fcgen", None))
+        self.addTerminButton.setToolTip(QCoreApplication.translate("Form", u"Termin Hinzuf\u00fcgen", None))
+        self.addTerminButton.clicked.connect(self.addTerminButtonClicked)
 #endif // QT_CONFIG(tooltip)
-        self.pushButton_2.setText(QCoreApplication.translate("Form", u"+ Termin", None))
+
+        self.addTerminButton.setText(QCoreApplication.translate("Form", u"+ Termin", None))
         self.LabelKW.setText(QCoreApplication.translate("Form", u"KW", None))
         self.labelMon.setText(QCoreApplication.translate("Form", u"Montag", None))
         self.labelTue.setText(QCoreApplication.translate("Form", u"Dienstag", None))
@@ -625,4 +633,80 @@ class Ui_Form(object):
         self.labelSat_7.setText(QCoreApplication.translate("Form", u"66", None))
         self.labelSun_7.setText(QCoreApplication.translate("Form", u"77", None))
     # retranslateUi
+    def addTerminButtonClicked(self):
+        print("Termin Hinzufügen")
+
+    def backButtonClicked(self):
+        print("Zurück!")
+
+    def monatJahrChanged(self):
+        jahreszahl = 2024
+        jahreszahl = self.spinBoxJahreszahl.value()
+        monat = 1
+        monat = self.comboBoxMonat.currentIndex()
+        ausgewJahr = if_Kalender.jahr(jahreszahl)
+        ausgewMonat = if_Kalender.getMonat(ausgewJahr, monat)
+        self.LabelKW_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][7]), None))
+        self.LabelKW_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][7]), None))
+        self.LabelKW_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][7]), None))
+        self.LabelKW_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][7]), None))
+        self.LabelKW_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][7]), None))
+        self.LabelKW_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][7]), None))
+        self.labelMon_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][0].tagNr+1), None))
+        self.labelMon_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][0].tagNr+1), None))
+        self.labelMon_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][0].tagNr+1), None))
+        self.labelMon_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][0].tagNr+1), None))
+        self.labelMon_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][0].tagNr+1), None))
+        self.labelMon_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][0].tagNr+1), None))
+        self.labelTue_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][1].tagNr+1), None))
+        self.labelTue_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][1].tagNr+1), None))
+        self.labelTue_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][1].tagNr+1), None))
+        self.labelTue_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][1].tagNr+1), None))
+        self.labelTue_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][1].tagNr+1), None))
+        self.labelTue_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][1].tagNr+1), None))
+        self.labelWed_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][2].tagNr+1), None))
+        self.labelWed_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][2].tagNr+1), None))
+        self.labelWed_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][2].tagNr+1), None))
+        self.labelWed_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][2].tagNr+1), None))
+        self.labelWed_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][2].tagNr+1), None))
+        self.labelWed_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][2].tagNr+1), None))
+        self.labelThu_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][3].tagNr+1), None))
+        self.labelThu_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][3].tagNr+1), None))
+        self.labelThu_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][3].tagNr+1), None))
+        self.labelThu_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][3].tagNr+1), None))
+        self.labelThu_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][3].tagNr+1), None))
+        self.labelThu_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][3].tagNr+1), None))
+        self.labelFri_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][4].tagNr+1), None))
+        self.labelFri_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][4].tagNr+1), None))
+        self.labelFri_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][4].tagNr+1), None))
+        self.labelFri_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][4].tagNr+1), None))
+        self.labelFri_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][4].tagNr+1), None))
+        self.labelFri_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][4].tagNr+1), None))
+        self.labelSat_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][5].tagNr+1), None))
+        self.labelSat_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][5].tagNr+1), None))
+        self.labelSat_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][5].tagNr+1), None))
+        self.labelSat_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][5].tagNr+1), None))
+        self.labelSat_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][5].tagNr+1), None))
+        self.labelSat_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][5].tagNr+1), None))
+        self.labelSun_2.setText(QCoreApplication.translate("Form", str(ausgewMonat[0][6].tagNr+1), None))
+        self.labelSun_3.setText(QCoreApplication.translate("Form", str(ausgewMonat[1][6].tagNr+1), None))
+        self.labelSun_4.setText(QCoreApplication.translate("Form", str(ausgewMonat[2][6].tagNr+1), None))
+        self.labelSun_5.setText(QCoreApplication.translate("Form", str(ausgewMonat[3][6].tagNr+1), None))
+        self.labelSun_6.setText(QCoreApplication.translate("Form", str(ausgewMonat[4][6].tagNr+1), None))
+        self.labelSun_7.setText(QCoreApplication.translate("Form", str(ausgewMonat[5][6].tagNr+1), None))
+        
+
+
+class UI(QWidget, Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
+
+    
+if __name__ == "__main__":
+    app = QApplication()
+    win = UI()
+    win.show()
+    app.exec()
 
