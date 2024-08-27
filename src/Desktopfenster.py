@@ -49,7 +49,7 @@ class Ui_Desktopfenster(QtWidgets.QWidget):                                     
         subprocess.run(['python', 'Einkaufsmanagement.py'])
 
     def btnKalender(self):
-        subprocess.run(['python', 'if_Kalender.py'])
+        subprocess.run(['python', 'if_Kalender_ui.py'])
 
     def btnNutzerverwaltung(self):
         subprocess.run(['python', 'ui_Usermanagement.py'])
