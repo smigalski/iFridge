@@ -68,20 +68,17 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>751</width>
-     <height>281</height>
+     <x>30</x>
+     <y>140</y>
+     <width>351</width>
+     <height>641</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>50</number>
-    </property>
+   <layout class="QFormLayout" name="formLayout">
     <property name="rightMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="1">
      <widget class="QPushButton" name="pushButton_1">
       <property name="styleSheet">
        <string notr="true">QPushButton {
@@ -100,11 +97,11 @@ QPushButton:pressed {
 }</string>
       </property>
       <property name="text">
-       <string>Nutzer_1</string>
+       <string>1: </string>
       </property>
      </widget>
     </item>
-    <item>
+    <item row="1" column="1">
      <widget class="QPushButton" name="pushButton_2">
       <property name="styleSheet">
        <string notr="true">QPushButton {
@@ -123,7 +120,76 @@ QPushButton:pressed {
 }</string>
       </property>
       <property name="text">
-       <string>Nutzer_2</string>
+       <string>2: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>3: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>4: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>5: </string>
       </property>
      </widget>
     </item>
@@ -154,6 +220,136 @@ QPushButton:pressed {
      <height>40</height>
     </size>
    </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>140</y>
+     <width>351</width>
+     <height>641</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>6: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>7: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>8: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton_9">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>9: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton_10">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 75 9pt &quot;Terminal&quot;;
+    border-radius: 45px; /* Setzen Sie den Radius auf die Hälfte der Breite und Höhe, um einen Kreis zu erstellen */
+    background-color: #3498db; /* Farbe des Kreises */
+    color: white; /* Farbe des Textes im Kreis */
+    border: 5px solid #2980b9; /* Optional: Rand des Kreises */
+    width: 80px; /* Breite des Kreises */
+    height: 80px; /* Höhe des Kreises */
+    font-size: 14px; /* Schriftgröße des Textes im Kreis */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9; /* Farbe des Kreises beim Drücken */
+}</string>
+      </property>
+      <property name="text">
+       <string>10: </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
