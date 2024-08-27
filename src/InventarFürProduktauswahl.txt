@@ -1,1 +1,3 @@
-stackable;Testt;6
+stackable;Apfel;3
+stackable;Bio-Tee Minze;1
+stackable;Cola;1

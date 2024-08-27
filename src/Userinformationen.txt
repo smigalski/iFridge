@@ -1,8 +1,8 @@
-Bernd;168.5
 Olaf;31.0
 Hildegard;5.0
 Gottfried;10.0
 Getrude;0.0
 Hans;50.0
 Friedrich;0.0
-Yasmine;20
+Yasmine;20.0
+Kiki;104.0
