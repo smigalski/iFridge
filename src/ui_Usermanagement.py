@@ -260,6 +260,12 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
 
         return self.users
 
+    def return_single_user(self, username):
+        if username in self.users:
+            return self.users[username]
+        else:
+            print(f"Der Nutzer {username} existiert nicht")
+
     # Diese Methode fungiert als Workaround für das Problem mit der Kommunikation zwischen den Modulen. Die Userdaten werden bei Aufruf in einer Txt gespeichert
     def save_users_to_file(self):
         print("Methode save_users_to_file aufgerufen")  # Debug
