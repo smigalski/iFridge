@@ -210,9 +210,10 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
             print(f"Benutzer '{username}' existiert bereits.")
         self.save_users_to_file()
 
-    def remove_user(self, username,clicked=False):                        #Methode zum Entfernen von Usern. Es fehlt noch das Melden des Auszahlbetrags
+    # Methode zum Entfernen von Usern aus dem Usermanagement
+    def remove_user(self, username,clicked=False): # der Username muss übergeben werden. Clicked ist ein Workaround und sorgt bei geöffnetem Fenster (!) durch True für das Updaten der UI
         if username in self.users:
-            del self.users[username]
+            del self.users[username]    # Löschen des Nutzers und danach updaten der ui
             if clicked == True:
                 ui.update_ui()
         else:
@@ -220,9 +221,10 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         self.save_users_to_file()
 
 
+    # Methode zum Einzahlen von Geld auf das Nutzerkonto
     def deposit(self, username, amount,clicked=False):
         if username in self.users:
-            self.users[username]['balance'] += amount
+            self.users[username]['balance'] += amount  # der Kontostand wird um den übergebenen Wert amound erhöht
             if clicked == True:
                 ui.update_ui()
         else:
@@ -230,6 +232,7 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         self.save_users_to_file()
 
 
+    # Methode zum Ändern des Kontostands auf einen bestimmten Wert. Restlicher Aufbau analog zu den anderen Methoden
     def change_balance(self, username, new_balance, clicked=False):
         if username in self.users:
             self.users[username]['balance'] = new_balance
@@ -240,6 +243,7 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
         self.save_users_to_file()
 
 
+    # Methode zum Abheben von Geld vom Nutzerkonto. Aufbau analog zu den anderen Methoden
     def withdraw(self, username, amount, clicked=False):
         if username in self.users:
             self.users[username]['balance'] -= amount
@@ -249,9 +253,8 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
             print("Der angegebene Nutzer existiert nicht")
         self.save_users_to_file()
 
-
-
-    def get_all_users(self):                                #Methode, die die Nutzernamen und Kontostände zurückgibt
+    # Methode, die die Nutzernamen und Kontostände zurückgibt
+    def get_all_users(self):
         #debug
         #print("get_all_users:", self.users)
 
@@ -268,6 +271,7 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
             print(f"Benutzerinformationen erfolgreich in {file_path} gespeichert.")
         except Exception as e: #just in Case
             print(f"Fehler beim Speichern der Benutzerinformationen: {e}")
+
 
     #Diese Methode ruft die Userinformation aus der mit save_users_to_file angelegten txt ab
     def load_users_from_file(self):
@@ -298,7 +302,7 @@ class UserManagement:                   #Klasse Usermanagemengt hinzugefügt
 UserManagementInstanz = UserManagement()            #Zur besseren Übersichtlichkeit wird die Instanz der Klasse hier explizit erzeugt
 
 
-
+# von PyQt5 erstellt
 if __name__ == "__main__":
     import sys
 
